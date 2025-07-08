@@ -1,7 +1,6 @@
 [general]
 import = ["~/.config/alacritty/everforest.toml"]
 
-# custom_cursor_colors = true
 live_config_reload = true
 
 [bell]
