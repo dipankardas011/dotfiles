@@ -455,99 +455,100 @@ require('lazy').setup({
     },
   },
 
-{
-  'nvim-lualine/lualine.nvim',
-  opts = {
-    options = {
-      icons_enabled = true,
-      -- theme = 'auto', -- or your colorscheme like 'tokyonight', 'catppuccin', etc.
-      theme = 'auto',
-      section_separators = { left = ' ', right = ' ' },
-      disabled_filetypes = {},
-      globalstatus = true,
-    },
-    sections = {
-      lualine_a = {
-        {
-            'mode',
-            separator = { left = '', right = ' ' },
-            right_padding = 2,
-        },
-      },
-      lualine_b = {
-        {
-            'branch',
-            icon = '',
-            separator = { left = ' ', right = ' ' },
-            right_padding = 2,
-        },
-        {
-          'diff',
-          symbols = { added = ' ', modified = ' ', removed = ' ' },
-          separator = { left = ' ', right = ' ' },
-        },
-        {
-          'diagnostics',
-          sources = { 'nvim_diagnostic' },
-          symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
-          separator = { left = ' ', right = ' ' },
-        },
-      },
-      lualine_c = {
-        {
-          'filename',
-          path = 1,
-          separator = { left = '', right = ' ' },
-          color = { bg = '#2c2e34' }, -- Match your lualine background color
-        }
-      },
-      lualine_x = {
-        {
-          'encoding',
-          separator = { left = ' ', right = ' ' },
-        },
-        {
-          'fileformat',
-          symbols = {
-            unix = '', -- LF
-            dos = '',  -- CRLF
-            mac = '',  -- CR
-          },
-          separator = { left = ' ', right = ' ' },
-        },
-        {
-          'filetype',
-          icon_only = false,
-          separator = { left = ' ', right = ' ' },
-        },
-      },
-      lualine_y = {
-        {
-          'progress',
-          separator = { left = ' ', right = ' ' },
-        },
-      },
-      lualine_z = {
-        {
-          'location',
-          separator = { left = '', right = '' },
-          left_padding = 2,
-        },
-      },
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { 'filename' },
-      lualine_x = { 'location' },
-      lualine_y = {},
-      lualine_z = {}
-    },
-    tabline = {},
-    extensions = {}
-  },
-},
 
+  -- {
+  --   'nvim-lualine/lualine.nvim',
+  --   opts = {
+  --     options = {
+  --       icons_enabled = true,
+  --       -- theme = 'auto', -- or your colorscheme like 'tokyonight', 'catppuccin', etc.
+  --       theme = 'auto',
+  --       section_separators = { left = ' ', right = ' ' },
+  --       disabled_filetypes = {},
+  --       globalstatus = true,
+  --     },
+  --     sections = {
+  --       lualine_a = {
+  --         {
+  --           'mode',
+  --           separator = { left = '', right = ' ' },
+  --           right_padding = 2,
+  --         },
+  --       },
+  --       lualine_b = {
+  --         {
+  --           'branch',
+  --           icon = '',
+  --           separator = { left = ' ', right = ' ' },
+  --           right_padding = 2,
+  --         },
+  --         {
+  --           'diff',
+  --           symbols = { added = ' ', modified = ' ', removed = ' ' },
+  --           separator = { left = ' ', right = ' ' },
+  --         },
+  --         {
+  --           'diagnostics',
+  --           sources = { 'nvim_diagnostic' },
+  --           symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+  --           separator = { left = ' ', right = ' ' },
+  --         },
+  --       },
+  --       lualine_c = {
+  --         {
+  --           'filename',
+  --           path = 1,
+  --           separator = { left = '', right = ' ' },
+  --           color = { bg = '#2c2e34' }, -- Match your lualine background color
+  --         }
+  --       },
+  --       lualine_x = {
+  --         {
+  --           'encoding',
+  --           separator = { left = ' ', right = ' ' },
+  --         },
+  --         {
+  --           'fileformat',
+  --           symbols = {
+  --             unix = '', -- LF
+  --             dos = '',  -- CRLF
+  --             mac = '',  -- CR
+  --           },
+  --           separator = { left = ' ', right = ' ' },
+  --         },
+  --         {
+  --           'filetype',
+  --           icon_only = false,
+  --           separator = { left = ' ', right = ' ' },
+  --         },
+  --       },
+  --       lualine_y = {
+  --         {
+  --           'progress',
+  --           separator = { left = ' ', right = ' ' },
+  --         },
+  --       },
+  --       lualine_z = {
+  --         {
+  --           'location',
+  --           separator = { left = '', right = '' },
+  --           left_padding = 2,
+  --         },
+  --       },
+  --     },
+  --     inactive_sections = {
+  --       lualine_a = {},
+  --       lualine_b = {},
+  --       lualine_c = { 'filename' },
+  --       lualine_x = { 'location' },
+  --       lualine_y = {},
+  --       lualine_z = {}
+  --     },
+  --     tabline = {},
+  --     extensions = {}
+  --   },
+  -- },
+  --
   {
     'lukas-reineke/indent-blankline.nvim',
     config = function ()
@@ -678,6 +679,9 @@ vim.wo.cursorline = true
 
 vim.opt.colorcolumn = "100"
 
+vim.opt.statusline = ' %{mode()}%=%<%f%=%y %l,%c '
+
+
 vim.o.laststatus = 3 -- global status
 
 
@@ -708,7 +712,10 @@ vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() 
 vim.keymap.set('n', '<Leader>dU', function() require('dapui').toggle() end, { desc = '[D]ebug [U]UI toggle' })
 vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { desc = '[l]log pointer for debug' })
 
-vim.keymap.set('n', '<leader>gcs', ':CopilotChatCommit<CR>',{ desc = 'generate commit message' })
+vim.keymap.set('n', '<leader>gsp', ':Git add -p .<CR>',{ desc = 'Git add with prompt' })
+vim.keymap.set('n', '<leader>gsa', ':Git add .<CR>',{ desc = 'Git add all' })
+vim.keymap.set('n', '<leader>gcs', ':Git commit -sv<CR>',{ desc = 'git commit with sign' })
+vim.keymap.set('n', '<leader>aigc', ':CopilotChatCommit<CR>',{ desc = 'generate commit message' })
 vim.keymap.set('n', '<leader>ai', ':CodeCompanionChat<CR>',{ desc = 'Get AI Chat' })
 
 
