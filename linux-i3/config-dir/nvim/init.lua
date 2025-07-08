@@ -679,7 +679,7 @@ vim.wo.cursorline = true
 
 vim.opt.colorcolumn = "100"
 
-vim.opt.statusline = '%{mode()}%=%<%f%m%r%h%w%=%y{%l,%c}'
+vim.opt.statusline = '%{mode()}%=%<%f%m%r%h%w%=%y %l,%c'
 
 vim.o.laststatus = 3 -- global status
 
