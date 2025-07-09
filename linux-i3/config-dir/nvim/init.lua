@@ -1,6 +1,5 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
--- -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
 vim.cmd([[
@@ -54,8 +53,6 @@ vim.o.scrolloff = 10
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
-
-vim.o.termguicolors = true
 
 vim.o.confirm = true
 
@@ -156,14 +153,6 @@ vim.keymap.set("n", "<Leader>ds", function()
 	widgets.centered_float(widgets.scopes)
 end)
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -243,54 +232,54 @@ require("lazy").setup({
 		end,
 	},
 
-	{ "folke/which-key.nvim", opts = {} },
-	-- { -- NOTE: commented becuase it was intervering with AI features
-	-- 	"folke/which-key.nvim",
-	-- 	event = "VimEnter",
-	-- 	opts = {
-	-- 		delay = 0,
-	-- 		icons = {
-	-- 			mappings = vim.g.have_nerd_font,
-	-- 			keys = vim.g.have_nerd_font and {} or {
-	-- 				Up = "<Up> ",
-	-- 				Down = "<Down> ",
-	-- 				Left = "<Left> ",
-	-- 				Right = "<Right> ",
-	-- 				C = "<C-…> ",
-	-- 				M = "<M-…> ",
-	-- 				D = "<D-…> ",
-	-- 				S = "<S-…> ",
-	-- 				CR = "<CR> ",
-	-- 				Esc = "<Esc> ",
-	-- 				ScrollWheelDown = "<ScrollWheelDown> ",
-	-- 				ScrollWheelUp = "<ScrollWheelUp> ",
-	-- 				NL = "<NL> ",
-	-- 				BS = "<BS> ",
-	-- 				Space = "<Space> ",
-	-- 				Tab = "<Tab> ",
-	-- 				F1 = "<F1>",
-	-- 				F2 = "<F2>",
-	-- 				F3 = "<F3>",
-	-- 				F4 = "<F4>",
-	-- 				F5 = "<F5>",
-	-- 				F6 = "<F6>",
-	-- 				F7 = "<F7>",
-	-- 				F8 = "<F8>",
-	-- 				F9 = "<F9>",
-	-- 				F10 = "<F10>",
-	-- 				F11 = "<F11>",
-	-- 				F12 = "<F12>",
-	-- 			},
-	-- 		},
-	--
-	-- 		-- Document existing key chains
-	-- 		spec = {
-	-- 			{ "<leader>s", group = "[S]earch" },
-	-- 			{ "<leader>t", group = "[T]oggle" },
-	-- 			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-	-- 		},
-	-- 	},
-	-- },
+	-- { "folke/which-key.nvim", opts = {} },
+	{
+		"folke/which-key.nvim",
+		event = "VimEnter",
+		opts = {
+			delay = 0,
+			icons = {
+				mappings = vim.g.have_nerd_font,
+				keys = vim.g.have_nerd_font and {} or {
+					Up = "<Up> ",
+					Down = "<Down> ",
+					Left = "<Left> ",
+					Right = "<Right> ",
+					C = "<C-…> ",
+					M = "<M-…> ",
+					D = "<D-…> ",
+					S = "<S-…> ",
+					CR = "<CR> ",
+					Esc = "<Esc> ",
+					ScrollWheelDown = "<ScrollWheelDown> ",
+					ScrollWheelUp = "<ScrollWheelUp> ",
+					NL = "<NL> ",
+					BS = "<BS> ",
+					Space = "<Space> ",
+					Tab = "<Tab> ",
+					F1 = "<F1>",
+					F2 = "<F2>",
+					F3 = "<F3>",
+					F4 = "<F4>",
+					F5 = "<F5>",
+					F6 = "<F6>",
+					F7 = "<F7>",
+					F8 = "<F8>",
+					F9 = "<F9>",
+					F10 = "<F10>",
+					F11 = "<F11>",
+					F12 = "<F12>",
+				},
+			},
+
+			-- Document existing key chains
+			spec = {
+				{ "<leader>s", group = "[S]earch" },
+				{ "<leader>t", group = "[T]oggle" },
+				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+			},
+		},
+	},
 
 	{
 		"NvChad/nvterm",
@@ -322,18 +311,7 @@ require("lazy").setup({
 		"kristijanhusak/vim-dadbod-completion",
 		"kristijanhusak/vim-dadbod-ui",
 	},
-	{
-		-- Autocompletion
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
 
-			"hrsh7th/cmp-nvim-lsp",
-
-			"rafamadriz/friendly-snippets",
-		},
-	},
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
@@ -387,17 +365,6 @@ require("lazy").setup({
 			},
 		},
 	},
-
-	-- {
-	--   'romgrk/barbar.nvim',
-	--   dependencies = {
-	--     'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-	--     'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-	--   },
-	--   init = function()
-	--     vim.g.barbar_auto_setup = true
-	--   end,
-	-- },
 
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
@@ -744,6 +711,25 @@ require("lazy").setup({
 			},
 		},
 	},
+	{ -- optional cmp completion source for require statements and module annotations
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+
+			"hrsh7th/cmp-nvim-lsp",
+
+			"rafamadriz/friendly-snippets",
+		},
+
+		opts = function(_, opts)
+			opts.sources = opts.sources or {}
+			table.insert(opts.sources, {
+				name = "lazydev",
+				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+			})
+		end,
+	},
 	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
@@ -1078,104 +1064,105 @@ require("lazy").setup({
 		},
 	},
 
-	{ -- Autocompletion
-		"saghen/blink.cmp",
-		event = "VimEnter",
-		version = "1.*",
-		dependencies = {
-			-- Snippet Engine
-			{
-				"L3MON4D3/LuaSnip",
-				version = "2.*",
-				build = (function()
-					-- Build Step is needed for regex support in snippets.
-					-- This step is not supported in many windows environments.
-					-- Remove the below condition to re-enable on windows.
-					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-						return
-					end
-					return "make install_jsregexp"
-				end)(),
-				dependencies = {
-					-- `friendly-snippets` contains a variety of premade snippets.
-					--    See the README about individual language/framework/plugin snippets:
-					--    https://github.com/rafamadriz/friendly-snippets
-					-- {
-					--   'rafamadriz/friendly-snippets',
-					--   config = function()
-					--     require('luasnip.loaders.from_vscode').lazy_load()
-					--   end,
-					-- },
-				},
-				opts = {},
-			},
-			"folke/lazydev.nvim",
-		},
-		--- @module 'blink.cmp'
-		--- @type blink.cmp.Config
-		opts = {
-			keymap = {
-				-- 'default' (recommended) for mappings similar to built-in completions
-				--   <c-y> to accept ([y]es) the completion.
-				--    This will auto-import if your LSP supports it.
-				--    This will expand snippets if the LSP sent a snippet.
-				-- 'super-tab' for tab to accept
-				-- 'enter' for enter to accept
-				-- 'none' for no mappings
-				--
-				-- For an understanding of why the 'default' preset is recommended,
-				-- you will need to read `:help ins-completion`
-				--
-				-- No, but seriously. Please read `:help ins-completion`, it is really good!
-				--
-				-- All presets have the following mappings:
-				-- <tab>/<s-tab>: move to right/left of your snippet expansion
-				-- <c-space>: Open menu or open docs if already open
-				-- <c-n>/<c-p> or <up>/<down>: Select next/previous item
-				-- <c-e>: Hide menu
-				-- <c-k>: Toggle signature help
-				--
-				-- See :h blink-cmp-config-keymap for defining your own keymap
-				preset = "default",
-
-				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-			},
-
-			appearance = {
-				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = "mono",
-			},
-
-			completion = {
-				-- By default, you may press `<c-space>` to show the documentation.
-				-- Optionally, set `auto_show = true` to show the documentation after a delay.
-				documentation = { auto_show = false, auto_show_delay_ms = 500 },
-			},
-
-			sources = {
-				default = { "lsp", "path", "snippets", "lazydev" },
-				providers = {
-					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
-				},
-			},
-
-			snippets = { preset = "luasnip" },
-
-			-- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-			-- which automatically downloads a prebuilt binary when enabled.
-			--
-			-- By default, we use the Lua implementation instead, but you may enable
-			-- the rust implementation via `'prefer_rust_with_warning'`
-			--
-			-- See :h blink-cmp-config-fuzzy for more information
-			fuzzy = { implementation = "lua" },
-
-			-- Shows a signature help window while you type arguments for a function
-			signature = { enabled = true },
-		},
-	},
+	-- NOTE: It has all the problems so Hidden it
+	-- { -- Autocompletion
+	-- 	"saghen/blink.cmp",
+	-- 	event = "VimEnter",
+	-- 	version = "1.*",
+	-- 	dependencies = {
+	-- 		-- Snippet Engine
+	-- 		{
+	-- 			"L3MON4D3/LuaSnip",
+	-- 			version = "2.*",
+	-- 			build = (function()
+	-- 				-- Build Step is needed for regex support in snippets.
+	-- 				-- This step is not supported in many windows environments.
+	-- 				-- Remove the below condition to re-enable on windows.
+	-- 				if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+	-- 					return
+	-- 				end
+	-- 				return "make install_jsregexp"
+	-- 			end)(),
+	-- 			dependencies = {
+	-- 				-- `friendly-snippets` contains a variety of premade snippets.
+	-- 				--    See the README about individual language/framework/plugin snippets:
+	-- 				--    https://github.com/rafamadriz/friendly-snippets
+	-- 				-- {
+	-- 				--   'rafamadriz/friendly-snippets',
+	-- 				--   config = function()
+	-- 				--     require('luasnip.loaders.from_vscode').lazy_load()
+	-- 				--   end,
+	-- 				-- },
+	-- 			},
+	-- 			opts = {},
+	-- 		},
+	-- 		"folke/lazydev.nvim",
+	-- 	},
+	-- 	--- @module 'blink.cmp'
+	-- 	--- @type blink.cmp.Config
+	-- 	opts = {
+	-- 		keymap = {
+	-- 			-- 'default' (recommended) for mappings similar to built-in completions
+	-- 			--   <c-y> to accept ([y]es) the completion.
+	-- 			--    This will auto-import if your LSP supports it.
+	-- 			--    This will expand snippets if the LSP sent a snippet.
+	-- 			-- 'super-tab' for tab to accept
+	-- 			-- 'enter' for enter to accept
+	-- 			-- 'none' for no mappings
+	-- 			--
+	-- 			-- For an understanding of why the 'default' preset is recommended,
+	-- 			-- you will need to read `:help ins-completion`
+	-- 			--
+	-- 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
+	-- 			--
+	-- 			-- All presets have the following mappings:
+	-- 			-- <tab>/<s-tab>: move to right/left of your snippet expansion
+	-- 			-- <c-space>: Open menu or open docs if already open
+	-- 			-- <c-n>/<c-p> or <up>/<down>: Select next/previous item
+	-- 			-- <c-e>: Hide menu
+	-- 			-- <c-k>: Toggle signature help
+	-- 			--
+	-- 			-- See :h blink-cmp-config-keymap for defining your own keymap
+	-- 			preset = "default",
+	--
+	-- 			-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
+	-- 			--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+	-- 		},
+	--
+	-- 		appearance = {
+	-- 			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+	-- 			-- Adjusts spacing to ensure icons are aligned
+	-- 			nerd_font_variant = "mono",
+	-- 		},
+	--
+	-- 		completion = {
+	-- 			-- By default, you may press `<c-space>` to show the documentation.
+	-- 			-- Optionally, set `auto_show = true` to show the documentation after a delay.
+	-- 			documentation = { auto_show = false, auto_show_delay_ms = 500 },
+	-- 		},
+	--
+	-- 		sources = {
+	-- 			default = { "lsp", "path", "snippets", "lazydev" },
+	-- 			providers = {
+	-- 				lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+	-- 			},
+	-- 		},
+	--
+	-- 		snippets = { preset = "luasnip" },
+	--
+	-- 		-- Blink.cmp includes an optional, recommended rust fuzzy matcher,
+	-- 		-- which automatically downloads a prebuilt binary when enabled.
+	-- 		--
+	-- 		-- By default, we use the Lua implementation instead, but you may enable
+	-- 		-- the rust implementation via `'prefer_rust_with_warning'`
+	-- 		--
+	-- 		-- See :h blink-cmp-config-fuzzy for more information
+	-- 		fuzzy = { implementation = "lua" },
+	--
+	-- 		-- Shows a signature help window while you type arguments for a function
+	-- 		signature = { enabled = true },
+	-- 	},
+	-- },
 
 	-- Highlight todo, notes, etc in comments
 	{
