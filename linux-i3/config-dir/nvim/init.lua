@@ -43,8 +43,8 @@ vim.o.timeoutlen = 300
 vim.o.splitright = true
 vim.o.splitbelow = true
 
-vim.o.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.o.list = true
+-- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.o.inccommand = "split"
 
@@ -185,12 +185,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -199,8 +193,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -214,20 +206,8 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
--- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
---
--- NOTE: Here is where you install your plugins.
 require("lazy").setup({
-	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-	"NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
+	"NMAC427/guess-indent.nvim",
 
 	{
 		"lewis6991/gitsigns.nvim",
@@ -241,54 +221,54 @@ require("lazy").setup({
 			},
 		},
 	},
-
-	{
-		"folke/which-key.nvim",
-		event = "VimEnter",
-		opts = {
-			delay = 0,
-			icons = {
-				mappings = vim.g.have_nerd_font,
-				keys = vim.g.have_nerd_font and {} or {
-					Up = "<Up> ",
-					Down = "<Down> ",
-					Left = "<Left> ",
-					Right = "<Right> ",
-					C = "<C-…> ",
-					M = "<M-…> ",
-					D = "<D-…> ",
-					S = "<S-…> ",
-					CR = "<CR> ",
-					Esc = "<Esc> ",
-					ScrollWheelDown = "<ScrollWheelDown> ",
-					ScrollWheelUp = "<ScrollWheelUp> ",
-					NL = "<NL> ",
-					BS = "<BS> ",
-					Space = "<Space> ",
-					Tab = "<Tab> ",
-					F1 = "<F1>",
-					F2 = "<F2>",
-					F3 = "<F3>",
-					F4 = "<F4>",
-					F5 = "<F5>",
-					F6 = "<F6>",
-					F7 = "<F7>",
-					F8 = "<F8>",
-					F9 = "<F9>",
-					F10 = "<F10>",
-					F11 = "<F11>",
-					F12 = "<F12>",
-				},
-			},
-
-			-- Document existing key chains
-			spec = {
-				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-			},
-		},
-	},
+	{ "folke/which-key.nvim", opts = {} },
+	-- { -- NOTE: commented becuase it was intervering with AI features
+	-- 	"folke/which-key.nvim",
+	-- 	event = "VimEnter",
+	-- 	opts = {
+	-- 		delay = 0,
+	-- 		icons = {
+	-- 			mappings = vim.g.have_nerd_font,
+	-- 			keys = vim.g.have_nerd_font and {} or {
+	-- 				Up = "<Up> ",
+	-- 				Down = "<Down> ",
+	-- 				Left = "<Left> ",
+	-- 				Right = "<Right> ",
+	-- 				C = "<C-…> ",
+	-- 				M = "<M-…> ",
+	-- 				D = "<D-…> ",
+	-- 				S = "<S-…> ",
+	-- 				CR = "<CR> ",
+	-- 				Esc = "<Esc> ",
+	-- 				ScrollWheelDown = "<ScrollWheelDown> ",
+	-- 				ScrollWheelUp = "<ScrollWheelUp> ",
+	-- 				NL = "<NL> ",
+	-- 				BS = "<BS> ",
+	-- 				Space = "<Space> ",
+	-- 				Tab = "<Tab> ",
+	-- 				F1 = "<F1>",
+	-- 				F2 = "<F2>",
+	-- 				F3 = "<F3>",
+	-- 				F4 = "<F4>",
+	-- 				F5 = "<F5>",
+	-- 				F6 = "<F6>",
+	-- 				F7 = "<F7>",
+	-- 				F8 = "<F8>",
+	-- 				F9 = "<F9>",
+	-- 				F10 = "<F10>",
+	-- 				F11 = "<F11>",
+	-- 				F12 = "<F12>",
+	-- 			},
+	-- 		},
+	--
+	-- 		-- Document existing key chains
+	-- 		spec = {
+	-- 			{ "<leader>s", group = "[S]earch" },
+	-- 			{ "<leader>t", group = "[T]oggle" },
+	-- 			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+	-- 		},
+	-- 	},
+	-- },
 
 	{
 		"NvChad/nvterm",
