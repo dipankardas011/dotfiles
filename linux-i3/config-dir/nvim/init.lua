@@ -51,6 +51,10 @@ vim.o.inccommand = "split"
 vim.o.cursorline = true
 
 vim.o.scrolloff = 10
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noselect"
+
 vim.o.termguicolors = true
 
 vim.o.confirm = true
@@ -75,6 +79,8 @@ vim.opt.colorcolumn = "100"
 vim.opt.statusline = "[%{mode()}]%=%<%f%m%r%h%w%=%y"
 
 vim.o.laststatus = 3 -- global status
+
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -313,6 +319,18 @@ require("lazy").setup({
 		"tpope/vim-dadbod",
 		"kristijanhusak/vim-dadbod-completion",
 		"kristijanhusak/vim-dadbod-ui",
+	},
+	{
+		-- Autocompletion
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+
+			"hrsh7th/cmp-nvim-lsp",
+
+			"rafamadriz/friendly-snippets",
+		},
 	},
 	{
 		"yetone/avante.nvim",
@@ -1309,3 +1327,51 @@ local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()
 end
+
+-- [[ Configure nvim-cmp ]]
+-- See `:help cmp`
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+require("luasnip.loaders.from_vscode").lazy_load()
+luasnip.config.setup({})
+
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete({}),
+		["<CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		}),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	}),
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+	},
+})
