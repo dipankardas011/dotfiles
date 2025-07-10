@@ -674,6 +674,7 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 
 			"rafamadriz/friendly-snippets",
+			"onsails/lspkind.nvim",
 		},
 
 		opts = function(_, opts)
@@ -899,21 +900,8 @@ require("lazy").setup({
 				},
 			})
 
-			-- LSP servers and clients are able to communicate to each other what features they support.
-			--  By default, Neovim doesn't support everything that is in the LSP specification.
-			--  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			-- Enable the following language servers
-			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-			--
-			--  Add any additional override configuration in the following tables. Available keys are:
-			--  - cmd (table): Override the default command used to start the server
-			--  - filetypes (table): Override the default list of associated filetypes for the server
-			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-			--  - settings (table): Override the default settings passed when initializing the server.
-			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 
 				clangd = {},
@@ -921,7 +909,6 @@ require("lazy").setup({
 				pyright = {},
 				rust_analyzer = {},
 				yamlls = {},
-
 				lua_ls = {
 					-- cmd = { ... },
 					-- filetypes = { ... },
@@ -1014,107 +1001,6 @@ require("lazy").setup({
 			},
 		},
 	},
-
-	-- NOTE: It has all the problems so Hidden it
-	-- {
-	-- 	"saghen/blink.cmp",
-	-- 	-- event = "VimEnter",
-	-- 	-- version = "1.*",
-	-- 	dependencies = {
-	-- 		-- Snippet Engine
-	-- 		{
-	-- 			"L3MON4D3/LuaSnip",
-	-- 			version = "2.*",
-	-- 			build = (function()
-	-- 				-- Build Step is needed for regex support in snippets.
-	-- 				-- This step is not supported in many windows environments.
-	-- 				-- Remove the below condition to re-enable on windows.
-	-- 				if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-	-- 					return
-	-- 				end
-	-- 				return "make install_jsregexp"
-	-- 			end)(),
-	-- 			dependencies = {
-	-- 				-- `friendly-snippets` contains a variety of premade snippets.
-	-- 				--    See the README about individual language/framework/plugin snippets:
-	-- 				--    https://github.com/rafamadriz/friendly-snippets
-	-- 				-- {
-	-- 				--   'rafamadriz/friendly-snippets',
-	-- 				--   config = function()
-	-- 				--     require('luasnip.loaders.from_vscode').lazy_load()
-	-- 				--   end,
-	-- 				-- },
-	-- 			},
-	-- 			opts = {},
-	-- 		},
-	-- 		"folke/lazydev.nvim",
-	-- 	},
-	-- 	--- @module 'blink.cmp'
-	-- 	--- @type blink.cmp.Config
-	-- 	opts = {
-	-- 		keymap = {
-	-- 			-- 'default' (recommended) for mappings similar to built-in completions
-	-- 			--   <c-y> to accept ([y]es) the completion.
-	-- 			--    This will auto-import if your LSP supports it.
-	-- 			--    This will expand snippets if the LSP sent a snippet.
-	-- 			-- 'super-tab' for tab to accept
-	-- 			-- 'enter' for enter to accept
-	-- 			-- 'none' for no mappings
-	-- 			--
-	-- 			-- For an understanding of why the 'default' preset is recommended,
-	-- 			-- you will need to read `:help ins-completion`
-	-- 			--
-	-- 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
-	-- 			--
-	-- 			-- All presets have the following mappings:
-	-- 			-- <tab>/<s-tab>: move to right/left of your snippet expansion
-	-- 			-- <c-space>: Open menu or open docs if already open
-	-- 			-- <c-n>/<c-p> or <up>/<down>: Select next/previous item
-	-- 			-- <c-e>: Hide menu
-	-- 			-- <c-k>: Toggle signature help
-	-- 			--
-	-- 			-- See :h blink-cmp-config-keymap for defining your own keymap
-	-- 			preset = "none",
-	-- 			-- preset = "default",
-	--
-	-- 			-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-	-- 			--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-	-- 		},
-	--
-	-- 		appearance = {
-	-- 			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-	-- 			-- Adjusts spacing to ensure icons are aligned
-	-- 			nerd_font_variant = "mono",
-	-- 		},
-	--
-	-- 		completion = {
-	-- 			-- By default, you may press `<c-space>` to show the documentation.
-	-- 			-- Optionally, set `auto_show = true` to show the documentation after a delay.
-	-- 			documentation = { auto_show = false, auto_show_delay_ms = 500 },
-	-- 		},
-	--
-	-- 		sources = {
-	-- 			default = { "lsp", "path", "snippets", "lazydev" },
-	-- 			providers = {
-	-- 				lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
-	-- 			},
-	-- 		},
-	--
-	-- 		snippets = { preset = "luasnip" },
-	--
-	-- 		-- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-	-- 		-- which automatically downloads a prebuilt binary when enabled.
-	-- 		--
-	-- 		-- By default, we use the Lua implementation instead, but you may enable
-	-- 		-- the rust implementation via `'prefer_rust_with_warning'`
-	-- 		--
-	-- 		-- See :h blink-cmp-config-fuzzy for more information
-	-- 		fuzzy = { implementation = "lua" },
-	--
-	-- 		-- Shows a signature help window while you type arguments for a function
-	-- 		signature = { enabled = true },
-	-- 	},
-	-- },
 
 	-- Highlight todo, notes, etc in comments
 	{
@@ -1273,6 +1159,7 @@ end
 -- See `:help cmp`
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local lspkind = require("lspkind")
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
 
@@ -1281,6 +1168,27 @@ cmp.setup({
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
+	},
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol", -- show only symbol annotations
+			maxwidth = {
+				-- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+				-- can also be a function to dynamically calculate max width such as
+				-- menu = function() return math.floor(0.45 * vim.o.columns) end,
+				menu = 50, -- leading text (labelDetails)
+				abbr = 50, -- actual suggestion item
+			},
+			ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+			show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+
+			-- The function below will be called before any actual modifications from lspkind
+			-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+			before = function(entry, vim_item)
+				-- ...
+				return vim_item
+			end,
+		}),
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
