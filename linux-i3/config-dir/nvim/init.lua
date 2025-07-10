@@ -154,10 +154,10 @@ vim.keymap.set("n", "<Leader>ds", function()
 end)
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -232,54 +232,54 @@ require("lazy").setup({
 		end,
 	},
 
-	-- { "folke/which-key.nvim", opts = {} },
-	{
-		"folke/which-key.nvim",
-		event = "VimEnter",
-		opts = {
-			delay = 0,
-			icons = {
-				mappings = vim.g.have_nerd_font,
-				keys = vim.g.have_nerd_font and {} or {
-					Up = "<Up> ",
-					Down = "<Down> ",
-					Left = "<Left> ",
-					Right = "<Right> ",
-					C = "<C-…> ",
-					M = "<M-…> ",
-					D = "<D-…> ",
-					S = "<S-…> ",
-					CR = "<CR> ",
-					Esc = "<Esc> ",
-					ScrollWheelDown = "<ScrollWheelDown> ",
-					ScrollWheelUp = "<ScrollWheelUp> ",
-					NL = "<NL> ",
-					BS = "<BS> ",
-					Space = "<Space> ",
-					Tab = "<Tab> ",
-					F1 = "<F1>",
-					F2 = "<F2>",
-					F3 = "<F3>",
-					F4 = "<F4>",
-					F5 = "<F5>",
-					F6 = "<F6>",
-					F7 = "<F7>",
-					F8 = "<F8>",
-					F9 = "<F9>",
-					F10 = "<F10>",
-					F11 = "<F11>",
-					F12 = "<F12>",
-				},
-			},
-
-			-- Document existing key chains
-			spec = {
-				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-			},
-		},
-	},
+	{ "folke/which-key.nvim", opts = {} },
+	-- {
+	-- 	"folke/which-key.nvim",
+	-- 	event = "VimEnter",
+	-- 	opts = {
+	-- 		delay = 0,
+	-- 		icons = {
+	-- 			mappings = vim.g.have_nerd_font,
+	-- 			keys = vim.g.have_nerd_font and {} or {
+	-- 				Up = "<Up> ",
+	-- 				Down = "<Down> ",
+	-- 				Left = "<Left> ",
+	-- 				Right = "<Right> ",
+	-- 				C = "<C-…> ",
+	-- 				M = "<M-…> ",
+	-- 				D = "<D-…> ",
+	-- 				S = "<S-…> ",
+	-- 				CR = "<CR> ",
+	-- 				Esc = "<Esc> ",
+	-- 				ScrollWheelDown = "<ScrollWheelDown> ",
+	-- 				ScrollWheelUp = "<ScrollWheelUp> ",
+	-- 				NL = "<NL> ",
+	-- 				BS = "<BS> ",
+	-- 				Space = "<Space> ",
+	-- 				Tab = "<Tab> ",
+	-- 				F1 = "<F1>",
+	-- 				F2 = "<F2>",
+	-- 				F3 = "<F3>",
+	-- 				F4 = "<F4>",
+	-- 				F5 = "<F5>",
+	-- 				F6 = "<F6>",
+	-- 				F7 = "<F7>",
+	-- 				F8 = "<F8>",
+	-- 				F9 = "<F9>",
+	-- 				F10 = "<F10>",
+	-- 				F11 = "<F11>",
+	-- 				F12 = "<F12>",
+	-- 			},
+	-- 		},
+	--
+	-- 		-- Document existing key chains
+	-- 		spec = {
+	-- 			{ "<leader>s", group = "[S]earch" },
+	-- 			{ "<leader>t", group = "[T]oggle" },
+	-- 			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+	-- 		},
+	-- 	},
+	-- },
 
 	{
 		"NvChad/nvterm",
@@ -390,21 +390,6 @@ require("lazy").setup({
 			require("mcphub").setup()
 		end,
 	},
-	-- {  -- New on screen popup
-	--   "folke/noice.nvim",
-	--   event = "VeryLazy",
-	--   opts = {
-	--     -- add any options here
-	--   },
-	--   dependencies = {
-	--     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-	--     "MunifTanjim/nui.nvim",
-	--     -- -- OPTIONAL:
-	--     -- --   `nvim-notify` is only needed, if you want to use the notification view.
-	--     -- --   If not available, we use `mini` as the fallback
-	--     -- "rcarriga/nvim-notify",
-	--   }
-	-- },
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
@@ -746,9 +731,6 @@ require("lazy").setup({
 				"j-hui/fidget.nvim",
 				opts = {
 					notification = {
-						enabled = true, -- set to false to disable notifications
-						icon = "󰐥 ", -- set to "" to disable icon
-						text = "LSP is working",
 						window = {
 							relative = "win",
 							winblend = 0,
@@ -1065,10 +1047,10 @@ require("lazy").setup({
 	},
 
 	-- NOTE: It has all the problems so Hidden it
-	-- { -- Autocompletion
+	-- {
 	-- 	"saghen/blink.cmp",
-	-- 	event = "VimEnter",
-	-- 	version = "1.*",
+	-- 	-- event = "VimEnter",
+	-- 	-- version = "1.*",
 	-- 	dependencies = {
 	-- 		-- Snippet Engine
 	-- 		{
@@ -1123,7 +1105,8 @@ require("lazy").setup({
 	-- 			-- <c-k>: Toggle signature help
 	-- 			--
 	-- 			-- See :h blink-cmp-config-keymap for defining your own keymap
-	-- 			preset = "default",
+	-- 			preset = "none",
+	-- 			-- preset = "default",
 	--
 	-- 			-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 	-- 			--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
