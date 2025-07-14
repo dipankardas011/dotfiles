@@ -73,7 +73,7 @@ vim.wo.cursorline = true
 
 vim.opt.colorcolumn = "100"
 
-vim.opt.statusline = "[%{mode()}]%=%<%f%m%r%h%w%=%y"
+-- vim.opt.statusline = "[%{mode()}]%=%<%f%m%r%h%w%=%y"
 
 vim.o.laststatus = 3 -- global status
 
@@ -280,59 +280,36 @@ require("lazy").setup({
 		"kristijanhusak/vim-dadbod-completion",
 		"kristijanhusak/vim-dadbod-ui",
 	},
-
 	{
-		"yetone/avante.nvim",
-		event = "VeryLazy",
-		version = false, -- Never set this value to "*"! Never!
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
 		opts = {
-			-- add any opts here
-			-- for example
-			provider = "copilot",
-			mode = "agentic",
-			hints = { enabled = false },
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { enabled = true },
+			explorer = { enabled = false },
+			indent = { enabled = true },
+			input = { enabled = true },
+			picker = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = false },
+			statuscolumn = { enabled = true },
+			words = { enabled = true },
 		},
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make",
-		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			--- The below dependencies are optional,
-			"echasnovski/mini.pick", -- for file_selector provider mini.pick
-			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-			"ibhagwan/fzf-lua", -- for file_selector provider fzf
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
-			{
-				-- support for image pasting
-				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
-				opts = {
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-						-- required for Windows users
-						use_absolute_path = true,
-					},
-				},
-			},
-			{
-				-- Make sure to set this up properly if you have lazy=true
-				"MeanderingProgrammer/render-markdown.nvim",
-				opts = {
-					file_types = { "markdown", "Avante" },
-				},
-				ft = { "markdown", "Avante" },
-			},
+	},
+	{
+		-- Make sure to set this up properly if you have lazy=true
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {
+			file_types = { "markdown", "Avante" },
 		},
+		ft = { "markdown", "Avante" },
 	},
 
 	{
@@ -383,12 +360,12 @@ require("lazy").setup({
 		config = function()
 			vim.g.everforest_diagnostic_text_highlight = 1
 			vim.g.everforest_diagnostic_line_highlight = 1
-			vim.g.everforest_transparent_background = 1
+			-- vim.g.everforest_transparent_background = 1
 			vim.g.everforest_diagnostic_virtual_text = "highlighted"
-			vim.g.everforest_background = "hard"
+			-- vim.g.everforest_background = "hard"
 			-- vim.g.everforest_dim_inactive_windows=1
 			vim.g.everforest_ui_contrast = "high"
-			vim.g.everforest_current_word = "underline"
+			-- vim.g.everforest_current_word = "underline"
 
 			vim.g.everforest_better_performance = 1
 			vim.g.everforest_enable_italic = 1
@@ -981,7 +958,7 @@ require("lazy").setup({
 				-- Disable "format_on_save lsp_fallback" for languages that don't
 				-- have a well standardized coding style. You can add additional
 				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
+				local disable_filetypes = { c = true, cpp = true, go = true }
 				if disable_filetypes[vim.bo[bufnr].filetype] then
 					return nil
 				else
@@ -1038,17 +1015,17 @@ require("lazy").setup({
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
 			--  and try some other statusline plugin
-			-- local statusline = require("mini.statusline")
-			-- -- set use_icons to true if you have a Nerd Font
-			-- statusline.setup({ use_icons = vim.g.have_nerd_font })
-			--
-			-- -- You can configure sections in the statusline by overriding their
-			-- -- default behavior. For example, here we set the section for
-			-- -- cursor location to LINE:COLUMN
-			-- ---@diagnostic disable-next-line: duplicate-set-field
-			-- statusline.section_location = function()
-			-- 	return "%2l:%-2v"
-			-- end
+			local statusline = require("mini.statusline")
+			-- set use_icons to true if you have a Nerd Font
+			statusline.setup({ use_icons = vim.g.have_nerd_font })
+
+			-- You can configure sections in the statusline by overriding their
+			-- default behavior. For example, here we set the section for
+			-- cursor location to LINE:COLUMN
+			---@diagnostic disable-next-line: duplicate-set-field
+			statusline.section_location = function()
+				return "%2l:%-2v"
+			end
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
