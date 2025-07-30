@@ -30,23 +30,24 @@
   box-shadow: none;
 }
 
+
 #workspaces button {
   all: initial;
   min-width: 0;
   padding: 6px 18px;
   margin: 6px 3px;
   border-radius: 9999px;
-  background-color: #3a4541;
-  color: #f0eac5;
+  background-color: #2f3834;
+  color: #4c584f;
 }
 
 #workspaces button.active {
-  background-color: #a7c080;
-  color: #1e2326;
+  background-color: #37403d;  /* toned-down green */
+  color: #d4f1b1;             /* soft readable text */
 }
 
 #workspaces button:hover {
-  background-color: #a7c080;
+  background-color: #7fbbb3;
   color: #1e2326;
 }
 
