@@ -73,7 +73,7 @@ vim.wo.cursorline = true
 
 -- vim.wo.spell = true
 
-vim.opt.colorcolumn = "100"
+-- vim.opt.colorcolumn = "100"
 
 -- Git branch function
 local function git_branch()
@@ -131,7 +131,8 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", { desc = "toggle nvimtree" })
+-- vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", { desc = "toggle nvimtree" })
+vim.keymap.set("n", "<leader>b", ":Oil --float<CR>", { desc = "Open Oil file explorer" })
 
 --- for the nvim-terminal
 vim.keymap.set({ "n", "t" }, "<A-h>", function()
@@ -356,20 +357,7 @@ require("lazy").setup({
 			-- See Configuration section for options
 		},
 	},
-	{
-		"ravitemer/mcphub.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
-		},
-		-- uncomment the following line to load hub lazily
-		--cmd = "MCPHub",  -- lazy load
-		build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
-		-- uncomment this if you don't want mcp-hub to be available globally or can't use -g
-		-- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
-		config = function()
-			require("mcphub").setup()
-		end,
-	},
+
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
@@ -410,79 +398,79 @@ require("lazy").setup({
 		end,
 	},
 
-	{
-		"nvim-tree/nvim-tree.lua",
-		config = function()
-			-- OR setup with some options
-			require("nvim-tree").setup({
-				sort = {
-					sorter = "case_sensitive",
-				},
-				view = {
-					-- width = 30,
-					float = {
-						enable = true,
-						quit_on_focus_loss = true,
-						open_win_config = {
-							relative = "editor",
-							col = vim.api.nvim_win_get_width(0),
-							row = vim.api.nvim_win_get_height(0),
-							border = "none",
-							width = 40,
-							-- height = 30,
-							-- row = 1,
-							-- col = 1,
-						},
-					},
-				},
-				renderer = {
-					group_empty = true,
-					icons = {
-						webdev_colors = true,
-						git_placement = "before",
-						modified_placement = "after",
-						padding = " ",
-						symlink_arrow = " ➛ ",
-						show = {
-							file = true,
-							folder = true,
-							folder_arrow = true,
-							git = true,
-							modified = true,
-						},
-						glyphs = {
-							default = "",
-							symlink = "",
-							bookmark = "󰆤",
-							modified = "●",
-							folder = {
-								arrow_closed = "",
-								arrow_open = "",
-								default = "",
-								open = "",
-								empty = "",
-								empty_open = "",
-								symlink = "",
-								symlink_open = "",
-							},
-							git = {
-								unstaged = "✗",
-								staged = "✓",
-								unmerged = "",
-								renamed = "➜",
-								untracked = "★",
-								deleted = "",
-								ignored = "◌",
-							},
-						},
-					},
-				},
-				filters = {
-					dotfiles = false,
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	config = function()
+	-- 		-- OR setup with some options
+	-- 		require("nvim-tree").setup({
+	-- 			sort = {
+	-- 				sorter = "case_sensitive",
+	-- 			},
+	-- 			view = {
+	-- 				-- width = 30,
+	-- 				float = {
+	-- 					enable = true,
+	-- 					quit_on_focus_loss = true,
+	-- 					open_win_config = {
+	-- 						relative = "editor",
+	-- 						col = vim.api.nvim_win_get_width(0),
+	-- 						row = vim.api.nvim_win_get_height(0),
+	-- 						border = "none",
+	-- 						width = 40,
+	-- 						-- height = 30,
+	-- 						-- row = 1,
+	-- 						-- col = 1,
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 			renderer = {
+	-- 				group_empty = true,
+	-- 				icons = {
+	-- 					webdev_colors = true,
+	-- 					git_placement = "before",
+	-- 					modified_placement = "after",
+	-- 					padding = " ",
+	-- 					symlink_arrow = " ➛ ",
+	-- 					show = {
+	-- 						file = true,
+	-- 						folder = true,
+	-- 						folder_arrow = true,
+	-- 						git = true,
+	-- 						modified = true,
+	-- 					},
+	-- 					glyphs = {
+	-- 						default = "",
+	-- 						symlink = "",
+	-- 						bookmark = "󰆤",
+	-- 						modified = "●",
+	-- 						folder = {
+	-- 							arrow_closed = "",
+	-- 							arrow_open = "",
+	-- 							default = "",
+	-- 							open = "",
+	-- 							empty = "",
+	-- 							empty_open = "",
+	-- 							symlink = "",
+	-- 							symlink_open = "",
+	-- 						},
+	-- 						git = {
+	-- 							unstaged = "✗",
+	-- 							staged = "✓",
+	-- 							unmerged = "",
+	-- 							renamed = "➜",
+	-- 							untracked = "★",
+	-- 							deleted = "",
+	-- 							ignored = "◌",
+	-- 						},
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 			filters = {
+	-- 				dotfiles = false,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"maxandron/goplements.nvim",
 		ft = "go",
@@ -492,15 +480,25 @@ require("lazy").setup({
 			-- refer to the configuration section below
 		},
 	},
-	-- {
-	--   "startup-nvim/startup.nvim",
-	--   requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
-	--   config = function()
-	--     require "startup".setup({
-	--       theme = "dashboard", -- Example theme, customize as needed
-	--     })
-	--   end
-	-- },
+	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {
+			float = {
+				border = "none",
+				max_width = 0.5,
+				max_height = 0.5,
+				preview_split = "right", -- Split direction for preview window
+			},
+		},
+		-- Optional dependencies
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
+	},
+
 	-- {
 	-- 	"nvim-tree/nvim-web-devicons",
 	-- },
@@ -575,37 +573,13 @@ require("lazy").setup({
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
+			{ "echasnovski/mini.icons" },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ "nvim-tree/nvim-web-devicons", enabled = true },
-			-- { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			-- { "nvim-tree/nvim-web-devicons", enabled = true },
 		},
 		config = function()
-			-- Telescope is a fuzzy finder that comes with a lot of different things that
-			-- it can fuzzy find! It's more than just a "file finder", it can search
-			-- many different aspects of Neovim, your workspace, LSP, and more!
-			--
-			-- The easiest way to use Telescope, is to start by doing something like:
-			--  :Telescope help_tags
-			--
-			-- After running this command, a window will open up and you're able to
-			-- type in the prompt window. You'll see a list of `help_tags` options and
-			-- a corresponding preview of the help.
-			--
-			-- Two important keymaps to use while in Telescope are:
-			--  - Insert mode: <c-/>
-			--  - Normal mode: ?
-			--
-			-- This opens a window that shows you all of the keymaps for the current
-			-- Telescope picker. This is really useful to discover what Telescope can
-			-- do as well as how to actually do it!
-
-			-- [[ Configure Telescope ]]
-			-- See `:help telescope` and `:help telescope.setup()`
 			require("telescope").setup({
-				-- You can put your default mappings / updates / etc. in here
-				--  All the info you're looking for is in `:help telescope.setup()`
-				--
 				defaults = {
 					layout_config = {
 						-- horizontal = { width = 0.5 },
@@ -613,6 +587,14 @@ require("lazy").setup({
 					},
 					-- Disable the previewer
 					preview = { hide_on_startup = false },
+					-- file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+					-- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+					-- -- Use mini.icons for file icons
+					-- entry_display = function(entry)
+					-- 	local MiniIcons = require("mini.icons")
+					-- 	local icon = MiniIcons.get(entry.value) -- Get icon based on file extension/type
+					-- 	return string.format("%s %s", icon, entry.value)
+					-- end,
 				},
 				-- pickers = {}
 				extensions = {
@@ -644,7 +626,7 @@ require("lazy").setup({
 				-- You can pass additional configuration to Telescope to change the theme, layout, etc.
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 					winblend = 0,
-					previewer = false,
+					previewer = true,
 				}))
 			end, { desc = "[/] Fuzzily search in current buffer" })
 
@@ -701,9 +683,6 @@ require("lazy").setup({
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- Automatically install LSPs and related tools to stdpath for Neovim
-			-- Mason must be loaded before its dependents so we need to set it up here.
-			-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
 			{ "mason-org/mason.nvim", opts = {} },
 			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -717,93 +696,31 @@ require("lazy").setup({
 							relative = "win",
 							winblend = 0,
 							zindex = nil, -- the zindex value for the window
-							border = "rounded", -- style of border for the fidget window
+							border = "none", -- style of border for the fidget window
 						},
 					},
 				},
 			},
 
-			-- Allows extra capabilities provided by blink.cmp
 			"saghen/blink.cmp",
 		},
 		config = function()
-			-- Brief aside: **What is LSP?**
-			--
-			-- LSP is an initialism you've probably heard, but might not understand what it is.
-			--
-			-- LSP stands for Language Server Protocol. It's a protocol that helps editors
-			-- and language tooling communicate in a standardized fashion.
-			--
-			-- In general, you have a "server" which is some tool built to understand a particular
-			-- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-			-- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-			-- processes that communicate with some "client" - in this case, Neovim!
-			--
-			-- LSP provides Neovim with features like:
-			--  - Go to definition
-			--  - Find references
-			--  - Autocompletion
-			--  - Symbol Search
-			--  - and more!
-			--
-			-- Thus, Language Servers are external tools that must be installed separately from
-			-- Neovim. This is where `mason` and related plugins come into play.
-			--
-			-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-			-- and elegantly composed help section, `:help lsp-vs-treesitter`
-
-			--  This function gets run when an LSP attaches to a particular buffer.
-			--    That is to say, every time a new file is opened that is associated with
-			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-			--    function will be executed to configure the current buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					-- NOTE: Remember that Lua is a real programming language, and as such it is possible
-					-- to define small helper and utility functions so you don't have to repeat yourself.
-					--
-					-- In this case, we create a function that lets us more easily define mappings specific
-					-- for LSP related items. It sets the mode, buffer and description for us each time.
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					-- Rename the variable under your cursor.
-					--  Most Language Servers support renaming across files, etc.
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-					-- Execute a code action, usually your cursor needs to be on top of an error
-					-- or a suggestion from your LSP for this to activate.
 					map("<leader>ca", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-
-					-- Find references for the word under your cursor.
 					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-					-- Jump to the implementation of the word under your cursor.
-					--  Useful when your language has ways of declaring types without an actual implementation.
 					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
-					-- Jump to the definition of the word under your cursor.
-					--  This is where a variable was first declared, or where a function is defined, etc.
-					--  To jump back, press <C-t>.
 					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
-					-- WARN: This is not Goto Definition, this is Goto Declaration.
-					--  For example, in C this would take you to the header.
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-					-- Fuzzy find all the symbols in your current document.
-					--  Symbols are things like variables, functions, types, etc.
 					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
-
-					-- Fuzzy find all the symbols in your current workspace.
-					--  Similar to document symbols, except searches over your entire project.
 					map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
-
-					-- Jump to the type of the word under your cursor.
-					--  Useful when you're not sure what type a variable is and you want to see
-					--  the definition of its *type*, not where it was *defined*.
 					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
 					-- See `:help K` for why this keymap
@@ -824,11 +741,11 @@ require("lazy").setup({
 					---@param bufnr? integer some lsp support methods only in specific files
 					---@return boolean
 					local function client_supports_method(client, method, bufnr)
-						if vim.fn.has("nvim-0.11") == 1 then
-							return client:supports_method(method, bufnr)
-						else
-							return client.supports_method(method, { bufnr = bufnr })
-						end
+						-- if vim.fn.has("nvim-0.11") == 1 then
+						return client:supports_method(method, bufnr)
+						-- else
+						-- 	return client.supports_method(method, { bufnr = bufnr })
+						-- end
 					end
 
 					-- The following two autocommands are used to highlight references of the
@@ -889,15 +806,6 @@ require("lazy").setup({
 				severity_sort = true,
 				float = { border = "rounded", source = "if_many" },
 				underline = { severity = vim.diagnostic.severity.ERROR },
-				-- signs = vim.g.have_nerd_font and {
-				-- 	text = {
-				-- 		[vim.diagnostic.severity.ERROR] = "󰅚 ",
-				-- 		[vim.diagnostic.severity.WARN] = "󰀪 ",
-				-- 		[vim.diagnostic.severity.INFO] = "󰋽 ",
-				-- 		[vim.diagnostic.severity.HINT] = "󰌶 ",
-				-- 	},
-				-- } or {},
-				--
 				signs = {
 					text = {
 						[vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -946,19 +854,6 @@ require("lazy").setup({
 				},
 			}
 
-			-- Ensure the servers and tools above are installed
-			--
-			-- To check the current status of installed tools and/or manually install
-			-- other tools, you can run
-			--    :Mason
-			--
-			-- You can press `g?` for help in this menu.
-			--
-			-- `mason` had to be setup earlier: to configure its options see the
-			-- `dependencies` table for `nvim-lspconfig` above.
-			--
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
@@ -1002,7 +897,7 @@ require("lazy").setup({
 				-- Disable "format_on_save lsp_fallback" for languages that don't
 				-- have a well standardized coding style. You can add additional
 				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true, go = true, typescript = true, javascript = true }
+				local disable_filetypes = { c = true, cpp = true, go = true }
 				if disable_filetypes[vim.bo[bufnr].filetype] then
 					return nil
 				else
@@ -1018,7 +913,7 @@ require("lazy").setup({
 				-- python = { "isort", "black" },
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
-				-- javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
 		},
 	},
@@ -1038,28 +933,32 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{ -- Collection of various small independent plugins/modules
-		"echasnovski/mini.nvim",
-		config = function()
-			-- Better Around/Inside textobjects
-			--
-			-- Examples:
-			--  - va)  - [V]isually select [A]round [)]paren
-			--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-			--  - ci'  - [C]hange [I]nside [']quote
-			require("mini.ai").setup({ n_lines = 500 })
-
-			-- Add/delete/replace surroundings (brackets, quotes, etc.)
-			--
-			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-			-- - sd'   - [S]urround [D]elete [']quotes
-			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
-
-			-- ... and there is more!
-			--  Check out: https://github.com/echasnovski/mini.nvim
-		end,
+	{
+		"echasnovski/mini.icons",
 	},
+	-- { -- Collection of various small independent plugins/modules
+	-- 	"echasnovski/mini.nvim",
+	-- 	config = function()
+	-- 		-- Better Around/Inside textobjects
+	-- 		--
+	-- 		-- Examples:
+	-- 		--  - va)  - [V]isually select [A]round [)]paren
+	-- 		--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+	-- 		--  - ci'  - [C]hange [I]nside [']quote
+	-- 		-- require("mini.ai").setup({ n_lines = 500 })
+	--
+	-- 		require("mini.icons").setup()
+	-- 		-- Add/delete/replace surroundings (brackets, quotes, etc.)
+	-- 		--
+	-- 		-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+	-- 		-- - sd'   - [S]urround [D]elete [']quotes
+	-- 		-- - sr)'  - [S]urround [R]eplace [)] [']
+	-- 		-- require("mini.surround").setup()
+	--
+	-- 		-- ... and there is more!
+	-- 		--  Check out: https://github.com/echasnovski/mini.nvim
+	-- 	end,
+	-- },
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -1098,40 +997,7 @@ require("lazy").setup({
 			},
 			indent = { enable = true, disable = { "ruby" } },
 		},
-		-- There are additional nvim-treesitter modules that you can use to interact
-		-- with nvim-treesitter. You should go explore a few and see what interests you:
-		--
-		--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
-
-	-- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
-	-- init.lua. If you want these files, they are in the repository, so you can just download them and
-	-- place them in the correct locations.
-
-	-- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-	--
-	--  Here are some example plugins that I've included in the Kickstart repository.
-	--  Uncomment any of the lines below to enable them (you will need to restart nvim).
-	--
-	-- require 'kickstart.plugins.debug',
-	-- require 'kickstart.plugins.indent_line',
-	-- require 'kickstart.plugins.lint',
-	-- require 'kickstart.plugins.autopairs',
-	-- require 'kickstart.plugins.neo-tree',
-	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
-	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-	--    This is the easiest way to modularize your config.
-	--
-	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-	-- { import = 'custom.plugins' },
-	--
-	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-	-- Or use telescope!
-	-- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-	-- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
