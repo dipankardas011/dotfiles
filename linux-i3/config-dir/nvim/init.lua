@@ -12,7 +12,7 @@ vim.cmd([[
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- vim.g.have_nerd_font = true
+vim.g.have_nerd_font = false
 
 vim.o.hlsearch = true
 
@@ -75,7 +75,49 @@ vim.wo.cursorline = true
 
 vim.opt.colorcolumn = "100"
 
--- vim.opt.statusline = "[%{mode()}]%=%<%f%m%r%h%w%=%y"
+-- Git branch function
+local function git_branch()
+	local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null")
+	if handle then
+		local result = handle:read("*l")
+		handle:close()
+		if result and result ~= "" then
+			return "[ " .. result .. "] "
+		end
+	end
+	return ""
+end
+
+-- Mode alias function
+local function mode_alias()
+	local m = vim.api.nvim_get_mode().mode
+	local alias = {
+		n = "NORMAL",
+		no = "N-PENDING",
+		v = "VISUAL",
+		V = "V-LINE",
+		[""] = "V-BLOCK",
+		i = "INSERT",
+		ic = "INSERT",
+		R = "REPLACE",
+		c = "COMMAND",
+		cv = "VIM EX",
+		ce = "EX",
+		s = "SELECT",
+		S = "S-LINE",
+		[""] = "S-BLOCK",
+		t = "TERMINAL",
+	}
+	return alias[m] or m
+end
+
+-- Expose functions to `v:lua`
+_G.mode_alias = mode_alias
+_G.git_branch = git_branch
+
+-- Set statusline
+vim.opt.statusline = [[%#StatusLine# %{v:lua.mode_alias()} %=%{v:lua.git_branch()}%<%f %m%r%h%w %=%y  %l:%-2v]]
+-- vim.opt.statusline = [[%#StatusLine# %{mode()} %=%<%f %m%r%h%w %=%y  %l:%-2v]]
 
 vim.o.laststatus = 3 -- global status
 
@@ -566,11 +608,11 @@ require("lazy").setup({
 				--
 				defaults = {
 					layout_config = {
-						horizontal = { width = 0.5 },
+						-- horizontal = { width = 0.5 },
 						vertical = { width = 0.5 },
 					},
 					-- Disable the previewer
-					preview = { hide_on_startup = true },
+					preview = { hide_on_startup = false },
 				},
 				-- pickers = {}
 				extensions = {
@@ -675,7 +717,7 @@ require("lazy").setup({
 							relative = "win",
 							winblend = 0,
 							zindex = nil, -- the zindex value for the window
-							border = "none", -- style of border for the fidget window
+							border = "rounded", -- style of border for the fidget window
 						},
 					},
 				},
@@ -1013,22 +1055,6 @@ require("lazy").setup({
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
-
-			-- Simple and easy statusline.
-			--  You could remove this setup call if you don't like it,
-			--  and try some other statusline plugin
-			local statusline = require("mini.statusline")
-			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = true })
-			-- statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-			-- You can configure sections in the statusline by overriding their
-			-- default behavior. For example, here we set the section for
-			-- cursor location to LINE:COLUMN
-			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%2l:%-2v"
-			end
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
