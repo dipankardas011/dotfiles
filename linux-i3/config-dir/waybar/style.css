@@ -1,86 +1,24 @@
+/* Compatible Waybar Style (GTK/CSS-safe) with Everforest dark-inspired buttons */
+
 * {
   font-family: "JetBrainsMono NF", "Font Awesome 6 Free", "Font Awesome 6 Free Solid";
   font-size: 11px;
-  border-radius: 0;
+  font-weight: bold;
   min-height: 0;
   border: none;
-  font-weight: bold;
+  border-radius: 0;
 }
-
-  /* color: #1e2326;*/ /* Everforest foreground */
 
 #waybar {
   background: transparent;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+  transition: background-color 0.5s;
 }
-
 
 #tray {
   margin: 6px 3px;
-  background-color: #2b3339; /* bg1 */
+  background-color: #2b3339;
   padding: 6px 12px;
   border-radius: 6px;
-}
-
-#window,
-#clock,
-#custom-power,
-#custom-reboot,
-#bluetooth,
-#battery,
-#pulseaudio,
-#backlight,
-#custom-temperature,
-#memory,
-#cpu,
-#network,
-#custom-lock {
-  border-radius: 4px;
-  margin: 6px 3px;
-  padding: 6px 12px;
-  color: #1e2326;
-}
-
-/* Section-specific background colors (Everforest-style accents) */
-#clock {
-  background-color: #7fbbb3; /* blue */
-}
-#custom-power {
-  background-color: #e67e80; /* red */
-}
-#custom-reboot {
-  background-color: #a7c080; /* green */
-}
-#bluetooth {
-  background-color: #dbbc7f; /* yellow */
-}
-#battery {
-  background-color: #d699b6; /* purple */
-}
-#pulseaudio {
-  background-color: #83c092; /* aqua */
-}
-#backlight {
-  background-color: #e69875; /* orange */
-}
-#custom-temperature {
-  background-color: #7fbbb3; /* blue */
-}
-#memory {
-  background-color: #e67e80; /* red */
-}
-#cpu {
-  background-color: #a7c080; /* green */
-}
-#network {
-  background-color: #dbbc7f; /* yellow */
-}
-#custom-lock {
-  background-color: #83c092; /* aqua */
-}
-#window {
-  background-color: #7fbbb3; /* blue */
 }
 
 #waybar.hidden {
@@ -97,32 +35,165 @@
   min-width: 0;
   padding: 6px 18px;
   margin: 6px 3px;
-  border-radius: 4px;
-  background-color: #2b3339; /* bg1 */
-  color: #d3c6aa;
+  border-radius: 9999px;
+  background-color: #3a4541;
+  color: #f0eac5;
 }
 
 #workspaces button.active {
-  background-color: #d3c6aa;
+  background-color: #a7c080;
   color: #1e2326;
 }
 
 #workspaces button:hover {
-  background-color: #d3c6aa;
+  background-color: #a7c080;
   color: #1e2326;
-  box-shadow: inherit;
-  text-shadow: inherit;
+}
+
+/* Compatible and shaded section styles */
+#clock {
+  background-color: #37403d;
+  color: #d4f1b1;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#custom-power {
+  background-color: #3d2e2e;
+  color: #f38b8b;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#custom-reboot {
+  background-color: #323c2c;
+  color: #cde98a;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#bluetooth {
+  background-color: #403a2a;
+  color: #f6dd8a;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#battery {
+  background-color: #443243;
+  color: #eeb0d1;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#battery.critical {
+  background-color: #8c2f39;
+  color: #ffffff;
+}
+
+#battery.warning {
+  background-color: #a35e3d;
+  color: #ffffff;
+}
+
+#pulseaudio {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#backlight {
+  background-color: #40352a;
+  color: #f3b88c;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#custom-temperature {
+  background-color: #37403d;
+  color: #a6dce0;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#memory {
+  background-color: #3d2e2e;
+  color: #f38b8b;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#memory.critical {
+  background-color: #8c2f39;
+  color: #ffffff;
+}
+
+#memory.warning {
+  background-color: #a35e3d;
+  color: #ffffff;
+}
+
+#cpu {
+  background-color: #323c2c;
+  color: #cde98a;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#cpu.critical {
+  background-color: #8c2f39;
+  color: #ffffff;
+}
+
+#cpu.warning {
+  background-color: #a35e3d;
+  color: #ffffff;
+}
+
+#network {
+  background-color: #403a2a;
+  color: #f6dd8a;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#custom-lock {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#window {
+  background-color: #37403d;
+  color: #f0eac5;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
 }
 
 tooltip {
   border-radius: 8px;
   padding: 16px;
-  background-color: #2b3339; /* bg1 */
-  color: #d3c6aa;
+  background-color: #2b3339;
+  color: #f0eac5;
 }
 
 tooltip label {
   padding: 5px;
   background-color: #2b3339;
-  color: #d3c6aa;
+  color: #f0eac5;
 }

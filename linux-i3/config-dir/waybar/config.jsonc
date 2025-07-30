@@ -15,7 +15,8 @@
     "network",
     "cpu",
     "memory",
-    "custom/temperature",
+    "bluetooth",
+    // "custom/temperature",
     "battery",
     // "bluetooth",
     "pulseaudio",
@@ -60,7 +61,7 @@
   "battery": {
     "states": {
       "warning": 30,
-      "critical": 15
+      "critical": 20,
     },
     "format": "{icon} {capacity}%",
     "format-charging": "󱐋{capacity}%",
@@ -99,11 +100,19 @@
   "memory": {
     "format": "  {used:0.1f}G/{total:0.1f}G",
     "tooltip": true,
-    "tooltip-format": "Ram: {used:0.2f}G/{total:0.2f}G"
+    "tooltip-format": "Ram: {used:0.2f}G/{total:0.2f}G",
+    "states": {
+      "critical": 90,
+      "warning": 70
+    }
   },
   "cpu": {
     "format": "  {usage}%",
-    "tooltip": true
+    "tooltip": true,
+    "states": {
+      "critical": 90,
+      "warning": 70
+    }
   },
   "clock": {
     "interval": 1,

@@ -12,9 +12,11 @@ vim.cmd([[
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.have_nerd_font = true
+-- vim.g.have_nerd_font = true
 
 vim.o.hlsearch = true
+
+vim.o.winborder = "none"
 
 vim.o.number = true
 
@@ -159,20 +161,10 @@ vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -290,7 +282,7 @@ require("lazy").setup({
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
 			bigfile = { enabled = true },
-			dashboard = { enabled = true },
+			dashboard = { enabled = false },
 			explorer = { enabled = false },
 			indent = { enabled = true },
 			input = { enabled = false },
@@ -362,8 +354,8 @@ require("lazy").setup({
 			vim.g.everforest_diagnostic_line_highlight = 1
 			-- vim.g.everforest_transparent_background = 1
 			vim.g.everforest_diagnostic_virtual_text = "highlighted"
-			-- vim.g.everforest_background = "hard"
-			-- vim.g.everforest_dim_inactive_windows=1
+			vim.g.everforest_background = "hard"
+			-- vim.g.everforest_dim_inactive_windows = 1
 			vim.g.everforest_ui_contrast = "high"
 			-- vim.g.everforest_current_word = "underline"
 
@@ -393,9 +385,9 @@ require("lazy").setup({
 							relative = "editor",
 							col = vim.api.nvim_win_get_width(0),
 							row = vim.api.nvim_win_get_height(0),
-							border = "rounded",
+							border = "none",
 							width = 40,
-							height = 30,
+							-- height = 30,
 							-- row = 1,
 							-- col = 1,
 						},
@@ -467,9 +459,9 @@ require("lazy").setup({
 	--     })
 	--   end
 	-- },
-	{
-		"nvim-tree/nvim-web-devicons",
-	},
+	-- {
+	-- 	"nvim-tree/nvim-web-devicons",
+	-- },
 
 	"fatih/vim-go",
 
@@ -543,7 +535,8 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{ "nvim-tree/nvim-web-devicons", enabled = true },
+			-- { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -854,7 +847,16 @@ require("lazy").setup({
 				severity_sort = true,
 				float = { border = "rounded", source = "if_many" },
 				underline = { severity = vim.diagnostic.severity.ERROR },
-				signs = vim.g.have_nerd_font and {
+				-- signs = vim.g.have_nerd_font and {
+				-- 	text = {
+				-- 		[vim.diagnostic.severity.ERROR] = "󰅚 ",
+				-- 		[vim.diagnostic.severity.WARN] = "󰀪 ",
+				-- 		[vim.diagnostic.severity.INFO] = "󰋽 ",
+				-- 		[vim.diagnostic.severity.HINT] = "󰌶 ",
+				-- 	},
+				-- } or {},
+				--
+				signs = {
 					text = {
 						[vim.diagnostic.severity.ERROR] = "󰅚 ",
 						[vim.diagnostic.severity.WARN] = "󰀪 ",
@@ -958,7 +960,7 @@ require("lazy").setup({
 				-- Disable "format_on_save lsp_fallback" for languages that don't
 				-- have a well standardized coding style. You can add additional
 				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true, go = true }
+				local disable_filetypes = { c = true, cpp = true, go = true, typescript = true, javascript = true }
 				if disable_filetypes[vim.bo[bufnr].filetype] then
 					return nil
 				else
@@ -1017,7 +1019,8 @@ require("lazy").setup({
 			--  and try some other statusline plugin
 			local statusline = require("mini.statusline")
 			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
+			statusline.setup({ use_icons = true })
+			-- statusline.setup({ use_icons = vim.g.have_nerd_font })
 
 			-- You can configure sections in the statusline by overriding their
 			-- default behavior. For example, here we set the section for
