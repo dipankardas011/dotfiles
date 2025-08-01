@@ -37,8 +37,6 @@ window {
 }
 
 #entry:selected {
-    /* background-color: #4b5e55; */
-    /* color: #ffffff; */
     background-color: #5b7768;  /* soft teal-green */
     color: #f0f0d0;             /* gentle cream text */
 

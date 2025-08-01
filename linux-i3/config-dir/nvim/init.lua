@@ -82,7 +82,7 @@ local function git_branch()
 		local result = handle:read("*l")
 		handle:close()
 		if result and result ~= "" then
-			return "[ " .. result .. "] "
+			return "[" .. result .. "] "
 		end
 	end
 	return ""
@@ -490,6 +490,9 @@ require("lazy").setup({
 				max_width = 0.5,
 				max_height = 0.5,
 				preview_split = "right", -- Split direction for preview window
+			},
+			view_options = {
+				show_hidden = true, -- Set to true to display hidden files and folders
 			},
 		},
 		-- Optional dependencies
