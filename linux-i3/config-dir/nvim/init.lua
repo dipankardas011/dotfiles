@@ -16,7 +16,7 @@ vim.g.have_nerd_font = false
 
 vim.o.hlsearch = true
 
-vim.o.winborder = "none"
+vim.o.winborder = "rounded"
 
 vim.o.number = true
 
@@ -37,9 +37,9 @@ vim.o.smartcase = true
 
 vim.o.signcolumn = "yes"
 
-vim.o.updatetime = 250
-
-vim.o.timeoutlen = 300
+-- vim.o.updatetime = 250
+--
+-- vim.o.timeoutlen = 300
 
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -69,11 +69,11 @@ vim.wo.relativenumber = true
 
 vim.wo.wrap = true
 
-vim.wo.cursorline = true
-
 -- vim.wo.spell = true
 
 -- vim.opt.colorcolumn = "100"
+
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#7fbbb3", bold = true })
 
 -- Git branch function
 local function git_branch()
@@ -108,7 +108,8 @@ local function mode_alias()
 		[""] = "S-BLOCK",
 		t = "TERMINAL",
 	}
-	return alias[m] or m
+	local g = alias[m] or m
+	return "[" .. g .. "]"
 end
 
 -- Expose functions to `v:lua`
@@ -117,7 +118,6 @@ _G.git_branch = git_branch
 
 -- Set statusline
 vim.opt.statusline = [[%#StatusLine# %{v:lua.mode_alias()} %=%{v:lua.git_branch()}%<%f %m%r%h%w %=%y  %l:%-2v]]
--- vim.opt.statusline = [[%#StatusLine# %{mode()} %=%<%f %m%r%h%w %=%y  %l:%-2v]]
 
 vim.o.laststatus = 3 -- global status
 
@@ -327,15 +327,15 @@ require("lazy").setup({
 			bigfile = { enabled = true },
 			dashboard = { enabled = false },
 			explorer = { enabled = false },
-			indent = { enabled = true },
+			indent = { enabled = false },
 			input = { enabled = false },
-			picker = { enabled = true },
+			picker = { enabled = false },
 			notifier = { enabled = false },
 			quickfile = { enabled = true },
-			scope = { enabled = true },
+			scope = { enabled = false },
 			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
-			words = { enabled = true },
+			words = { enabled = false },
 		},
 	},
 	{
@@ -382,95 +382,20 @@ require("lazy").setup({
 		config = function()
 			vim.g.everforest_diagnostic_text_highlight = 1
 			vim.g.everforest_diagnostic_line_highlight = 1
-			-- vim.g.everforest_transparent_background = 1
+			vim.g.everforest_transparent_background = 1
 			vim.g.everforest_diagnostic_virtual_text = "highlighted"
 			vim.g.everforest_background = "hard"
 			-- vim.g.everforest_dim_inactive_windows = 1
 			vim.g.everforest_ui_contrast = "high"
-			-- vim.g.everforest_current_word = "underline"
+			vim.g.everforest_current_word = "underline"
 
 			vim.g.everforest_better_performance = 1
 			vim.g.everforest_enable_italic = 1
 			vim.g.everforest_cursor = "aqua"
 			vim.g.everforest_inlay_hints_background = "dimmed"
 			vim.cmd.colorscheme("everforest")
-			vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#7fbbb3", bold = true })
 		end,
 	},
-
-	-- {
-	-- 	"nvim-tree/nvim-tree.lua",
-	-- 	config = function()
-	-- 		-- OR setup with some options
-	-- 		require("nvim-tree").setup({
-	-- 			sort = {
-	-- 				sorter = "case_sensitive",
-	-- 			},
-	-- 			view = {
-	-- 				-- width = 30,
-	-- 				float = {
-	-- 					enable = true,
-	-- 					quit_on_focus_loss = true,
-	-- 					open_win_config = {
-	-- 						relative = "editor",
-	-- 						col = vim.api.nvim_win_get_width(0),
-	-- 						row = vim.api.nvim_win_get_height(0),
-	-- 						border = "none",
-	-- 						width = 40,
-	-- 						-- height = 30,
-	-- 						-- row = 1,
-	-- 						-- col = 1,
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 			renderer = {
-	-- 				group_empty = true,
-	-- 				icons = {
-	-- 					webdev_colors = true,
-	-- 					git_placement = "before",
-	-- 					modified_placement = "after",
-	-- 					padding = " ",
-	-- 					symlink_arrow = " ➛ ",
-	-- 					show = {
-	-- 						file = true,
-	-- 						folder = true,
-	-- 						folder_arrow = true,
-	-- 						git = true,
-	-- 						modified = true,
-	-- 					},
-	-- 					glyphs = {
-	-- 						default = "",
-	-- 						symlink = "",
-	-- 						bookmark = "󰆤",
-	-- 						modified = "●",
-	-- 						folder = {
-	-- 							arrow_closed = "",
-	-- 							arrow_open = "",
-	-- 							default = "",
-	-- 							open = "",
-	-- 							empty = "",
-	-- 							empty_open = "",
-	-- 							symlink = "",
-	-- 							symlink_open = "",
-	-- 						},
-	-- 						git = {
-	-- 							unstaged = "✗",
-	-- 							staged = "✓",
-	-- 							unmerged = "",
-	-- 							renamed = "➜",
-	-- 							untracked = "★",
-	-- 							deleted = "",
-	-- 							ignored = "◌",
-	-- 						},
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 			filters = {
-	-- 				dotfiles = false,
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"maxandron/goplements.nvim",
 		ft = "go",

@@ -40,14 +40,14 @@ family = "terminal-font"
 
 
 [font.italic]
-family = "Victor Mono"
+family = "terminal-cursive"
 style = "Bold Italic"
 
 # [font.bold]
 # family = "Victor Mono"
 
 [font.bold_italic]
-family = "Victor Mono"
+family = "terminal-cursive"
 style = "Bold Italic"
 
 
