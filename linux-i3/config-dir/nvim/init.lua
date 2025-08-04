@@ -75,17 +75,13 @@ vim.wo.wrap = true
 
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#7fbbb3", bold = true })
 
--- Git branch function
-local function git_branch()
-	local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null")
-	if handle then
-		local result = handle:read("*l")
-		handle:close()
-		if result and result ~= "" then
-			return "[" .. result .. "] "
-		end
+local function get_git_branch()
+	local result = vim.b.gitsigns_head or ""
+	if result == "" then
+		return ""
+	else
+		return "[" .. result .. "] "
 	end
-	return ""
 end
 
 -- Mode alias function
@@ -114,10 +110,10 @@ end
 
 -- Expose functions to `v:lua`
 _G.mode_alias = mode_alias
-_G.git_branch = git_branch
+_G.get_git_branch = get_git_branch
 
 -- Set statusline
-vim.opt.statusline = [[%#StatusLine# %{v:lua.mode_alias()} %=%{v:lua.git_branch()}%<%f %m%r%h%w %=%y  %l:%-2v]]
+vim.opt.statusline = [[%#StatusLine# %{v:lua.mode_alias()} %=%{v:lua.get_git_branch()}%<%f %m%r%h%w %=%y  %l:%-2v]]
 
 vim.o.laststatus = 3 -- global status
 
