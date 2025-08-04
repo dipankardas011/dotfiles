@@ -4,8 +4,8 @@
   // "height": "2.5ex",
   "spacing": 0,
   "modules-left": [
-    "hyprland/workspaces",
-    "custom/lock"
+    "hyprland/workspaces"
+    // "custom/lock"
     // "custom/reboot",
     // "custom/power",
     // "clock"
@@ -15,7 +15,6 @@
     "network",
     "cpu",
     "memory",
-    "bluetooth",
     // "custom/temperature",
     "battery",
     // "bluetooth",
@@ -27,9 +26,9 @@
     "all-outputs": true,
     "format": "{icon}",
     "on-click": "activate",
-    // "persistent-workspaces": {
-    //   "*":[1,2,3,4,5,6,7]
-    // }
+    "persistent-workspaces": {
+      "*":[1,2,4,9,10]
+    },
   },
   "custom/lock": {
   "format": "  ",

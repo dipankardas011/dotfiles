@@ -369,7 +369,7 @@ program = "/bin/zsh"
 [window]
 decorations = "none"
 dynamic_padding = true
-# opacity = 0.90
+opacity = 0.90
 startup_mode = "Windowed"
 
 [window.padding]
