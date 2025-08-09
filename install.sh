@@ -52,11 +52,21 @@ function setup_tmux() {
     ln -s "$LINUX_CONFIG_DIR/tmux/tmux.conf" "$TMUX_CONF"
 }
 
-function main() {
-    if [ "$(uname)" = "Linux" ]; then
-        setup_dotfile
-        echo "Dotfiles setup completed successfully."
+function setup_alacritty() {
+    local ALACRITTY_DIR="$HOME/.config/alacritty"
+
+    if [ ! -d "$ALACRITTY_DIR" ]; then
+        mkdir -p "$ALACRITTY_DIR"
     else
+        rm -rf "$ALACRITTY_DIR"
+    fi
+
+
+    ln -s "$LINUX_CONFIG_DIR/alacritty" "$ALACRITTY_DIR"
+}
+
+function main() {
+    if [ "$(uname)" != "Linux" ]; then
         echo "This script is intended for Linux systems only."
         exit 1
     fi

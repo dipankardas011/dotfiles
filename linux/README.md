@@ -1,6 +1,6 @@
 ## Linux configurations
 
-`OS`: Fedora 41 i3
+`OS`: Fedora 42 hyprland
 
 `Status`: :work-in-progress:
 

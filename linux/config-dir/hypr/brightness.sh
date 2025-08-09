@@ -29,17 +29,16 @@ show_brightness_notification() {
 
 # Main logic
 case "$1" in
-    up)
-        light -A $STEP
-        show_brightness_notification
-        ;;
-    down)
-        light -U $STEP
-        show_brightness_notification
-        ;;
-    *)
-        echo "Usage: $0 [up|down]"
-        exit 1
-        ;;
+up)
+    light -A $STEP
+    show_brightness_notification
+    ;;
+down)
+    light -U $STEP
+    show_brightness_notification
+    ;;
+*)
+    echo "Usage: $0 [up|down]"
+    exit 1
+    ;;
 esac
-
