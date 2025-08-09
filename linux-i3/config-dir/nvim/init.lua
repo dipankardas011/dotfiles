@@ -16,7 +16,7 @@ vim.g.have_nerd_font = false
 
 vim.o.hlsearch = true
 
-vim.o.winborder = "rounded"
+vim.o.winborder = "none"
 
 vim.o.number = true
 
@@ -122,6 +122,11 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- For the neovim tab navigateion ising alt+num
+for i = 1, 9 do
+	vim.keymap.set("n", "<A-" .. i .. ">", i .. "gt", { noremap = true, silent = true })
+end
 
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
