@@ -105,11 +105,11 @@ function setup_wofi() {
 function setup_zsh() {
     local ZSH_FILE="$HOME/.zshrc"
 
-    if [ ! -f "$ZSH_FILE" ] || [ ! -L "$ZSH_FILE" ]; then
+    if [ -f "$ZSH_FILE" ] || [ -L "$ZSH_FILE" ]; then
         rm -rf "$ZSH_FILE"
     fi
 
-    ln -s "$LINUX_HOME_DIR/zshrc" "$ZSH_FILE"
+    ln -s "$LINUX_HOME_DIR/.zshrc" "$ZSH_FILE"
 }
 
 function setup_wlogout() {
