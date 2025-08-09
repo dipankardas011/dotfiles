@@ -74,6 +74,7 @@ function main() {
     setup_dotfile
     setup_neovim
     setup_tmux
+    setup_alacritty
 }
 
 main "$@"
