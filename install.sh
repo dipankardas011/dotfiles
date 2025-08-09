@@ -4,6 +4,7 @@ set -euxo pipefail
 
 DOTFILES_DIR="$HOME/.dotfiles"
 LINUX_CONFIG_DIR="$DOTFILES_DIR/linux/config-dir"
+LINUX_HOME_DIR="$DOTFILES_DIR/linux/home-dir"
 
 function setup_dotfile() {
 
@@ -101,6 +102,43 @@ function setup_wofi() {
     ln -s "$LINUX_CONFIG_DIR/wofi" "$WOFI_DIR"
 }
 
+function setup_zsh() {
+    local ZSH_FILE="$HOME/.zshrc"
+
+    if [ ! -f "$ZSH_FILE" ] || [ ! -L "$ZSH_FILE" ]; then
+        rm -rf "$ZSH_FILE"
+    fi
+
+    ln -s "$LINUX_HOME_DIR/zshrc" "$ZSH_FILE"
+}
+
+function setup_wlogout() {
+    local WLOGOUT_DIR="$HOME/.config/wlogout"
+
+    if [ ! -d "$WLOGOUT_DIR" ]; then
+        mkdir -p "$WLOGOUT_DIR"
+    else
+        rm -rf "$WLOGOUT_DIR"
+    fi
+
+    ln -s "$LINUX_CONFIG_DIR/wlogout" "$WLOGOUT_DIR"
+}
+
+function setup_fontconfig() {
+    local FONTCONFIG_DIR="$HOME/.config/fontconfig"
+
+    if [ ! -d "$FONTCONFIG_DIR" ]; then
+        mkdir -p "$FONTCONFIG_DIR"
+    else
+        rm -rf "$FONTCONFIG_DIR"
+    fi
+
+    ln -s "$LINUX_CONFIG_DIR/fontconfig" "$FONTCONFIG_DIR"
+
+    fc-cache -f -v
+    fc-cache --really-force
+}
+
 function main() {
     if [ "$(uname)" != "Linux" ]; then
         echo "This script is intended for Linux systems only."
@@ -114,6 +152,9 @@ function main() {
     setup_hyprland
     setup_waybar
     setup_wofi
+    setup_zsh
+    setup_wlogout
+    setup_fontconfig
     echo "All configurations have been set up successfully."
 }
 
