@@ -4,20 +4,16 @@
   // "height": "2.5ex",
   "spacing": 0,
   "modules-left": [
-    "hyprland/workspaces"
-    // "custom/lock"
-    // "custom/reboot",
-    // "custom/power",
-    // "clock"
+    "hyprland/workspaces",
+    "custom/temperature"
   ],
   "modules-center": ["clock"],
   "modules-right": [
     "network",
     "cpu",
     "memory",
-    // "custom/temperature",
     "battery",
-    // "bluetooth",
+    "bluetooth",
     "pulseaudio",
     "tray"
   ],
@@ -25,10 +21,10 @@
     "disable-scroll": false,
     "all-outputs": true,
     "format": "{icon}",
-    "on-click": "activate",
-    "persistent-workspaces": {
-      "*":[1,2,4,9,10]
-    },
+    "on-click": "activate"
+    // "persistent-workspaces": {
+    //   "*":[1,2,4,9,10]
+    // },
   },
   "custom/lock": {
   "format": "  ",

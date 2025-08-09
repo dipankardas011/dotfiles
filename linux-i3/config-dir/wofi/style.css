@@ -1,5 +1,5 @@
 window {
-    background-color: #2f4037;
+    background-color: rgba(25, 36, 31, 0.92); /* darker + transparent */
     border: none;
     padding: 12px;
     margin: 0;
@@ -10,14 +10,14 @@ window {
 }
 
 #input {
-    background-color: #3a4a3f;
+    background-color: rgba(35, 50, 42, 0.92); /* darker input bg */
     color: #a6e3b8;
     padding: 12px 16px;
     margin: 0 0 12px 0;
     border-radius: 8px;
     border: none;
-    outline: none;       /* ✅ disables blue focus ring */
-    box-shadow: none;    /* ✅ removes any GTK shadow glow */
+    outline: none;
+    box-shadow: none;
     font-size: 16px;
     font-weight: bold;
 }
@@ -32,14 +32,13 @@ window {
 }
 
 #entry:hover {
-    background-color: #4b5e55;
+    background-color: rgba(60, 80, 72, 0.92); /* hover with transparency */
     color: #ffffff;
 }
 
 #entry:selected {
-    background-color: #5b7768;  /* soft teal-green */
-    color: #f0f0d0;             /* gentle cream text */
-
+    background-color: rgba(75, 100, 88, 0.92); /* darker teal-green */
+    color: #f0f0d0;
     border-radius: 8px;
 }
 
@@ -61,8 +60,9 @@ window {
 }
 
 .active {
-    color: #cde98a; /* pale green */
+    color: #cde98a;
 }
+
 .urgent {
-    color: #f38b8b; /* soft red */
+    color: #f38b8b;
 }
