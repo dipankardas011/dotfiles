@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 DOTFILES_DIR="$HOME/.dotfiles"
-
+LINUX_CONFIG_DIR="$DOTFILES_DIR/linux/config-dir"
 
 function setup_dotfile() {
 
@@ -22,15 +22,35 @@ function setup_neovim() {
         mkdir -p "$NVIM_DIR"
     fi
 
+    if [ -f "$LUA_CONFIG" ]; then
+        rm -f "$LUA_CONFIG"
+    fi
 
     if [ -L "$LUA_CONFIG" ]; then
         rm -f "$LUA_CONFIG"
     fi
 
-    ln -s "$DOTFILES_DIR/linux/config-dir/nvim/init.lua" "$LUA_CONFIG"
+    ln -s "$LINUX_CONFIG_DIR/nvim/init.lua" "$LUA_CONFIG"
 }
 
+function setup_tmux() {
+    local TMUX_DIR="$HOME/.config/tmux"
+    local TMUX_CONF="$TMUX_DIR/tmux.conf"
 
+    if [ ! -d "$TMUX_DIR" ]; then
+        mkdir -p "$TMUX_DIR"
+    fi
+
+    if [ -f "$TMUX_CONF" ]; then
+        rm -f "$TMUX_CONF"
+    fi
+
+    if [ -L "$TMUX_CONF" ]; then
+        rm -f "$TMUX_CONF"
+    fi
+
+    ln -s "$LINUX_CONFIG_DIR/tmux/tmux.conf" "$TMUX_CONF"
+}
 
 function main() {
     if [ "$(uname)" = "Linux" ]; then
@@ -43,6 +63,7 @@ function main() {
 
     setup_dotfile
     setup_neovim
+    setup_tmux
 }
 
 main "$@"
