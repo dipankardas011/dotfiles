@@ -92,16 +92,9 @@ local function get_git_branch()
 	end
 
 	local diff_str = ""
-
-	if added > 0 then
-		diff_str = diff_str .. " +" .. added
-	end
-	if removed > 0 then
-		diff_str = diff_str .. " ✕" .. removed
-	end
-	if changed > 0 then
-		diff_str = diff_str .. " ±" .. changed
-	end
+	diff_str = diff_str .. " +" .. added
+	diff_str = diff_str .. " ✕" .. removed
+	diff_str = diff_str .. " ±" .. changed
 
 	return string.format("[%s%s] ", branch, diff_str)
 end
