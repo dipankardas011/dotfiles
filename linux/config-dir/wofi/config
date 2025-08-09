@@ -1,0 +1,29 @@
+# Wofi config file
+
+# show=drun
+# prompt=Run:
+columns=1
+width=500
+height=400
+allow-markup=true
+insensitive=true
+term=alacritty
+dpi-aware=true
+
+mode=drun
+allow_images=true
+insensitive=true
+location=center
+no_actions=true
+prompt=Search
+
+# # The following settings are rough equivalents:
+# allow-markup=true
+# show-icons=true
+# no-history=false
+# hide-scroll=true
+# location=top-left  # location=0 in rofi usually means top-left
+
+# Sidebar mode and combi-modi don't directly exist in wofi
+# wofi only supports simple modes like run, drun, ssh, etc.
+

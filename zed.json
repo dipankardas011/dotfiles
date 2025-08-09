@@ -1,0 +1,93 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `zed: Open Default Settings` command
+// from the command palette
+{
+  "outline_panel": {
+    "dock": "right"
+  },
+  "confirm_quit": true,
+  "centered_layout": {
+    "left_padding": 0.15,
+    "right_padding": 0.15
+  },
+  "selection_highlight": true,
+  "auto_update_extensions": {
+    "everforest": true
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3.7-sonnet-thought"
+    },
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "version": "2"
+  },
+  "languages": {
+    "Go": {
+      "show_edit_predictions": true
+    }
+  },
+
+  "experimental.theme_overrides": {
+    "syntax": {
+      "comment": {
+        "font_style": "italic"
+      }
+    }
+  },
+  "vim_mode": true,
+  "ui_font_size": 20,
+  "buffer_font_size": 22,
+  "soft_wrap": "editor_width",
+  "relative_line_numbers": true,
+  "buffer_font_family": "JetBrainsMono NF",
+  "terminal": {
+    "font_family": "JetBrainsMono NF",
+    "font_size": 20,
+    "line_height": "comfortable",
+    "cursor_blink_interval": 500,
+    "cursor_blink_duration": 500
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Light",
+    "dark": "One Dark"
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "icon_theme": "Zed (Default)",
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "hints": {
+          "assignVariableTypes": true,
+          "compositeLiteralFields": true,
+          "compositeLiteralTypes": true,
+          "constantValues": true,
+          "functionTypeParameters": true,
+          "parameterNames": true,
+          "rangeVariableTypes": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+[user]
+	email = dipankardas0115@gmail.com
+	name = Dipankar Das
+  signingkey = 0A2FC08C4F43B8A7676054655A57858CE1FCD1FE
+
+[format]
+	signoff=true
+
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+[commit]
+	gpgsign = true

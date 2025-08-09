@@ -1,0 +1,68 @@
+window {
+    background-color: rgba(25, 36, 31, 0.92); /* darker + transparent */
+    border: none;
+    padding: 12px;
+    margin: 0;
+    color: #a6e3b8;
+    font-family: "JetBrainsMono NF", monospace;
+    font-size: 15px;
+    border-radius: 12px;
+}
+
+#input {
+    background-color: rgba(35, 50, 42, 0.92); /* darker input bg */
+    color: #a6e3b8;
+    padding: 12px 16px;
+    margin: 0 0 12px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#entry {
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #a6e3b8;
+    transition: background-color 0.2s ease;
+}
+
+#entry:hover {
+    background-color: rgba(60, 80, 72, 0.92); /* hover with transparency */
+    color: #ffffff;
+}
+
+#entry:selected {
+    background-color: rgba(75, 100, 88, 0.92); /* darker teal-green */
+    color: #f0f0d0;
+    border-radius: 8px;
+}
+
+#scroll {
+    margin: 0;
+    padding: 0;
+}
+
+#img {
+    margin-right: 12px;
+    size: 1em;
+    border-radius: 4px;
+}
+
+#text {
+    vertical-align: middle;
+    color: inherit;
+    font-size: 15px;
+}
+
+.active {
+    color: #cde98a;
+}
+
+.urgent {
+    color: #f38b8b;
+}

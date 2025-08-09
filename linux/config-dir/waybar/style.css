@@ -1,0 +1,193 @@
+/* Compatible Waybar Style (GTK/CSS-safe) with Everforest dark-inspired buttons */
+
+* {
+  font-family: "JetBrainsMono NF", "Font Awesome 6 Free", "Font Awesome 6 Free Solid";
+  font-size: 11px;
+  font-weight: bold;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+}
+
+#waybar {
+  background: transparent;
+  transition: background-color 0.5s;
+}
+
+#tray {
+  margin: 6px 3px;
+  background-color: #2f4037;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+#waybar.hidden {
+  opacity: 0.5;
+}
+
+#workspaces {
+  border: none;
+  box-shadow: none;
+}
+
+
+#workspaces button {
+  all: initial;
+  min-width: 0;
+  padding: 6px 18px;
+  margin: 6px 3px;
+  border-radius: 9999px;
+  background-color: #2f3834;
+  color: #828070;
+}
+
+#workspaces button.active {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 6px;
+}
+
+#workspaces button:hover {
+  background-color: #d4f1b1;
+  color: #1e2326;
+}
+
+/* Compatible and shaded section styles */
+#clock {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#custom-power {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#bluetooth {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#battery {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#battery.critical {
+  background-color: #3d2e2e;
+  color: #f38b8b;
+}
+
+#battery.warning {
+  background-color: #40352a;
+  color: #f3b88c;
+}
+
+#pulseaudio {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#backlight {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#custom-temperature {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#memory {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#memory.critical {
+  background-color: #3d2e2e;
+  color: #f38b8b;
+}
+
+#memory.warning {
+  background-color: #40352a;
+  color: #f3b88c;
+}
+
+#cpu {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#cpu.critical {
+  background-color: #3d2e2e;
+  color: #f38b8b;
+}
+
+#cpu.warning {
+  background-color: #40352a;
+  color: #f3b88c;
+}
+
+#network {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#custom-lock {
+  background-color: #2f4037;
+  color: #a6e3b8;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+#window {
+  background-color: #37403d;
+  color: #f0eac5;
+  border-radius: 9999px;
+  margin: 6px 3px;
+  padding: 6px 14px;
+}
+
+tooltip {
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #2b3339;
+  color: #f0eac5;
+}
+
+tooltip label {
+  padding: 5px;
+  background-color: #2b3339;
+  color: #f0eac5;
+}

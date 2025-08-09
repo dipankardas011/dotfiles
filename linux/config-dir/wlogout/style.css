@@ -1,0 +1,60 @@
+* {
+  background-image: none;
+  box-shadow: none;
+}
+
+window {
+  background-color: rgba(30, 35, 38, 0.85); /* Everforest-inspired dark */
+  border-radius: 12px;
+  padding: 40px;
+}
+
+button {
+  border-radius: 14px;
+  border: none;
+  background-color: rgba(39, 53, 47, 0.95); /* Dark green for better icon contrast */
+
+  background-size: 25%;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "JetBrainsMono NF", sans-serif;
+  font-size: 15px;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  min-width: 140px;
+  min-height: 140px;
+  margin: 10px;
+}
+
+button:focus,
+button:active,
+button:hover {
+  background-color: rgba(114, 173, 137, 0.9); /* lighter green highlight */
+  color: #ffffff;
+  outline: none;
+}
+
+/**/
+/* button label { */
+/*   margin-top: 10px; */
+/*   color: inherit; */
+/* } */
+
+#lock {
+  background-image: url("/usr/share/wlogout/assets/lock.svg");
+}
+#logout {
+  background-image: url("/usr/share/wlogout/assets/logout.svg");
+}
+#suspend {
+  background-image: url("/usr/share/wlogout/assets/suspend.svg");
+}
+#hibernate {
+  background-image: url("/usr/share/wlogout/assets/hibernate.svg");
+}
+#shutdown {
+  background-image: url("/usr/share/wlogout/assets/shutdown.svg");
+}
+#reboot {
+  background-image: url("/usr/share/wlogout/assets/reboot.svg");
+}

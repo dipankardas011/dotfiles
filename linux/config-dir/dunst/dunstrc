@@ -1,0 +1,105 @@
+[global]
+    font = "FantasqueSansMono NF 12"
+    
+    # Allow HTML markup in notifications
+    markup = full
+    
+    # rounded corners
+    corner_radius = 12
+    
+    # Format notifications
+    format = "<b>%s</b>\n%b"
+    
+    # Sort messages by urgency
+    sort = yes
+    
+    # Show how many messages are currently hidden
+    indicate_hidden = yes
+    
+    # Alignment of message text
+    alignment = left
+    
+    # Show age of message if message is old
+    show_age_threshold = 60
+    
+    # Split notifications into multiple lines
+    word_wrap = yes
+    
+    # Ignore newlines '\n' in notifications
+    ignore_newline = no
+    
+    # Stack duplicated notifications
+    stack_duplicates = true
+    
+    # Hide duplicate's count and stack them
+    hide_duplicate_count = false
+    
+    # Display indicators for URLs (U) and actions (A)
+    show_indicators = yes
+    
+    # The geometry of the window
+    # Format: [{width}]x{height}[+/-{x}+/-{y}]
+    geometry = "300x5-30+20"
+    
+    # Shrink window if it's smaller than the width
+    shrink = no
+    
+    # The transparency of the window (0-100)
+    transparency = 15
+    
+    # Don't remove messages if the user is idle
+    idle_threshold = 120
+    
+    # Display notification on focused monitor
+    follow = mouse
+    
+    # Maximum amount of notifications kept in history
+    history_length = 20
+    
+    # Display indicators for URLs (U) and actions (A)
+    show_indicators = yes
+    
+    # Progress bar height
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+
+    # Set the frame width of the notification window
+    frame_width = 2
+    
+    # Set the frame color of the notification window
+    frame_color = "#88c0d0"
+
+[urgency_low]
+    background = "#2e3440"
+    foreground = "#88c0d0"
+    timeout = 5
+
+[urgency_normal]
+    background = "#2e3440"
+    foreground = "#88c0d0"
+    timeout = 10
+
+[urgency_critical]
+    background = "#2e3440"
+    foreground = "#bf616a"
+    frame_color = "#bf616a"
+    timeout = 0
+
+# Custom notification categories
+[battery]
+    appname = "Battery Warning"
+    urgency = critical
+    background = "#2e3440"
+    foreground = "#bf616a"
+
+[volume-notification]
+    appname = "Volume"
+    urgency = low
+    timeout = 1
+
+[brightness-notification]
+    appname = "Brightness"
+    urgency = low
+    timeout = 1
