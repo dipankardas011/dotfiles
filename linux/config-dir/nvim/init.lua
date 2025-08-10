@@ -519,7 +519,7 @@ require("lazy").setup({
 			{ "echasnovski/mini.icons" },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			-- { "nvim-tree/nvim-web-devicons", enabled = true },
+			{ "nvim-tree/nvim-web-devicons", enabled = true },
 		},
 		config = function()
 			require("telescope").setup({
