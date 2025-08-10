@@ -28,7 +28,7 @@ print_events = false
 # ref_test = false
 
 [font]
-size = 21
+size = 16
 
 [font.glyph_offset]
 x = 0
@@ -36,15 +36,11 @@ y = 0
 
 [font.normal]
 family = "terminal-font"
-# family = "JetBrainsMono NF"
 
 
 [font.italic]
 family = "terminal-cursive"
 style = "Bold Italic"
-
-# [font.bold]
-# family = "Victor Mono"
 
 [font.bold_italic]
 family = "terminal-cursive"
@@ -369,7 +365,7 @@ program = "/bin/zsh"
 [window]
 decorations = "none"
 dynamic_padding = true
-opacity = 0.90
+opacity = 0.95
 startup_mode = "Windowed"
 
 [window.padding]

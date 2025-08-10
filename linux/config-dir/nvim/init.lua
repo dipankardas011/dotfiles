@@ -147,7 +147,6 @@ end
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", { desc = "toggle nvimtree" })
 vim.keymap.set("n", "<leader>b", ":Oil --float<CR>", { desc = "Open Oil file explorer" })
 
 --- for the nvim-terminal
