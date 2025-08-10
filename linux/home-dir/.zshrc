@@ -273,3 +273,8 @@ else
   echo "eDP-1 is not connected."
 fi
 '
+
+alias geminis="gemini --checkpointing --show-memory-usage --model gemini-2.5-flash"
+alias geminil="gemini --checkpointing --show-memory-usage --model gemini-2.5-pro"
+alias geminisand="gemini --checkpointing --sandbox --show-memory-usage --model gemini-2.5-flash"
+
