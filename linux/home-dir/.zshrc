@@ -218,8 +218,6 @@ fi
 
 #### AI tools
 
-# npm install -g @musistudio/claude-code-router 
 alias claudex="ccr code"
 
-source $HOME/.ai
 
