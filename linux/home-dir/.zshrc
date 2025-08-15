@@ -255,6 +255,7 @@ alias pbcopy="xsel --clipboard --input"
 
 alias nixinstall="nix profile install"
 alias nixallupgrade="nix profile upgrade --all"
+alias nixgcclean="nix-store --gc"
 
 # alias switchtohdmi="xrandr --output HDMI-1 --primary && xrandr --output eDP-1 --off"
 # alias switchtolaptop="xrandr --output eDP-1 --primary --auto && xrandr --output HDMI-1 --off"
