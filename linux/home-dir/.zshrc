@@ -99,21 +99,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# PROMPT='$(kube_ps1)'$'\n'$PROMPT
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -141,10 +126,11 @@ alias gpo='git push origin'
 alias gplo='git pull origin'
 alias g='git'
 alias gcs='git commit -s'
-alias cls='clear'
 
 alias v='nvim'
-# alias vi='lvim'
+alias k='kubectl'
+alias ks='ksctl'
+alias d='docker'
 
 alias gdrivePull='rclone sync -P gdrive: ~/GoogleDrive'
 alias gdrivePush='rclone sync -P ~/GoogleDrive gdrive:'
@@ -156,19 +142,9 @@ export PATH=$PATH:/home/dipankar/.linkerd2/bin
 export pager="delta"
 
 
-export PATH=$PATH:/home/dipankar/Desktop/OPS/kubernetes/third_party/etcd
-
-
-# speedscale env vars
-export SPEEDSCALE_HOME=/home/dipankar/.speedscale
-export PATH=$PATH:$SPEEDSCALE_HOME
-
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-export PATH="$PATH:/home/dipankar/istio-1.18.0/bin"
-
-alias d=docker
 
 
 alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
@@ -182,13 +158,9 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-# Added by Amplify CLI binary installer
-export PATH="$HOME/.amplify/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/go/bin"
 
-
-alias createNode='echo "---\nauthor: Dipankar Das\n---\n" > notes-$(date +%d-%m-%Y).md'
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
@@ -197,13 +169,6 @@ complete -C '/usr/local/bin/aws_completer' aws
 alias ls='lsd'
 
 alias pynbtopdf='jupyter-nbconvert --to pdf'
-
-alias mirrordisplay='xrandr --output "eDP-1" --auto --output "HDMI-1" --same-as "eDP-1"'
-
-alias normaldisplay='xrandr --output "eDP-1" --auto'
-
-# alias conservativemode='sudo sed -i s/STOP_CHARGE_THRESH_BAT0=0/STOP_CHARGE_THRESH_BAT0=1/g /etc/tlp.conf && sudo tlp start'
-# alias normalmode='sudo sed -i s/STOP_CHARGE_THRESH_BAT0=1/STOP_CHARGE_THRESH_BAT0=0/g /etc/tlp.conf && sudo tlp start'
 
 alias batmode='sudo sed -i s/TLP_DEFAULT_MODE=AC/TLP_DEFAULT_MODE=BAT/g /etc/tlp.conf && sudo tlp start'
 
@@ -214,18 +179,7 @@ fpath=($fpath "/home/dipankar/.zfunctions")
 
 export PATH="$PATH:$HOME/.npm-global/bin:$HOME/.cargo/env"
 
-export PATH=/home/dipankar/.groundcover/bin:${PATH}
-
 alias openpdf="evince"
-
-
-export WASMTIME_HOME="$HOME/.wasmtime"
-
-export PATH="$WASMTIME_HOME/bin:$PATH"
-
-# Wasmer
-export WASMER_DIR="/home/dipankar/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -233,32 +187,19 @@ export FZF_DEFAULT_OPS="--extended"
 
 export PATH="$PATH:$HOME/.protobuff/bin"
 
-alias tf="terraform"
-
-alias soundControl="pavucontrol"
-
-alias github="cd ~/Onedrive/github"
-alias gitlab="cd ~/Onedrive/gitlab"
 
 export TERM="xterm-256color"
-
-alias dksctl="cd ~/Desktop/OPS/ksctl"
-alias dp="cd ~/Desktop/OPS"
-
-. "/home/dipankar/.wasmedge/env"
 
 alias ve="fd --type f --hidden --exclude .git | fzf-tmux -m -p | xargs nvim"
 
 alias t="tmux"
-
-alias pbcopy="xsel --clipboard --input"
-
+alias tf="terraform"
+alias soundControl="pavucontrol"
+alias pbcopy='wl-copy'
 alias nixinstall="nix profile install"
 alias nixallupgrade="nix profile upgrade --all"
 alias nixgcclean="nix-store --gc"
 
-# alias switchtohdmi="xrandr --output HDMI-1 --primary && xrandr --output eDP-1 --off"
-# alias switchtolaptop="xrandr --output eDP-1 --primary --auto && xrandr --output HDMI-1 --off"
 alias switchtohdmi='
 if xrandr | grep "HDMI-1 connected"; then
   xrandr --output HDMI-1 --primary --auto && xrandr --output eDP-1 --off
@@ -275,7 +216,10 @@ else
 fi
 '
 
-alias geminis="gemini --checkpointing --show-memory-usage --model gemini-2.5-flash"
-alias geminil="gemini --checkpointing --show-memory-usage --model gemini-2.5-pro"
-alias geminisand="gemini --checkpointing --sandbox --show-memory-usage --model gemini-2.5-flash"
+#### AI tools
+
+# npm install -g @musistudio/claude-code-router 
+alias claudex="ccr code"
+
+source $HOME/.ai
 

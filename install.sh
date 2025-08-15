@@ -139,6 +139,34 @@ function setup_fontconfig() {
     fc-cache --really-force
 }
 
+function configure_claude_code() {
+    
+    echo "Installing latest Claude Code CLI..."
+    npm install -g @anthropic-ai/claude-code
+
+    echo "Installing latest Claude code router..."
+    npm install -g @musistudio/claude-code-router
+
+    echo "Setting up for Claude code router..."
+    local CLAUDE_CODE_ROUTER_DIR="$HOME/.claude-code-router"
+    
+    if [ ! -d "$CLAUDE_CODE_ROUTER_DIR" ]; then
+        mkdir -p "$CLAUDE_CODE_ROUTER_DIR"
+    else
+        rm -rf "$CLAUDE_CODE_ROUTER_DIR"
+    fi
+
+    ln -s "$LINUX_HOME_DIR/.claude-code-router" "$CLAUDE_CODE_ROUTER_DIR"
+}
+
+function setup_ai() {
+    if [ ! -f "$HOME/.ai" ]; then
+        cat <<EOF > "$HOME/.ai"
+        export APIKEY=your_api_key_here
+        EOF
+    fi
+}
+
 function main() {
     if [ "$(uname)" != "Linux" ]; then
         echo "This script is intended for Linux systems only."
@@ -155,7 +183,11 @@ function main() {
     setup_zsh
     setup_wlogout
     setup_fontconfig
+    configure_claude_code
+    setup_ai
     echo "All configurations have been set up successfully."
+    echo "Please restart your terminal or source your shell configuration to apply changes."
+    echo "Please check out https://github.com/pyenv/pyenv and https://github.com/nvm-sh/nvm"
 }
 
 main "$@"
