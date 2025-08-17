@@ -16,7 +16,7 @@ vim.g.have_nerd_font = false
 
 vim.o.hlsearch = true
 
-vim.o.winborder = "none"
+vim.o.winborder = "single"
 
 vim.o.number = true
 
