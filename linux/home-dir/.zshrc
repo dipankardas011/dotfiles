@@ -221,3 +221,4 @@ fi
 alias claudex="ccr code"
 
 
+. "/home/dipankar/.wasmedge/env"

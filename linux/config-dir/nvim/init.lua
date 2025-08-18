@@ -12,7 +12,7 @@ vim.cmd([[
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 vim.o.hlsearch = true
 
@@ -530,14 +530,6 @@ require("lazy").setup({
 					},
 					-- Disable the previewer
 					preview = { hide_on_startup = false },
-					-- file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-					-- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-					-- -- Use mini.icons for file icons
-					-- entry_display = function(entry)
-					-- 	local MiniIcons = require("mini.icons")
-					-- 	local icon = MiniIcons.get(entry.value) -- Get icon based on file extension/type
-					-- 	return string.format("%s %s", icon, entry.value)
-					-- end,
 				},
 				-- pickers = {}
 				extensions = {
@@ -879,29 +871,43 @@ require("lazy").setup({
 	{
 		"echasnovski/mini.icons",
 	},
-	-- { -- Collection of various small independent plugins/modules
-	-- 	"echasnovski/mini.nvim",
-	-- 	config = function()
-	-- 		-- Better Around/Inside textobjects
-	-- 		--
-	-- 		-- Examples:
-	-- 		--  - va)  - [V]isually select [A]round [)]paren
-	-- 		--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-	-- 		--  - ci'  - [C]hange [I]nside [']quote
-	-- 		-- require("mini.ai").setup({ n_lines = 500 })
-	--
-	-- 		require("mini.icons").setup()
-	-- 		-- Add/delete/replace surroundings (brackets, quotes, etc.)
-	-- 		--
-	-- 		-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-	-- 		-- - sd'   - [S]urround [D]elete [']quotes
-	-- 		-- - sr)'  - [S]urround [R]eplace [)] [']
-	-- 		-- require("mini.surround").setup()
-	--
-	-- 		-- ... and there is more!
-	-- 		--  Check out: https://github.com/echasnovski/mini.nvim
-	-- 	end,
-	-- },
+	{ -- Collection of various small independent plugins/modules
+		"echasnovski/mini.nvim",
+		config = function()
+			-- Better Around/Inside textobjects
+			--
+			-- Examples:
+			--  - va)  - [V]isually select [A]round [)]paren
+			--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+			--  - ci'  - [C]hange [I]nside [']quote
+			require("mini.ai").setup({ n_lines = 500 })
+
+			require("mini.icons").setup()
+			-- Add/delete/replace surroundings (brackets, quotes, etc.)
+			--
+			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+			-- - sd'   - [S]urround [D]elete [']quotes
+			-- - sr)'  - [S]urround [R]eplace [)] [']
+			-- require("mini.surround").setup()
+
+			-- Simple and easy statusline.
+			--  You could remove this setup call if you don't like it,
+			--  and try some other statusline plugin
+			local statusline = require("mini.statusline")
+			-- set use_icons to true if you have a Nerd Font
+			statusline.setup({ use_icons = vim.g.have_nerd_font })
+
+			-- You can configure sections in the statusline by overriding their
+			-- default behavior. For example, here we set the section for
+			-- cursor location to LINE:COLUMN
+			---@diagnostic disable-next-line: duplicate-set-field
+			statusline.section_location = function()
+				return "%2l:%-2v"
+			end
+			-- ... and there is more!
+			--  Check out: https://github.com/echasnovski/mini.nvim
+		end,
+	},
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
