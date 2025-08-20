@@ -1,0 +1,6 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "printf '\\033[34m%s\\033[0m' \"$(pwd)\" && if git rev-parse --git-dir >/dev/null 2>&1; then printf '\\033[93m |%s|\\033[0m' \"$(git branch --show-current 2>/dev/null || echo 'detached')\"; fi"
+  }
+}
