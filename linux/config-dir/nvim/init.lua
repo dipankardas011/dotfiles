@@ -868,9 +868,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		"echasnovski/mini.icons",
-	},
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
 		config = function()
