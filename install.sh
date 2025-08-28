@@ -139,24 +139,9 @@ function setup_fontconfig() {
     fc-cache --really-force
 }
 
-# function configure_claude_code() {
-#
-#     echo "Installing latest Claude Code CLI..."
-#     npm install -g @anthropic-ai/claude-code
-#
-#     echo "Installing latest Claude code router..."
-#     npm install -g @musistudio/claude-code-router
-#
-#     echo "Setting up for Claude code router..."
-#     local CLAUDE_CODE_ROUTER_DIR="$HOME/.claude-code-router"
-#
-#     if [ -d "$CLAUDE_CODE_ROUTER_DIR" ]; then
-#         rm -rf "$CLAUDE_CODE_ROUTER_DIR"
-#     fi
-#     mkdir -p "$CLAUDE_CODE_ROUTER_DIR"
-#
-#     cp -v "$LINUX_HOME_DIR/.claude-code-router/config.json" "$CLAUDE_CODE_ROUTER_DIR/config.json"
-# }
+function set_wayland_overrides_application() {
+    sudo cp -v "$DOTFILES_DIR/linux/{discord.desktop,slack.desktop,1password.desktop}" /usr/share/applications/.
+}
 
 
 function main() {
@@ -175,6 +160,7 @@ function main() {
     setup_zsh
     setup_wlogout
     setup_fontconfig
+    set_wayland_overrides_application
     echo "All configurations have been set up successfully."
     echo "Please restart your terminal or source your shell configuration to apply changes."
     echo "Please check out https://github.com/pyenv/pyenv and https://github.com/nvm-sh/nvm"
