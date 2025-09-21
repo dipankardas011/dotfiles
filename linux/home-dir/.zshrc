@@ -218,7 +218,8 @@ fi
 
 #### AI tools
 
-alias claudex="ccr code"
-
 
 . "/home/dipankar/.wasmedge/env"
+
+# Turso
+export PATH="$PATH:/home/dipankar/.turso"
