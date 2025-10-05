@@ -223,3 +223,7 @@ fi
 
 # Turso
 export PATH="$PATH:/home/dipankar/.turso"
+
+function calculate_dockerimagesize() {
+    docker inspect -f "{{ .Size }}" $1 | numfmt --to=si
+}
