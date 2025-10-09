@@ -228,6 +228,6 @@ function calculate_dockerimagesize() {
     docker inspect -f "{{ .Size }}" $1 | numfmt --to=si
 }
 
-alias reboot_sound_system='systemctl --user restart pipewire.service'
+alias reboot_sound_system='systemctl --user restart pipewire.service && systemctl --user restart bluetooth'
 
 
