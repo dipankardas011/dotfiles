@@ -122,3 +122,9 @@ This reduces codec complexity and keeps connection stable.
 | Audio stuttering / dropouts | Intel Bluetooth controller autosuspend | Set `/sys/class/bluetooth/.../power/control` to `on` and make it permanent via udev |
 
 
+
+
+cat 99-btusb-disable-autosuspend.rules
+ACTION=="add", SUBSYSTEM=="bluetooth", KERNEL=="hci0*", TEST=="device/power/control", ATTR{device/power/control}="on"
+➜  rules.d pwd
+/etc/udev/rules.d
