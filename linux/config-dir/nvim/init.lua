@@ -772,6 +772,21 @@ require("lazy").setup({
 				gopls = {},
 				pyright = {},
 				rust_analyzer = {},
+				helm_ls = {
+					settings = {
+						["helm-ls"] = {
+							yamlls = {
+								path = "yaml-language-server",
+							},
+						},
+					},
+					filetypes = { "helm" },
+					root_dir = function(fname)
+						return require("lspconfig").util.root_pattern("Chart.yaml")(fname)
+							or require("lspconfig").vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+							or vim.loop.os_homedir()
+					end,
+				},
 				yamlls = {},
 				lua_ls = {
 					-- cmd = { ... },
@@ -1050,4 +1065,12 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 	},
+})
+
+-- Detect Helm templates as helm filetype
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*/templates/*.yaml", "*/templates/*.tpl" },
+	callback = function()
+		vim.bo.filetype = "helm"
+	end,
 })
