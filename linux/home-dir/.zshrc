@@ -230,4 +230,4 @@ function calculate_dockerimagesize() {
 
 alias reboot_bluetooth_system='systemctl --user restart bluetooth'
 
-
+# convert networkcoexistence.png -resize 60% networkcoexistence.png
