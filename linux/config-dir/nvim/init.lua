@@ -260,6 +260,9 @@ require("lazy").setup({
 			},
 		},
 	},
+    {
+        'tpope/vim-fugitive'
+    },
 	{
 		"romgrk/nvim-treesitter-context",
 		config = function()
