@@ -261,9 +261,6 @@ require("lazy").setup({
 		},
 	},
     {
-        "sindrets/diffview.nvim",
-    },
-    {
         "NeogitOrg/neogit",
         lazy = true,
         dependencies = {
