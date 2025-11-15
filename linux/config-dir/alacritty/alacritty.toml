@@ -52,16 +52,6 @@ x = 0
 y = 0
 
 [[keyboard.bindings]]
-action = "Paste"
-key = "V"
-mods = "Command"
-
-[[keyboard.bindings]]
-action = "Copy"
-key = "C"
-mods = "Command"
-
-[[keyboard.bindings]]
 action = "Quit"
 key = "Q"
 mods = "Command"

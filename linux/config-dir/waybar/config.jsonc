@@ -10,22 +10,31 @@
   ],
   "modules-center": ["clock"],
   "modules-right": [
+    "group/tray-expander",
     "network",
     "cpu",
     "memory",
     "battery",
     "bluetooth",
-    "pulseaudio",
-    "tray"
+    "pulseaudio"
+    // "tray"
   ],
   "hyprland/workspaces": {
     "disable-scroll": false,
     "all-outputs": true,
     "format": "{icon}",
-    "on-click": "activate"
-    // "persistent-workspaces": {
-    //   "*":[1,2,4,9,10]
-    // },
+    "on-click": "activate",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7L",
+      "8": "8",
+      "9": "9"
+    },
   },
   "custom/lock": {
   "format": "  ",
@@ -33,37 +42,46 @@
   "tooltip": true,
   "tooltip-format": "Lock Screen"
   },
-  // "custom/reboot": {
-  //   "format": " ",
-  //   "on-click": "zenity --question --text='Do you really want to reboot?' && systemctl reboot",
-  //   "tooltip": true,
-  //   "tooltip-format": "Reboot"
-  // },
-  // "custom/power": {
-  //   "format": " ",
-  //   "on-click": "zenity --question --text='Do you really want to power off?' && systemctl poweroff",
-  //   "tooltip": true,
-  //   "tooltip-format": "Power Off"
-  // },
   "network": {
-    "format-wifi": "󰤨  {signalStrength}%",
-    "format-ethernet": " Wired ",
-    "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
-    "format-linked": "󱘖 {ifname} (No IP)",
-    "format-disconnected": "  Disconnected ",
-    "format-alt": "󰤨  {essid}",
-    "interval": 1
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon} {essid}",
+    "format-wifi": "{icon}  {essid}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": " Disconnected",
+    "interval": 3,
+    "spacing": 1
   },
+
+  // "network": {
+  //   "format-wifi": "󰤨  {signalStrength}%",
+  //   "format-ethernet": " Wired ",
+  //   "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
+  //   "format-linked": "󱘖 {ifname} (No IP)",
+  //   "format-disconnected": "  Disconnected ",
+  //   "format-alt": "󰤨  {essid}",
+  //   "interval": 1
+  // },
+
   "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": " {capacity}%",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
     "states": {
       "warning": 30,
-      "critical": 20,
-    },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󱐋{capacity}%",
-    "interval": 1,
-    "format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"],
-    "tooltip": true
+      "critical": 20
+    }
   },
   "pulseaudio": {
     "format": "{icon}{volume}%",
@@ -94,17 +112,18 @@
     "tooltip-format": "CPU Temp: {}°C"
   },
   "memory": {
-    "format": "  {used:0.1f}G/{total:0.1f}G",
     "tooltip": true,
-    "tooltip-format": "Ram: {used:0.2f}G/{total:0.2f}G",
+	"interval": 30,
+	"format": "  {used:0.1f}G/{total:0.1f}G",
     "states": {
       "critical": 90,
       "warning": 70
     }
   },
   "cpu": {
-    "format": "  {usage}%",
-    "tooltip": true,
+    "interval": 1,
+    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "states": {
       "critical": 90,
       "warning": 70
@@ -113,32 +132,32 @@
   "clock": {
     "interval": 1,
     "timezone": "Asia/Kolkata",
-    "format": "{:%H:%M:%S - %d-%m-%Y}",
-    "tooltip": true
+    "format": "{:L%A %H:%M %Z}",
+    "format-alt": "{:L%d %B %Y}",
+    "tooltip": false
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+  "custom/expand-icon": {
+    "format": " ",
+    "tooltip": false
   },
   "tray": {
-    "icon-size": 11,
-    "spacing": 6
-  },
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon}{percent}% ",
-    "tooltip": true,
-    "tooltip-format": "Brightness: {percent}%",
-    "format-icons": [
-      " 󰃞 ",  // 暗 - 深灰
-      " 󰃝 ",  // 中 - 灰
-      " 󰃟 ",  // 亮 - 柠檬黄
-      " 󰃠 "   // 最亮 - 金色
-    ]
+    "icon-size": 12,
+    "spacing": 17
   },
   "bluetooth": {
-    "format": " {status}",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias}{device_battery_percentage}%",
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": " {device_alias}",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "on-click": "blueman-manager",
   }
 }
