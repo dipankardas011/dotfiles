@@ -17,24 +17,17 @@
     "battery",
     "bluetooth",
     "pulseaudio"
-    // "tray"
   ],
   "hyprland/workspaces": {
     "disable-scroll": false,
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{icon}",
     "on-click": "activate",
-    "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7L",
-      "8": "8",
-      "9": "9"
-    },
+    "format": "{name}: {icon}",
+	"format-icons": {
+	  "active": "",
+	  "default": ""
+	}
   },
   "custom/lock": {
   "format": "  ",
@@ -54,29 +47,18 @@
     "interval": 3,
     "spacing": 1
   },
-
-  // "network": {
-  //   "format-wifi": "󰤨  {signalStrength}%",
-  //   "format-ethernet": " Wired ",
-  //   "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
-  //   "format-linked": "󱘖 {ifname} (No IP)",
-  //   "format-disconnected": "  Disconnected ",
-  //   "format-alt": "󰤨  {essid}",
-  //   "interval": 1
-  // },
-
   "battery": {
     "format": "{capacity}% {icon}",
-    "format-discharging": "{icon}",
-    "format-charging": "{icon}",
+    "format-discharging": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}%",
     "format-plugged": " {capacity}%",
     "format-icons": {
       "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     "format-full": "󰂅",
-    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "tooltip-format-discharging": "{power:>1.0f}W↓",
+    "tooltip-format-charging": "{power:>1.0f}W↑",
     "interval": 5,
     "states": {
       "warning": 30,
