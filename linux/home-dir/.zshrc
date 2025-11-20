@@ -91,10 +91,10 @@ KUBE_PS1_SYMBOL_CUSTOM="k8s"
 plugins=(
     git
     zsh-autosuggestions
-    zsh-syntax-highlighting
     kube-ps1
     kubectl
     docker
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,9 +117,6 @@ export EDITOR="nvim"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-export PATH=/opt/apache-maven-3.8.5/bin:$PATH
-
-export PATH=$PATH:/opt/gradle/gradle-7.4.2/bin
 alias l='ls -l'
 alias la='ls -la'
 alias gpo='git push origin'
@@ -137,14 +134,7 @@ alias gdrivePush='rclone sync -P ~/GoogleDrive gdrive:'
 alias s3Push='rclone sync -P ~/ext-bkps/s3 s3:'
 alias s3Pull='rclone sync -P s3: ~/ext-bkps/s3'
 
-export PATH=$PATH:/home/dipankar/.linkerd2/bin
-
 export pager="delta"
-
-
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 
 
 alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
@@ -159,7 +149,7 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:/usr/local/go/bin"
 
 
 autoload bashcompinit && bashcompinit
@@ -170,9 +160,9 @@ alias ls='lsd'
 
 alias pynbtopdf='jupyter-nbconvert --to pdf'
 
-alias batmode='sudo sed -i s/TLP_DEFAULT_MODE=AC/TLP_DEFAULT_MODE=BAT/g /etc/tlp.conf && sudo tlp start'
-
-alias acmode='sudo sed -i s/TLP_DEFAULT_MODE=BAT/TLP_DEFAULT_MODE=AC/g /etc/tlp.conf && sudo tlp start'
+# alias batmode='sudo sed -i s/TLP_DEFAULT_MODE=AC/TLP_DEFAULT_MODE=BAT/g /etc/tlp.conf && sudo tlp start'
+#
+# alias acmode='sudo sed -i s/TLP_DEFAULT_MODE=BAT/TLP_DEFAULT_MODE=AC/g /etc/tlp.conf && sudo tlp start'
 
 export GPG_TTY=$(tty)
 fpath=($fpath "/home/dipankar/.zfunctions")
@@ -196,30 +186,12 @@ alias t="tmux"
 alias tf="terraform"
 alias soundControl="pavucontrol"
 alias pbcopy='wl-copy'
-alias nixinstall="nix profile install"
-alias nixallupgrade="nix profile upgrade --all"
-alias nixgcclean="nix-store --gc"
+# alias nixinstall="nix profile install"
+# alias nixallupgrade="nix profile upgrade --all"
+# alias nixgcclean="nix-store --gc"
 
-alias switchtohdmi='
-if xrandr | grep "HDMI-1 connected"; then
-  xrandr --output HDMI-1 --primary --auto && xrandr --output eDP-1 --off
-else
-  echo "HDMI-1 is not connected."
-fi
-'
-
-alias switchtolaptop='
-if xrandr | grep "eDP-1 connected"; then
-  xrandr --output eDP-1 --primary --auto && xrandr --output HDMI-1 --off
-else
-  echo "eDP-1 is not connected."
-fi
-'
 
 #### AI tools
-
-
-. "/home/dipankar/.wasmedge/env"
 
 # Turso
 export PATH="$PATH:/home/dipankar/.turso"
@@ -227,7 +199,5 @@ export PATH="$PATH:/home/dipankar/.turso"
 function calculate_dockerimagesize() {
     docker inspect -f "{{ .Size }}" $1 | numfmt --to=si
 }
-
-alias reboot_bluetooth_system='systemctl --user restart bluetooth'
 
 # convert networkcoexistence.png -resize 60% networkcoexistence.png
