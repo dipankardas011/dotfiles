@@ -201,3 +201,5 @@ function calculate_dockerimagesize() {
 }
 
 # convert networkcoexistence.png -resize 60% networkcoexistence.png
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
