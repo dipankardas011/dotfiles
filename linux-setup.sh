@@ -98,7 +98,9 @@ sudo dnf install hyprland \
     xlsclients \
     hypridle \
     gnome-themes-extra \
-    vdpauinfo
+    vdpauinfo \
+    light \
+    brighnessctl
 
 sudo dnf -y swap 'ffmpeg-free' 'ffmpeg' --allowerasing
 
