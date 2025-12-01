@@ -194,7 +194,7 @@ alias pbcopy='wl-copy'
 #### AI tools
 
 # Turso
-export PATH="$PATH:/home/dipankar/.turso"
+export PATH="$PATH:/home/dipankardas/.turso"
 
 function calculate_dockerimagesize() {
     docker inspect -f "{{ .Size }}" $1 | numfmt --to=si
