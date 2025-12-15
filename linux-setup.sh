@@ -129,6 +129,7 @@ sudo dnf install bottom # btm
 
 
 # ##### For the updated Hyprland packages #######
+# https://github.com/solopasha/hyprlandRPM/issues/47#issuecomment-3612390982
 sudo dnf copr disable solopasha/hyprland 
 sudo dnf copr enable lionheartp/Hyprland 
 sudo dnf distro-sync
