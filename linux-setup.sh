@@ -128,26 +128,8 @@ sudo dnf copr enable atim/bottom -y
 sudo dnf install bottom # btm
 
 
-##### For the asus Laptop #####
-sudo dnf install inxi
-inxi -A
-lsmod | grep -iE "snd|sof|hda|acp"
-cat /proc/asound/cards
-
-sudo tee /etc/modprobe.d/amd-acp-nosleep.conf > /dev/null <<'EOF'
-# Prevent AMD Audio Co-Processor (ACP) from aggressive power saving which can
-# leave the DSP/codec in a bad state after resume.
-options snd_acp power_save=0
-options snd_acp_pci power_save=0
-options snd_acp_legacy_common power_save=0
-EOF
-
-
-sudo tee /etc/modprobe.d/hda-disable-powersave.conf > /dev/null <<'EOF'
-# Prevent the HDA/Realtek codec from going into ultra-deep power save
-options snd_hda_intel power_save=0 power_save_controller=N
-EOF
-
-
-sudo dracut --force
-sudo reboot
+# ##### For the updated Hyprland packages #######
+sudo dnf copr disable solopasha/hyprland 
+sudo dnf copr enable lionheartp/Hyprland 
+sudo dnf distro-sync
+sudo dnf upgrade --refresh
