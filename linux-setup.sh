@@ -134,3 +134,9 @@ sudo dnf copr disable solopasha/hyprland
 sudo dnf copr enable lionheartp/Hyprland 
 sudo dnf distro-sync
 sudo dnf upgrade --refresh
+
+## For the setup of the cuda Still before checking if the current version of the fedora has the latest fedora{>42}
+sudo dnf config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/fedora42/$(uname -m)/cuda-fedora42.repo
+sudo dnf clean all
+sudo dnf config-manager setopt cuda-fedora42-$(uname -m).exclude=nvidia-driver,nvidia-modprobe,nvidia-persistenced,nvidia-settings,nvidia-libXNVCtrl,nvidia-xconfig
+sudo dnf -y install cuda-toolkit xorg-x11-drv-nvidia-cuda

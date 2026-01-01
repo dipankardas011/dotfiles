@@ -150,6 +150,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 
 autoload bashcompinit && bashcompinit
@@ -203,4 +204,3 @@ function calculate_dockerimagesize() {
 # convert networkcoexistence.png -resize 60% networkcoexistence.png
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-

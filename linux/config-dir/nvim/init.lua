@@ -103,24 +103,25 @@ end
 local function mode_alias()
 	local m = vim.api.nvim_get_mode().mode
 	local alias = {
-		n = "NORMAL",
+		n = "NOR",
 		no = "N-PENDING",
-		v = "VISUAL",
-		V = "V-LINE",
-		[""] = "V-BLOCK",
-		i = "INSERT",
-		ic = "INSERT",
-		R = "REPLACE",
-		c = "COMMAND",
+		v = "VIS",
+		V = "VLI",
+		[""] = "VBL",
+		i = "INS",
+		ic = "INS",
+		R = "REP",
+		c = "COM",
 		cv = "VIM EX",
 		ce = "EX",
-		s = "SELECT",
+		s = "SEL",
 		S = "S-LINE",
 		[""] = "S-BLOCK",
-		t = "TERMINAL",
+		t = "TER",
 	}
 	local g = alias[m] or m
-	return "[" .. g .. "]"
+	return g
+	-- return "[" .. g .. "]"
 end
 
 -- Expose functions to `v:lua`
@@ -533,8 +534,8 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ "echasnovski/mini.icons" },
 
-			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ "nvim-tree/nvim-web-devicons", enabled = true },
+			-- -- Useful for getting pretty icons, but requires a Nerd Font.
+			-- { "nvim-tree/nvim-web-devicons", enabled = true },
 		},
 		config = function()
 			require("telescope").setup({
@@ -908,9 +909,9 @@ require("lazy").setup({
 			--  - va)  - [V]isually select [A]round [)]paren
 			--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
 			--  - ci'  - [C]hange [I]nside [']quote
-			require("mini.ai").setup({ n_lines = 500 })
+            -- require("mini.ai").setup({ n_lines = 500 })
 
-			require("mini.icons").setup()
+			-- require("mini.icons").setup()
 			require("mini.tabline").setup()
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			--
@@ -922,17 +923,17 @@ require("lazy").setup({
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
 			--  and try some other statusline plugin
-			local statusline = require("mini.statusline")
-			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-			-- You can configure sections in the statusline by overriding their
-			-- default behavior. For example, here we set the section for
-			-- cursor location to LINE:COLUMN
-			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%2l:%-2v"
-			end
+			-- local statusline = require("mini.statusline")
+			-- -- set use_icons to true if you have a Nerd Font
+			-- statusline.setup({ use_icons = vim.g.have_nerd_font })
+			--
+			-- -- You can configure sections in the statusline by overriding their
+			-- -- default behavior. For example, here we set the section for
+			-- -- cursor location to LINE:COLUMN
+			-- ---@diagnostic disable-next-line: duplicate-set-field
+			-- statusline.section_location = function()
+			-- 	return "%2l:%-2v"
+			-- end
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
