@@ -151,7 +151,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
-
+export PATH="$PATH:/usr/local/cuda-13.1/bin"
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
@@ -200,6 +200,7 @@ export PATH="$PATH:/home/dipankardas/.turso"
 function calculate_dockerimagesize() {
     docker inspect -f "{{ .Size }}" $1 | numfmt --to=si
 }
+
 
 # convert networkcoexistence.png -resize 60% networkcoexistence.png
 # Set up fzf key bindings and fuzzy completion

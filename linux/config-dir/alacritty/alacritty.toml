@@ -38,13 +38,13 @@ y = 0
 family = "terminal-font"
 
 
-[font.italic]
-family = "terminal-cursive"
-style = "Bold Italic"
-
-[font.bold_italic]
-family = "terminal-cursive"
-style = "Bold Italic"
+# [font.italic]
+# family = "terminal-cursive"
+# style = "Bold Italic"
+#
+# [font.bold_italic]
+# family = "terminal-cursive"
+# style = "Bold Italic"
 
 
 [font.offset]
