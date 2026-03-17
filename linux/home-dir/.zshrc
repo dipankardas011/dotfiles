@@ -205,3 +205,10 @@ function calculate_dockerimagesize() {
 # convert networkcoexistence.png -resize 60% networkcoexistence.png
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+
+# opencode
+export PATH=/home/dipankardas/.opencode/bin:$PATH

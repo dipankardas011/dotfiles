@@ -315,8 +315,10 @@ require("lazy").setup({
 				lastplace_open_folds = true,
 			})
 		end,
-	},
-
+    },
+    {
+        "davidmh/mdx.nvim",
+    },
 	{
 		"NvChad/nvterm",
 		config = function()
@@ -490,7 +492,7 @@ require("lazy").setup({
 					},
 				},
 				delve = {
-					path = "/home/dipankar/go/bin/dlv",
+					path = "/usr/bin/dlv",
 					initialize_timeout_sec = 30,
 					-- args = dap_go.get_arguments,
 					-- build_flags = dap_go.get_build_flags,
@@ -931,9 +933,9 @@ require("lazy").setup({
 			-- default behavior. For example, here we set the section for
 			-- cursor location to LINE:COLUMN
 			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%2l:%-2v"
-			end
+			-- statusline.section_location = function()
+			-- 	return "%2l:%-2v"
+			-- end
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
