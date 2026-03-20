@@ -212,3 +212,6 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 
 # opencode
 export PATH=/home/dipankardas/.opencode/bin:$PATH
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/home/dipankardas/.lmstudio/bin"
