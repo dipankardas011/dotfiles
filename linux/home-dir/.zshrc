@@ -215,3 +215,6 @@ export PATH=/home/dipankardas/.opencode/bin:$PATH
 
 # Added by LM Studio CLI tool (lms)
 export PATH="$PATH:/home/dipankardas/.lmstudio/bin"
+
+alias homeai_withimage="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/Qwen3.5-9B-Q5_K_M.gguf --mmproj /home/dipankardas/ws/vllm/mmproj-BF16.gguf --port 8000 -c 262144 --host 0.0.0.0 --no-kv-offload -ngl 30 --cache-type-k q4_0 --cache-type-v q4_0 --flash-attn on --jinja"
+alias homeai_textonly="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/Qwen3.5-9B-Q5_K_M.gguf --port 8000 -c 262144 --host 0.0.0.0 --no-kv-offload -ngl 999 --cache-type-k q4_0 --cache-type-v q4_0 --flash-attn on --jinja"
