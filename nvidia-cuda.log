@@ -249,3 +249,11 @@ Is this ok [y/N]: y
 [67/69] nsight-compute-2025.4.0-0:2025.4.0.12-1.x86_64                                                                                                          100% |   1.9 MiB/s | 441.7 MiB |  03m51s
 [68/69] java-25-openjdk-headless-1:25.0.1.0.8-3.fc43.x86_64                                                                                                     100% | 634.5 KiB/s |  57.9 MiB |  01m33s
 [69/69] nsight-systems-2025.5.2-0:2025.5.2.266_255236693005v0-0.x86_64                                   
+
+-------------------
+
+
+sudo rm /etc/yum.repos.d/cuda-fedora42.repo
+sudo dnf config-manager addrepo --from-repofile https://developer.download.nvidia.com/compute/cuda/repos/fedora43/x86_64/cuda-fedora43.repo
+sudo dnf config-manager setopt cuda-fedora43-x86_64.exclude=nvidia-driver,nvidia-modprobe,nvidia-persistenced,nvidia-settings,nvidia-libXNVCtrl,nvidia-xconfig
+sudo dnf clean all
