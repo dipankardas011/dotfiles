@@ -214,7 +214,7 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 export PATH=/home/dipankardas/.opencode/bin:$PATH
 
 alias homeai_withimage="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/Qwen3.5-9B-Q5_K_M.gguf --mmproj /home/dipankardas/ws/vllm/mmproj-BF16.gguf --port 8000 -c 65536 --host 0.0.0.0 -ngl auto -b 128 -ub 64 --cache-type-k q8_0 --cache-type-v q8_0 --flash-attn on --jinja --no-kv-offload"
-alias homeai_textonly="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/Qwen3.5-9B-Q5_K_M.gguf --port 8000 -c 131072 --host 0.0.0.0  -ngl auto -b 512 -ub 128 --cache-type-k bf16 --cache-type-v bf16 --flash-attn on --jinja --temperature 0.6 --parallel 1 --threads 16 --reasoning-budget 4096 --top-p 0.95 --top-k 20 --min-p 0.0 --repeat-penalty 1.0"
+alias homeai_textonly="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/Qwen3.5-9B-Q5_K_M.gguf --port 8000 -c 131072 --host 0.0.0.0  -ngl auto --cache-type-k bf16 --cache-type-v bf16 --flash-attn on --jinja --temperature 0.6 --reasoning-budget 4096"
 
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
