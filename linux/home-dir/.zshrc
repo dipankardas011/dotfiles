@@ -215,6 +215,10 @@ export PATH=/home/dipankardas/.opencode/bin:$PATH
 
 alias homeai_withimage="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/Qwen3.5-9B-Q5_K_M.gguf --mmproj /home/dipankardas/ws/vllm/mmproj-BF16.gguf --port 8000 -c 65536 --host 0.0.0.0 -ngl auto -b 128 -ub 64 --cache-type-k q8_0 --cache-type-v q8_0 --flash-attn on --jinja --no-kv-offload"
 alias homeai_textonly="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/Qwen3.5-9B-Q5_K_M.gguf --port 8000 -c 131072 --host 0.0.0.0  -ngl auto --cache-type-k bf16 --cache-type-v bf16 --flash-attn on --jinja --temperature 0.6 --reasoning-budget 4096"
+alias homeai_textonly_gemini="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/lmstudio-gemma-4-E4B-it-Q4_K_M.gguf --port 8000 -c 204800 --host 0.0.0.0  -ngl auto --cache-type-k bf16 --cache-type-v bf16 --flash-attn on --jinja --temperature 0.6 --reasoning-budget 4096"
+alias homeai_textonly_unslothgemini="/home/dipankardas/llama.cpp/build/bin/llama-server -m /home/dipankardas/ws/vllm/unsloth-gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf --port 8000 -c 131072 --host 0.0.0.0  -ngl auto --cache-type-k q4_0 --cache-type-v q4_0 --flash-attn on --jinja --temperature 1.0 --reasoning-budget 4096 --top_p 0.95 --top_k 64"
+
+
 
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
