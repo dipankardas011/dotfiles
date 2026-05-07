@@ -136,7 +136,7 @@ calculate_dockerimagesize() {
 # Completion + prompt
 # =============================================================================
 
-shopt -s checkwinsize
+shopt -s checkwinsize autocd cdspell
 
 # Bash completion
 for f in /usr/share/bash-completion/bash_completion /etc/bash_completion; do
