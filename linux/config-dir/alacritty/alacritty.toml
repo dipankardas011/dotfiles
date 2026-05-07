@@ -23,7 +23,7 @@ print_events = false
 # ref_test = false
 
 [font]
-size = 16
+size = 18
 
 [font.glyph_offset]
 x = 0

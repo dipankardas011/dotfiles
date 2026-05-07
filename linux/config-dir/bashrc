@@ -93,6 +93,7 @@ alias ls='lsd'
 
 # Git
 alias g='git'
+alias ga='git add'
 alias gpo='git push origin'
 alias gplo='git pull origin'
 alias gcs='git commit -s'
@@ -136,7 +137,7 @@ calculate_dockerimagesize() {
 # Completion + prompt
 # =============================================================================
 
-shopt -s checkwinsize
+shopt -s checkwinsize autocd cdspell
 
 # Bash completion
 for f in /usr/share/bash-completion/bash_completion /etc/bash_completion; do
@@ -198,7 +199,9 @@ fi
 export FZF_DEFAULT_OPTS="--extended"
 
 # Bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+if command -v bun >/dev/null 2>&1; then
+    source <(bun completions bash)
+fi
 
 __prompt_command() {
     local ec=$?
