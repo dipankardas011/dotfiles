@@ -133,17 +133,90 @@ calculate_dockerimagesize() {
 
 
 # =============================================================================
-# Completion
+# Completion + prompt
 # =============================================================================
+
+shopt -s checkwinsize
+
+# Bash completion
+for f in /usr/share/bash-completion/bash_completion /etc/bash_completion; do
+    if [ -r "$f" ]; then
+        . "$f"
+        break
+    fi
+done
+
+# Git completion + prompt
+for f in \
+    "$HOME/.git-prompt.sh" \
+    /usr/share/doc/git/contrib/completion/git-prompt.sh \
+    /usr/share/git-core/contrib/completion/git-prompt.sh \
+    /usr/share/git/contrib/completion/git-prompt.sh
+    do
+    if [ -r "$f" ]; then
+        . "$f"
+        break
+    fi
+done
+for f in \
+    /usr/share/doc/git/contrib/completion/git-completion.bash \
+    /usr/share/git-core/contrib/completion/git-completion.bash \
+    /usr/share/git/contrib/completion/git-completion.bash
+    do
+    if [ -r "$f" ]; then
+        . "$f"
+        break
+    fi
+done
+
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM=auto
+export GIT_PS1_SHOWCOLORHINTS=1
+
+bind 'set completion-ignore-case on'
+bind 'set show-all-if-ambiguous on'
+bind 'set menu-complete-display-prefix on'
+bind 'set colored-stats on'
+bind 'set colored-completion-prefix on'
+bind 'set bell-style none'
+
+# history prefix search with up/down arrows
+bind '"[A": history-search-backward'
+bind '"[B": history-search-forward'
+bind '"OA": history-search-backward'
+bind '"OB": history-search-forward'
 
 # AWS completer
 complete -C '/usr/local/bin/aws_completer' aws
 
 # Fzf key bindings
-source <(fzf --bash)
-export FZF_DEFAULT_OPS="--extended"
+if command -v fzf >/dev/null 2>&1; then
+    source <(fzf --bash)
+fi
+export FZF_DEFAULT_OPTS="--extended"
 
 # Bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+__prompt_command() {
+    local ec=$?
+    local status git_part
+
+    if [ "$ec" -eq 0 ]; then
+        status='\[\e[1;32m\][0]\[\e[0m\]'
+    else
+        status="\[\e[1;31m\][${ec}]\[\e[0m\]"
+    fi
+
+    git_part=''
+    if declare -F __git_ps1 >/dev/null 2>&1; then
+        git_part="$(__git_ps1 ' \[\e[1;35m\] %s\[\e[0m\]')"
+    fi
+
+    PS1="\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]${git_part} ${status}\n\[\e[1;36m\]\$ \[\e[0m\]"
+}
+PROMPT_COMMAND=__prompt_command
 
 
