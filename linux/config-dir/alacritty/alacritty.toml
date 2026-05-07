@@ -11,11 +11,6 @@ duration = 0
 [colors]
 draw_bold_text_with_bright_colors = true
 
-[colors.cursor]
-text = "#272e33"      # Same as your background or slightly darker
-cursor = "#7fbbb3"     # Everforest yellow (warm and stands out)
-
-
 [cursor]
 style = "Block"
 unfocused_hollow = true
@@ -350,7 +345,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [terminal.shell]
-program = "/bin/zsh"
+program = "/bin/bash"
 
 [window]
 decorations = "none"

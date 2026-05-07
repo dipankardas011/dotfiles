@@ -1,0 +1,259 @@
+➜  ~ sudo dnf config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/fedora42/$(uname -m)/cuda-fedora42.repo
+ https://developer.download.nvidia.com/compute/cuda/repos/ 100% | 130.0   B/s | 244.0   B |  00m02s
+➜  ~ sudo dnf clean all
+sudo dnf config-manager setopt cuda-fedora42-$(uname -m).exclude=nvidia-driver,nvidia-modprobe,nvidia-persistenced,nvidia-settings,nvidia-libXNVCtrl,nvidia-xconfig
+Removed 109 files, 127 directories (total of 91 MiB). 0 errors occurred.
+➜  ~ sudo dnf install cuda-toolkit xorg-x11-drv-nvidia-cuda
+Updating and loading repositories:
+ RPM Fusion for Fedora 43 - Nonfree                        100% |   4.5 KiB/s | 105.0 KiB |  00m23s
+ slack                                                     100% | 413.0   B/s |   5.6 KiB |  00m14s
+ RPM Fusion for Fedora 43 - Nonfree - NVIDIA Driver        100% |   1.3 KiB/s |  24.3 KiB |  00m19s
+ Copr repo for Hyprland owned by lionheartp                100% |  10.8 KiB/s | 124.1 KiB |  00m11s
+ RPM Fusion for Fedora 43 - Nonfree - Updates              100% |   1.4 KiB/s |  31.8 KiB |  00m22s
+ Copr repo for clipse owned by azandure                    100% | 214.0   B/s |   2.4 KiB |  00m11s
+ packages for the GitHub CLI                               100% | 387.0   B/s |   3.9 KiB |  00m10s
+ RPM Fusion for Fedora 43 - Nonfree - Steam                100% | 923.0   B/s |  19.6 KiB |  00m22s
+ Copr repo for bottom owned by atim                        100% | 235.0   B/s |   2.5 KiB |  00m11s
+ Copr repo for asus-linux owned by lukenukem               100% | 240.0   B/s |   3.5 KiB |  00m15s
+ RPM Fusion for Fedora 43 - Free - Updates                 100% |   1.7 KiB/s |  42.2 KiB |  00m25s
+ RPM Fusion for Fedora 43 - Free                           100% |   6.5 KiB/s | 160.7 KiB |  00m25s
+ Fedora 43 openh264 (From Cisco) - x86_64                  100% | 240.0   B/s |   5.8 KiB |  00m25s
+ nvidia-container-toolkit                                  100% |   1.6 KiB/s |  30.4 KiB |  00m19s
+ Kubernetes                                                100% | 544.0   B/s |  10.2 KiB |  00m19s
+ Docker CE Stable - x86_64                                 100% | 969.0   B/s |  18.3 KiB |  00m19s
+ Fedora 43 - x86_64 - Updates                              100% | 221.1 KiB/s |   6.5 MiB |  00m30s
+ Hashicorp Stable - x86_64                                 100% |  19.8 KiB/s | 401.0 KiB |  00m20s
+ google-chrome                                             100% | 166.0   B/s |   3.3 KiB |  00m20s
+ Copr repo for PyCharm owned by phracek                    100% | 210.0   B/s |   4.1 KiB |  00m20s
+ AuthZed Fury Repository              100% [==================] |   0.0   B/s | 942.0   B |  00m00s
+ Brave Browser                        100% [==================] |   0.0   B/s |   2.0 KiB |  00m00s
+ 1Password Stable Channel             100% [==================] |   0.0   B/s |   3.0 KiB |  00m00s
+ cuda-fedora42-x86_64                 100% [==================] |   0.0   B/s |   3.9 KiB |  00m00s
+ Fedora 43 - x86_64                    45% [========          ] |   5.0 MiB/s |  17.3 MiB |  00m04s^C%                                                                                                ➜  ~ uname -m
+x86_64
+➜  ~ sudo dnf install cuda-toolkit xorg-x11-drv-nvidia-cuda
+Updating and loading repositories:
+ Brave Browser                                             100% |  23.8 KiB/s |  55.3 KiB |  00m02s
+ 1Password Stable Channel             100% [==================] |   2.4 KiB/s |   3.0 KiB |  00m00s
+ AuthZed Fury Repository              100% [==================] | 760.0   B/s | 942.0   B |  00m00s
+ cuda-fedora42-x86_64                 100% [==================] |   0.0   B/s |   3.9 KiB |  00m00s
+ Fedora 43 - x86_64                     0% [                  ] |   0.0   B/s |  13.9 KiB |  00m00s^C%                                                                                                ➜  ~ dnf info xorg-x11-drv-nvidia-cuda
+Updating and loading repositories:
+ cuda-fedora42-x86_64                                      100% | 196.0 KiB/s |  78.8 KiB |  00m00s
+Repositories loaded.
+Installed packages
+Name            : xorg-x11-drv-nvidia-cuda
+Epoch           : 3
+Version         : 580.105.08
+Release         : 1.fc43
+Architecture    : x86_64
+Installed size  : 6.3 MiB
+Source          : xorg-x11-drv-nvidia-580.105.08-1.fc43.src.rpm
+From repository : rpmfusion-nonfree-nvidia-driver
+Summary         : CUDA driver tools for xorg-x11-drv-nvidia
+URL             : https://www.nvidia.com/
+License         : Redistributable, no modification permitted
+Description     : This package provides the CUDA driver tools.
+Vendor          : RPM Fusion
+
+Available packages
+Name           : xorg-x11-drv-nvidia-cuda
+Epoch          : 3
+Version        : 580.119.02
+Release        : 1.fc43
+Architecture   : x86_64
+Download size  : 2.3 MiB
+Installed size : 6.3 MiB
+Source         : xorg-x11-drv-nvidia-580.119.02-1.fc43.src.rpm
+Repository     : rpmfusion-nonfree-updates
+Summary        : CUDA driver tools for xorg-x11-drv-nvidia
+URL            : https://www.nvidia.com/
+License        : Redistributable, no modification permitted
+Description    : This package provides the CUDA driver tools.
+Vendor         : RPM Fusion
+
+Name           : xorg-x11-drv-nvidia-cuda
+Epoch          : 3
+Version        : 580.119.02
+Release        : 1.fc43
+Architecture   : x86_64
+Download size  : 2.3 MiB
+Installed size : 6.3 MiB
+Source         : xorg-x11-drv-nvidia-580.119.02-1.fc43.src.rpm
+Repository     : rpmfusion-nonfree-nvidia-driver
+Summary        : CUDA driver tools for xorg-x11-drv-nvidia
+URL            : https://www.nvidia.com/
+License        : Redistributable, no modification permitted
+Description    : This package provides the CUDA driver tools.
+Vendor         : RPM Fusion
+➜  ~ sudo dnf install cuda-toolkit xorg-x11-drv-nvidia-cuda
+Updating and loading repositories:
+ AuthZed Fury Repository                                   100% | 183.6 KiB/s |   1.6 MiB |  00m09s
+ Fedora 43 - x86_64                                        100% |   3.1 MiB/s |  34.2 MiB |  00m11s
+ cuda-fedora42-x86_64                                      100% |   7.6 KiB/s |  78.8 KiB |  00m10s
+ 1Password Stable Channel                                  100% | 429.0   B/s |   4.0 KiB |  00m10s
+Repositories loaded.
+Package "xorg-x11-drv-nvidia-cuda-3:580.105.08-1.fc43.x86_64" is already installed.
+
+Package                               Arch   Version                      Repository           Size
+Upgrading:
+ java-25-openjdk-headless             x86_64 1:25.0.1.0.8-3.fc43          updates         236.3 MiB
+   replacing java-25-openjdk-headless x86_64 1:25.0.1.0.8-1.fc43          updates         236.3 MiB
+Installing:
+ cuda-toolkit                         x86_64 13.1.0-1                     cuda-fedora42-x   0.0   B
+Installing dependencies:
+ cuda-cccl-13-1                       x86_64 13.1.78-1                    cuda-fedora42-x  14.1 MiB
+ cuda-command-line-tools-13-1         x86_64 13.1.0-1                     cuda-fedora42-x   0.0   B
+ cuda-compiler-13-1                   x86_64 13.1.0-1                     cuda-fedora42-x   0.0   B
+ cuda-crt-13-1                        x86_64 13.1.80-1                    cuda-fedora42-x 934.9 KiB
+ cuda-cudart-13-1                     x86_64 13.1.80-1                    cuda-fedora42-x 806.1 KiB
+ cuda-cudart-devel-13-1               x86_64 13.1.80-1                    cuda-fedora42-x   6.4 MiB
+ cuda-culibos-devel-13-1              x86_64 13.1.68-1                    cuda-fedora42-x  96.3 KiB
+ cuda-cuobjdump-13-1                  x86_64 13.1.80-1                    cuda-fedora42-x 793.6 KiB
+ cuda-cupti-13-1                      x86_64 13.1.75-1                    cuda-fedora42-x 159.7 MiB
+ cuda-cuxxfilt-13-1                   x86_64 13.1.80-1                    cuda-fedora42-x 270.5 KiB
+ cuda-documentation-13-1              x86_64 13.1.80-1                    cuda-fedora42-x 538.3 KiB
+ cuda-driver-devel-13-1               x86_64 13.1.80-1                    cuda-fedora42-x 135.3 KiB
+ cuda-gdb-13-1                        x86_64 13.1.68-1                    cuda-fedora42-x  92.3 MiB
+ cuda-libraries-13-1                  x86_64 13.1.0-1                     cuda-fedora42-x   0.0   B
+ cuda-libraries-devel-13-1            x86_64 13.1.0-1                     cuda-fedora42-x   0.0   B
+ cuda-nsight-13-1                     x86_64 13.1.68-1                    cuda-fedora42-x 113.2 MiB
+ cuda-nsight-compute-13-1             x86_64 13.1.0-1                     cuda-fedora42-x   5.3 KiB
+ cuda-nsight-systems-13-1             x86_64 13.1.0-1                     cuda-fedora42-x   1.7 KiB
+ cuda-nvcc-13-1                       x86_64 13.1.80-1                    cuda-fedora42-x 127.2 MiB
+ cuda-nvdisasm-13-1                   x86_64 13.1.80-1                    cuda-fedora42-x   4.8 MiB
+ cuda-nvml-devel-13-1                 x86_64 13.1.68-1                    cuda-fedora42-x   1.4 MiB
+ cuda-nvprune-13-1                    x86_64 13.1.80-1                    cuda-fedora42-x 188.8 KiB
+ cuda-nvrtc-13-1                      x86_64 13.1.80-1                    cuda-fedora42-x 113.1 MiB
+ cuda-nvrtc-devel-13-1                x86_64 13.1.80-1                    cuda-fedora42-x 119.4 MiB
+ cuda-nvtx-13-1                       x86_64 13.1.68-1                    cuda-fedora42-x 639.9 KiB
+ cuda-opencl-13-1                     x86_64 13.1.80-1                    cuda-fedora42-x  96.5 KiB
+ cuda-opencl-devel-13-1               x86_64 13.1.80-1                    cuda-fedora42-x 747.9 KiB
+ cuda-profiler-api-13-1               x86_64 13.1.80-1                    cuda-fedora42-x  77.6 KiB
+ cuda-sandbox-devel-13-1              x86_64 13.1.68-1                    cuda-fedora42-x 149.4 KiB
+ cuda-sanitizer-13-1                  x86_64 13.1.75-1                    cuda-fedora42-x  44.8 MiB
+ cuda-tileiras-13-1                   x86_64 13.1.80-1                    cuda-fedora42-x  87.3 MiB
+ cuda-toolkit-13-1                    x86_64 13.1.0-1                     cuda-fedora42-x   3.3 KiB
+ cuda-toolkit-13-1-config-common      noarch 13.1.80-1                    cuda-fedora42-x   0.0   B
+ cuda-toolkit-13-config-common        noarch 13.1.80-1                    cuda-fedora42-x  44.0   B
+ cuda-toolkit-config-common           noarch 13.1.80-1                    cuda-fedora42-x  41.0   B
+ cuda-tools-13-1                      x86_64 13.1.0-1                     cuda-fedora42-x   0.0   B
+ cuda-visual-tools-13-1               x86_64 13.1.0-1                     cuda-fedora42-x   0.0   B
+ gds-tools-13-1                       x86_64 1.16.0.49-1                  cuda-fedora42-x  67.6 MiB
+ java-25-openjdk                      x86_64 1:25.0.1.0.8-3.fc43          updates         950.6 KiB
+ java-25-openjdk-crypto-adapter       x86_64 1:25.0.1.0.8-3.fc43          updates         504.5 KiB
+ libcublas-13-1                       x86_64 13.2.0.9-1                   cuda-fedora42-x 571.7 MiB
+ libcublas-devel-13-1                 x86_64 13.2.0.9-1                   cuda-fedora42-x 913.5 MiB
+ libcufft-13-1                        x86_64 12.1.0.31-1                  cuda-fedora42-x 286.9 MiB
+ libcufft-devel-13-1                  x86_64 12.1.0.31-1                  cuda-fedora42-x 293.5 MiB
+ libcufile-13-1                       x86_64 1.16.0.49-1                  cuda-fedora42-x   3.5 MiB
+ libcufile-devel-13-1                 x86_64 1.16.0.49-1                  cuda-fedora42-x  31.6 MiB
+ libcurand-13-1                       x86_64 10.4.1.34-1                  cuda-fedora42-x 126.9 MiB
+ libcurand-devel-13-1                 x86_64 10.4.1.34-1                  cuda-fedora42-x 129.2 MiB
+ libcusolver-13-1                     x86_64 12.0.7.41-1                  cuda-fedora42-x 234.9 MiB
+ libcusolver-devel-13-1               x86_64 12.0.7.41-1                  cuda-fedora42-x 183.6 MiB
+ libcusparse-13-1                     x86_64 12.7.2.19-1                  cuda-fedora42-x 160.8 MiB
+ libcusparse-devel-13-1               x86_64 12.7.2.19-1                  cuda-fedora42-x 362.0 MiB
+ libnpp-13-1                          x86_64 13.0.2.21-1                  cuda-fedora42-x 157.7 MiB
+ libnpp-devel-13-1                    x86_64 13.0.2.21-1                  cuda-fedora42-x 184.3 MiB
+ libnvfatbin-13-1                     x86_64 13.1.80-1                    cuda-fedora42-x   2.4 MiB
+ libnvfatbin-devel-13-1               x86_64 13.1.80-1                    cuda-fedora42-x   2.4 MiB
+ libnvjitlink-13-1                    x86_64 13.1.80-1                    cuda-fedora42-x  94.8 MiB
+ libnvjitlink-devel-13-1              x86_64 13.1.80-1                    cuda-fedora42-x 122.4 MiB
+ libnvjpeg-13-1                       x86_64 13.0.2.28-1                  cuda-fedora42-x   5.7 MiB
+ libnvjpeg-devel-13-1                 x86_64 13.0.2.28-1                  cuda-fedora42-x   6.4 MiB
+ libnvptxcompiler-13-1                x86_64 13.1.80-1                    cuda-fedora42-x 124.5 MiB
+ libnvvm-13-1                         x86_64 13.1.80-1                    cuda-fedora42-x 138.1 MiB
+ mkfontscale                          x86_64 1.2.3-3.fc43                 fedora           45.0 KiB
+ nsight-compute-2025.4.0              x86_64 2025.4.0.12-1                cuda-fedora42-x   1.2 GiB
+ nsight-systems-2025.5.2              x86_64 2025.5.2.266_255236693005v0- cuda-fedora42-x   1.0 GiB
+ ttmkfdir                             x86_64 3.0.9-73.fc43                fedora          122.5 KiB
+ xorg-x11-fonts-Type1                 noarch 7.5-41.fc43                  fedora          863.3 KiB
+
+Transaction Summary:
+ Installing:        68 packages
+ Upgrading:          1 package
+ Replacing:          1 package
+
+Total size of inbound packages is 4 GiB. Need to download 4 GiB.
+After this operation, 7 GiB extra will be used (install 7 GiB, remove 236 MiB).
+Is this ok [y/N]: y
+[ 1/69] cuda-toolkit-0:13.1.0-1.x86_64                                                                                                                           100% |   1.9 KiB/s |   7.3 KiB |  00m04s
+[ 2/69] cuda-toolkit-13-1-0:13.1.0-1.x86_64                                                                                                                      100% |   1.6 KiB/s |   8.9 KiB |  00m06s
+[ 3/69] cuda-compiler-13-1-0:13.1.0-1.x86_64                                                                                                                     100% |   1.1 KiB/s |   7.5 KiB |  00m07s
+[ 4/69] cuda-documentation-13-1-0:13.1.80-1.x86_64                                                                                                               100% |  29.9 KiB/s | 131.2 KiB |  00m04s
+[ 5/69] cuda-libraries-13-1-0:13.1.0-1.x86_64                                                                                                                    100% |   2.0 KiB/s |   7.7 KiB |  00m04s
+[ 6/69] cuda-libraries-devel-13-1-0:13.1.0-1.x86_64                                                                                           0% [     <=>          ] |   0.0   B/s |   0.0   B |  02h15m
+[ 7/69] cuda-nvml-devel-13-1-0:13.1.68-1.x86_64                                                                                               0% [  <=>             ] |   0.0   B/s |   0.0   B |  00m00s
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[ 6/69] cuda-libraries-devel-13-1-0:13.1.0-1.x86_64        100% |   1.5 KiB/s |   7.9 KiB |  00m05s
+[ 7/69] cuda-nvml-devel-13-1-0:13.1.68-1.x86_64            100% |  46.5 KiB/s | 223.9 KiB |  00m05s
+[ 8/69] cuda-tools-13-1-0:13.1.0-1.x86_64                  100% |   1.5 KiB/s |   7.3 KiB |  00m05s
+[ 9/69] cuda-crt-13-1-0:13.1.80-1.x86_64                   100% |  27.2 KiB/s | 120.6 KiB |  00m04s
+[10/69] cuda-cuobjdump-13-1-0:13.1.80-1.x86_64             100% |  74.9 KiB/s | 328.1 KiB |  00m04s
+[11/69] cuda-cuxxfilt-13-1-0:13.1.80-1.x86_64              100% |  23.7 KiB/s | 100.5 KiB |  00m04s
+[12/69] cuda-nvprune-13-1-0:13.1.80-1.x86_64               100% |  18.5 KiB/s |  78.8 KiB |  00m04s
+[13/69] cuda-nvcc-13-1-0:13.1.80-1.x86_64                  100% |   1.8 MiB/s |  40.0 MiB |  00m22s
+[14/69] cuda-tileiras-13-1-0:13.1.80-1.x86_64              100% |   1.6 MiB/s |  33.9 MiB |  00m22s
+[15/69] libnvptxcompiler-13-1-0:13.1.80-1.x86_64           100% |   1.2 MiB/s |  26.4 MiB |  00m23s
+[16/69] cuda-cudart-13-1-0:13.1.80-1.x86_64                100% |  45.9 KiB/s | 238.0 KiB |  00m05s
+[17/69] cuda-opencl-13-1-0:13.1.80-1.x86_64                100% |   7.6 KiB/s |  35.3 KiB |  00m05s
+[18/69] libnvvm-13-1-0:13.1.80-1.x86_64                    100% |   2.4 MiB/s |  60.0 MiB |  00m24s
+[19/69] cuda-nvrtc-13-1-0:13.1.80-1.x86_64                 100% |   1.6 MiB/s |  44.1 MiB |  00m27s
+[20/69] libcufile-13-1-0:1.16.0.49-1.x86_64                100% | 238.6 KiB/s |   1.2 MiB |  00m05s
+[21/69] libcurand-13-1-0:10.4.1.34-1.x86_64                100% |   1.5 MiB/s |  56.1 MiB |  00m37s
+[22/69] libcufft-13-1-0:12.1.0.31-1.x86_64                 100% |   1.3 MiB/s | 215.9 MiB |  02m44s
+[23/69] libcusolver-13-1-0:12.0.7.41-1.x86_64              100% |   1.5 MiB/s | 192.3 MiB |  02m06s
+[24/69] libcusparse-13-1-0:12.7.2.19-1.x86_64              100% |   2.0 MiB/s | 144.9 MiB |  01m14s
+[25/69] libnvfatbin-13-1-0:13.1.80-1.x86_64                100% | 191.0 KiB/s | 954.7 KiB |  00m05s
+[26/69] libcublas-13-1-0:13.2.0.9-1.x86_64                 100% |   1.5 MiB/s | 402.7 MiB |  04m22s
+[27/69] libnvjpeg-13-1-0:13.0.2.28-1.x86_64                100% | 530.3 KiB/s |   3.6 MiB |  00m07s
+[28/69] libnvjitlink-13-1-0:13.1.80-1.x86_64               100% |   2.0 MiB/s |  38.8 MiB |  00m19s
+[29/69] cuda-cccl-13-1-0:13.1.78-1.x86_64                  100% | 325.4 KiB/s |   1.9 MiB |  00m06s
+[30/69] cuda-cudart-devel-13-1-0:13.1.80-1.x86_64          100% | 430.5 KiB/s |   1.9 MiB |  00m05s
+[31/69] cuda-culibos-devel-13-1-0:13.1.68-1.x86_64         100% |   7.2 KiB/s |  32.5 KiB |  00m05s
+[32/69] cuda-driver-devel-13-1-0:13.1.80-1.x86_64          100% |  10.8 KiB/s |  44.5 KiB |  00m04s
+[33/69] cuda-opencl-devel-13-1-0:13.1.80-1.x86_64          100% |  24.7 KiB/s | 120.8 KiB |  00m05s
+[34/69] cuda-profiler-api-13-1-0:13.1.80-1.x86_64          100% |   6.6 KiB/s |  27.1 KiB |  00m04s
+[35/69] libnpp-13-1-0:13.0.2.21-1.x86_64                   100% |   1.2 MiB/s | 127.8 MiB |  01m44s
+[36/69] cuda-nvrtc-devel-13-1-0:13.1.80-1.x86_64           100% |   2.4 MiB/s |  37.8 MiB |  00m16s
+[37/69] cuda-sandbox-devel-13-1-0:13.1.68-1.x86_64         100% |  11.3 KiB/s |  45.3 KiB |  00m04s
+[38/69] libcufile-devel-13-1-0:1.16.0.49-1.x86_64          100% | 852.1 KiB/s |   5.7 MiB |  00m07s
+[39/69] libcurand-devel-13-1-0:10.4.1.34-1.x86_64          100% |   1.8 MiB/s |  56.4 MiB |  00m32s
+[40/69] libcusolver-devel-13-1-0:12.0.7.41-1.x86_64        100% |   2.0 MiB/s | 125.8 MiB |  01m04s
+[41/69] libcufft-devel-13-1-0:12.1.0.31-1.x86_64           100% |   1.5 MiB/s | 217.0 MiB |  02m20s
+[42/69] libnpp-devel-13-1-0:13.0.2.21-1.x86_64             100% |   2.0 MiB/s | 125.4 MiB |  01m03s
+[43/69] libnvfatbin-devel-13-1-0:13.1.80-1.x86_64          100% | 168.1 KiB/s | 882.2 KiB |  00m05s
+[44/69] libnvjitlink-devel-13-1-0:13.1.80-1.x86_64         100% |   1.8 MiB/s |  36.3 MiB |  00m20s
+[45/69] libnvjpeg-devel-13-1-0:13.0.2.28-1.x86_64          100% | 644.7 KiB/s |   3.4 MiB |  00m05s
+[46/69] cuda-command-line-tools-13-1-0:13.1.0-1.x86_64     100% |   2.2 KiB/s |   7.5 KiB |  00m03s
+[47/69] cuda-visual-tools-13-1-0:13.1.0-1.x86_64           100% |   1.4 KiB/s |   7.5 KiB |  00m05s
+[48/69] gds-tools-13-1-0:1.16.0.49-1.x86_64                100% |   1.6 MiB/s |  44.4 MiB |  00m28s
+[49/69] cuda-toolkit-13-1-config-common-0:13.1.80-1.noarch 100% |   1.7 KiB/s |   7.8 KiB |  00m05s
+[50/69] libcusparse-devel-13-1-0:12.7.2.19-1.x86_64        100% |   1.7 MiB/s | 298.3 MiB |  02m59s
+[51/69] cuda-cupti-13-1-0:13.1.75-1.x86_64                 100% |   1.8 MiB/s |  31.9 MiB |  00m18s
+[52/69] cuda-nvdisasm-13-1-0:13.1.80-1.x86_64              100% | 581.2 KiB/s |   4.1 MiB |  00m07s
+[53/69] cuda-gdb-13-1-0:13.1.68-1.x86_64                   100% |   1.8 MiB/s |  34.3 MiB |  00m19s
+[54/69] cuda-nvtx-13-1-0:13.1.68-1.x86_64                  100% |  30.5 KiB/s | 140.3 KiB |  00m05s
+[55/69] cuda-sanitizer-13-1-0:13.1.75-1.x86_64             100% |   1.2 MiB/s |  15.4 MiB |  00m13s
+[56/69] cuda-nsight-compute-13-1-0:13.1.0-1.x86_64         100% |   1.9 KiB/s |   9.5 KiB |  00m05s
+[57/69] cuda-nsight-systems-13-1-0:13.1.0-1.x86_64         100% |   1.9 KiB/s |   9.2 KiB |  00m05s
+[58/69] cuda-nsight-13-1-0:13.1.68-1.x86_64                100% |   1.6 MiB/s | 113.2 MiB |  01m12s
+[59/69] libcublas-devel-13-1-0:13.2.0.9-1.x86_64                                                                                                                100% |   1.0 MiB/s | 493.1 MiB |  08m04s
+[60/69] cuda-toolkit-13-config-common-0:13.1.80-1.noarch                                                                                                        100% |   1.3 KiB/s |   8.0 KiB |  00m06s
+[61/69] cuda-toolkit-config-common-0:13.1.80-1.noarch                                                                                                           100% |   2.0 KiB/s |   8.0 KiB |  00m04s
+[62/69] java-25-openjdk-1:25.0.1.0.8-3.fc43.x86_64                                                                                                              100% |  32.2 KiB/s | 368.2 KiB |  00m11s
+[63/69] xorg-x11-fonts-Type1-0:7.5-41.fc43.noarch                                                                                                               100% | 141.0 KiB/s | 505.5 KiB |  00m04s
+[64/69] java-25-openjdk-crypto-adapter-1:25.0.1.0.8-3.fc43.x86_64                                                                                               100% |  20.2 KiB/s | 141.5 KiB |  00m07s
+[65/69] mkfontscale-0:1.2.3-3.fc43.x86_64                                                                                                                       100% | 134.1 KiB/s |  31.5 KiB |  00m00s
+[66/69] ttmkfdir-0:3.0.9-73.fc43.x86_64                                                                                                                         100% | 186.4 KiB/s |  56.3 KiB |  00m00s
+[67/69] nsight-compute-2025.4.0-0:2025.4.0.12-1.x86_64                                                                                                          100% |   1.9 MiB/s | 441.7 MiB |  03m51s
+[68/69] java-25-openjdk-headless-1:25.0.1.0.8-3.fc43.x86_64                                                                                                     100% | 634.5 KiB/s |  57.9 MiB |  01m33s
+[69/69] nsight-systems-2025.5.2-0:2025.5.2.266_255236693005v0-0.x86_64                                   
+
+-------------------
+
+
+sudo rm /etc/yum.repos.d/cuda-fedora42.repo
+sudo dnf config-manager addrepo --from-repofile https://developer.download.nvidia.com/compute/cuda/repos/fedora43/x86_64/cuda-fedora43.repo
+sudo dnf config-manager setopt cuda-fedora43-x86_64.exclude=nvidia-driver,nvidia-modprobe,nvidia-persistenced,nvidia-settings,nvidia-libXNVCtrl,nvidia-xconfig
+sudo dnf clean all

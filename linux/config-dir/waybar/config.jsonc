@@ -87,11 +87,11 @@
     "tooltip-format": "Volume: {volume}%"
   },
   "custom/temperature": {
-    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
-    "format": " {}°C",
+    "exec": "sensors | awk '/^Tctl:/ {print $2}' | tr '+' ' '",
+    "format": "{}",
     "interval": 5,
     "tooltip": true,
-    "tooltip-format": "CPU Temp: {}°C"
+    "tooltip-format": "CPU Temp: {}"
   },
   "memory": {
     "tooltip": true,

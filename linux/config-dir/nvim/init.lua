@@ -103,24 +103,25 @@ end
 local function mode_alias()
 	local m = vim.api.nvim_get_mode().mode
 	local alias = {
-		n = "NORMAL",
+		n = "NOR",
 		no = "N-PENDING",
-		v = "VISUAL",
-		V = "V-LINE",
-		[""] = "V-BLOCK",
-		i = "INSERT",
-		ic = "INSERT",
-		R = "REPLACE",
-		c = "COMMAND",
+		v = "VIS",
+		V = "VLI",
+		[""] = "VBL",
+		i = "INS",
+		ic = "INS",
+		R = "REP",
+		c = "COM",
 		cv = "VIM EX",
 		ce = "EX",
-		s = "SELECT",
+		s = "SEL",
 		S = "S-LINE",
 		[""] = "S-BLOCK",
-		t = "TERMINAL",
+		t = "TER",
 	}
 	local g = alias[m] or m
-	return "[" .. g .. "]"
+	return g
+	-- return "[" .. g .. "]"
 end
 
 -- Expose functions to `v:lua`
@@ -314,8 +315,10 @@ require("lazy").setup({
 				lastplace_open_folds = true,
 			})
 		end,
-	},
-
+    },
+    {
+        "davidmh/mdx.nvim",
+    },
 	{
 		"NvChad/nvterm",
 		config = function()
@@ -416,13 +419,12 @@ require("lazy").setup({
 			vim.g.everforest_transparent_background = 1
 			vim.g.everforest_diagnostic_virtual_text = "highlighted"
 			vim.g.everforest_background = "hard"
-			-- vim.g.everforest_dim_inactive_windows = 1
+			vim.g.everforest_dim_inactive_windows = 1
 			vim.g.everforest_ui_contrast = "high"
 			vim.g.everforest_current_word = "underline"
 
 			vim.g.everforest_better_performance = 1
 			vim.g.everforest_enable_italic = 1
-			vim.g.everforest_cursor = "aqua"
 			vim.g.everforest_inlay_hints_background = "dimmed"
 			vim.cmd.colorscheme("everforest")
 		end,
@@ -490,7 +492,7 @@ require("lazy").setup({
 					},
 				},
 				delve = {
-					path = "/home/dipankar/go/bin/dlv",
+					path = "/usr/bin/dlv",
 					initialize_timeout_sec = 30,
 					-- args = dap_go.get_arguments,
 					-- build_flags = dap_go.get_build_flags,
@@ -534,8 +536,8 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ "echasnovski/mini.icons" },
 
-			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ "nvim-tree/nvim-web-devicons", enabled = true },
+			-- -- Useful for getting pretty icons, but requires a Nerd Font.
+			-- { "nvim-tree/nvim-web-devicons", enabled = true },
 		},
 		config = function()
 			require("telescope").setup({
@@ -909,9 +911,9 @@ require("lazy").setup({
 			--  - va)  - [V]isually select [A]round [)]paren
 			--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
 			--  - ci'  - [C]hange [I]nside [']quote
-			require("mini.ai").setup({ n_lines = 500 })
+            -- require("mini.ai").setup({ n_lines = 500 })
 
-			require("mini.icons").setup()
+			-- require("mini.icons").setup()
 			require("mini.tabline").setup()
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			--
@@ -931,9 +933,9 @@ require("lazy").setup({
 			-- default behavior. For example, here we set the section for
 			-- cursor location to LINE:COLUMN
 			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%2l:%-2v"
-			end
+			-- statusline.section_location = function()
+			-- 	return "%2l:%-2v"
+			-- end
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
@@ -1090,3 +1092,4 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.bo.filetype = "helm"
 	end,
 })
+
