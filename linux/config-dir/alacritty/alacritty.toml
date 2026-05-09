@@ -23,7 +23,7 @@ print_events = false
 # ref_test = false
 
 [font]
-size = 18
+size = 16
 
 [font.glyph_offset]
 x = 0
@@ -350,7 +350,7 @@ program = "/bin/bash"
 [window]
 decorations = "none"
 dynamic_padding = true
-opacity = 0.95
+# opacity = 0.95
 startup_mode = "Windowed"
 
 [window.padding]
