@@ -34,7 +34,11 @@ export EDITOR="nvim"
 
 export GPG_TTY=$(tty)
 
-export TERM="xterm-256color"
+# Do not force TERM inside tmux; tmux must advertise tmux-256color.
+# Alacritty already sets TERM for non-tmux shells.
+if [ -z "$TMUX" ]; then
+    export TERM="${TERM:-xterm-256color}"
+fi
 
 export pager="delta"
 

@@ -39,7 +39,6 @@ style = "Bold Italic"
 
 [font.bold_italic]
 family = "terminal-cursive"
-style = "Bold Italic"
 
 
 [font.offset]
