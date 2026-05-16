@@ -1,0 +1,79 @@
+# Ghostty config — migrated from Alacritty (Everforest Dark)
+
+# ── Shell ─────────────────────────────────────────────────────────────────────
+command = /bin/bash
+
+# ── Font ──────────────────────────────────────────────────────────────────────
+font-family        = JetBrainsMono NF
+font-family-italic = Victor Mono
+font-style-italic  = Bold Italic
+font-family-bold-italic = Victor Mono
+font-size = 16
+
+# ── Cursor ────────────────────────────────────────────────────────────────────
+cursor-style             = block
+cursor-style-blink       = false
+shell-integration-features = no-cursor
+
+# ── Colors (Everforest Dark) ──────────────────────────────────────────────────
+background = #272e33
+foreground = #d3c6aa
+
+selection-background = #7fbbb3
+selection-foreground = #272e33
+
+bold-is-bright = true
+
+# Normal (0-7)
+palette = 0=#414b50
+palette = 1=#e67e80
+palette = 2=#a7c080
+palette = 3=#dbbc7f
+palette = 4=#7fbbb3
+palette = 5=#d699b6
+palette = 6=#83c092
+palette = 7=#d3c6aa
+
+# Bright (8-15)
+palette = 8=#475258
+palette = 9=#e67e80
+palette = 10=#a7c080
+palette = 11=#dbbc7f
+palette = 12=#7fbbb3
+palette = 13=#d699b6
+palette = 14=#83c092
+palette = 15=#d3c6aa
+
+# ── Window ────────────────────────────────────────────────────────────────────
+window-decoration   = false
+window-padding-x    = 2
+window-padding-y    = 2
+window-padding-balance = true
+
+# ── Scrollback ────────────────────────────────────────────────────────────────
+scrollback-limit = 10000
+
+# ── Mouse ─────────────────────────────────────────────────────────────────────
+mouse-hide-while-typing = true
+
+# ── Selection / Clipboard ─────────────────────────────────────────────────────
+copy-on-select = clipboard
+
+# ── Keybinds — app actions ────────────────────────────────────────────────────
+keybind = super+q=quit
+keybind = ctrl+shift+comma=reload_config
+keybind = super+n=new_window
+keybind = super+enter=toggle_fullscreen
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+shift+minus=reset_font_size
+
+# ── Keybinds — tmux passthrough ───────────────────────────────────────────────
+# These mirror the Alacritty bindings that sent tmux prefix (Ctrl-B) sequences
+keybind = super+w=text:\x02&
+keybind = super+t=text:\x02c
+keybind = super+shift+right_bracket=text:\x02n
+keybind = super+shift+left_bracket=text:\x02p
+keybind = super+right_bracket=text:\x02o
+keybind = super+left_bracket=text:\x02;
+keybind = super+f=text:\x02/
