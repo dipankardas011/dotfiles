@@ -1,7 +1,7 @@
 # Ghostty config — migrated from Alacritty (Everforest Dark)
 
 # ── Shell ─────────────────────────────────────────────────────────────────────
-command = /bin/bash
+shell-integration = bash
 
 # ── Font ──────────────────────────────────────────────────────────────────────
 font-family        = JetBrainsMono NF
@@ -11,9 +11,10 @@ font-family-bold-italic = Victor Mono
 font-size = 16
 
 # ── Cursor ────────────────────────────────────────────────────────────────────
-cursor-style             = block
-cursor-style-blink       = false
-shell-integration-features = no-cursor
+cursor-style               = block
+cursor-style-blink         = false
+shell-integration-features = no-cursor,ssh-env,ssh-terminfo
+adjust-cursor-thickness    = 2
 
 # ── Colors (Everforest Dark) ──────────────────────────────────────────────────
 background = #272e33
@@ -49,12 +50,17 @@ window-decoration   = false
 window-padding-x    = 2
 window-padding-y    = 2
 window-padding-balance = true
+background-opacity  = 0.95
+background-blur     = true
+window-inherit-working-directory = true
+split-inherit-working-directory  = true
 
 # ── Scrollback ────────────────────────────────────────────────────────────────
 scrollback-limit = 10000
 
 # ── Mouse ─────────────────────────────────────────────────────────────────────
 mouse-hide-while-typing = true
+link-url = true
 
 # ── Selection / Clipboard ─────────────────────────────────────────────────────
 copy-on-select = clipboard
