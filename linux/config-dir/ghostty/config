@@ -57,6 +57,7 @@ split-inherit-working-directory  = true
 
 # ── Scrollback ────────────────────────────────────────────────────────────────
 scrollback-limit = 10000
+mouse-scroll-multiplier = 1
 
 # ── Mouse ─────────────────────────────────────────────────────────────────────
 mouse-hide-while-typing = true
