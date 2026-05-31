@@ -224,6 +224,4 @@ __prompt_command() {
 
     PS1="\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]${git_part} ${status}\n\[\e[1;36m\]\$ \[\e[0m\]"
 }
-PROMPT_COMMAND=__prompt_command
-
-
+PROMPT_COMMAND="history -a; history -n; __prompt_command"

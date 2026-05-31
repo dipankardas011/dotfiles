@@ -56,7 +56,7 @@ window-inherit-working-directory = true
 split-inherit-working-directory  = true
 
 # ── Scrollback ────────────────────────────────────────────────────────────────
-scrollback-limit = 10000
+scrollback-limit = 100000000
 mouse-scroll-multiplier = 1
 
 # ── Mouse ─────────────────────────────────────────────────────────────────────
