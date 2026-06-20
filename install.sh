@@ -57,7 +57,7 @@ setup_neovim() {
     log "Setting up Neovim"
 
     # Link the whole Neovim config directory because the config is modular:
-    # init.lua + lua/*.lua. Linking only init.lua breaks require('core'), etc.
+    # init.lua + lua/config, lua/packages, lua/plugins, etc.
     link_config_dir "nvim"
 }
 
