@@ -91,10 +91,10 @@ setup_wofi() {
     link_config_dir "wofi"
 }
 
-setup_zsh() {
-    log "Setting up Zsh"
+setup_bash() {
+    log "Setting up bash"
 
-    link_path "$LINUX_HOME_DIR/.zshrc" "$HOME/.zshrc"
+    link_path "$LINUX_CONFIG_DIR/bashrc" "$HOME/.bashrc"
 }
 
 setup_wlogout() {
@@ -133,7 +133,7 @@ main() {
     setup_hyprland
     setup_waybar
     setup_wofi
-    setup_zsh
+    setup_bash
     setup_wlogout
     setup_fontconfig
     set_wayland_overrides_application
