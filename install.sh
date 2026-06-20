@@ -1,152 +1,128 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
 
 DOTFILES_DIR="$HOME/.dotfiles"
 LINUX_CONFIG_DIR="$DOTFILES_DIR/linux/config-dir"
 LINUX_HOME_DIR="$DOTFILES_DIR/linux/home-dir"
+LINUX_DIR="$DOTFILES_DIR/linux"
 
-function setup_dotfile() {
+log() {
+    printf '\n==> %s\n' "$*"
+}
 
-    if [ -d "$DOTFILES_DIR" ]; then
-        cd "$DOTFILES_DIR" && git switch main && git pull origin main || exit 1
+remove_path() {
+    local path="$1"
+
+    if [ -e "$path" ] || [ -L "$path" ]; then
+        rm -rf "$path"
+    fi
+}
+
+link_path() {
+    local source="$1"
+    local target="$2"
+
+    if [ ! -e "$source" ]; then
+        printf 'Missing source: %s\n' "$source" >&2
+        exit 1
+    fi
+
+    mkdir -p "$(dirname "$target")"
+    remove_path "$target"
+    ln -s "$source" "$target"
+}
+
+link_config_dir() {
+    local name="$1"
+
+    link_path "$LINUX_CONFIG_DIR/$name" "$HOME/.config/$name"
+}
+
+setup_dotfile() {
+    log "Setting up dotfiles repository"
+
+    if [ -d "$DOTFILES_DIR/.git" ]; then
+        git -C "$DOTFILES_DIR" switch main
+        git -C "$DOTFILES_DIR" pull origin main
+    elif [ -d "$DOTFILES_DIR" ]; then
+        printf '%s exists but is not a git repository. Please inspect it manually.\n' "$DOTFILES_DIR" >&2
+        exit 1
     else
         git clone -b main https://github.com/dipankardas011/dotfiles.git "$DOTFILES_DIR"
     fi
 }
 
-function setup_neovim() {
-    local NVIM_DIR="$HOME/.config/nvim"
-    local LUA_CONFIG="$NVIM_DIR/init.lua"
+setup_neovim() {
+    log "Setting up Neovim"
 
-    if [ ! -d "$NVIM_DIR" ]; then
-        mkdir -p "$NVIM_DIR"
-    fi
-
-    if [ -f "$LUA_CONFIG" ]; then
-        rm -f "$LUA_CONFIG"
-    fi
-
-    if [ -L "$LUA_CONFIG" ]; then
-        rm -f "$LUA_CONFIG"
-    fi
-
-    ln -s "$LINUX_CONFIG_DIR/nvim/init.lua" "$LUA_CONFIG"
+    # Link the whole Neovim config directory because the config is modular:
+    # init.lua + lua/*.lua. Linking only init.lua breaks require('core'), etc.
+    link_config_dir "nvim"
 }
 
-function setup_tmux() {
-    local TMUX_DIR="$HOME/.config/tmux"
-    local TMUX_CONF="$TMUX_DIR/tmux.conf"
+setup_tmux() {
+    log "Setting up tmux"
 
-    if [ ! -d "$TMUX_DIR" ]; then
-        mkdir -p "$TMUX_DIR"
-    fi
-
-    if [ -f "$TMUX_CONF" ]; then
-        rm -f "$TMUX_CONF"
-    fi
-
-    if [ -L "$TMUX_CONF" ]; then
-        rm -f "$TMUX_CONF"
-    fi
-
-    ln -s "$LINUX_CONFIG_DIR/tmux/tmux.conf" "$TMUX_CONF"
+    link_config_dir "tmux"
 }
 
-function setup_alacritty() {
-    local ALACRITTY_DIR="$HOME/.config/alacritty"
+setup_alacritty() {
+    log "Setting up Alacritty"
 
-    if [ ! -d "$ALACRITTY_DIR" ]; then
-        mkdir -p "$ALACRITTY_DIR"
-    else
-        rm -rf "$ALACRITTY_DIR"
-    fi
-
-
-    ln -s "$LINUX_CONFIG_DIR/alacritty" "$ALACRITTY_DIR"
+    link_config_dir "alacritty"
 }
 
-function setup_hyprland() {
-    local HYPRLAND_DIR="$HOME/.config/hypr"
+setup_hyprland() {
+    log "Setting up Hyprland"
 
-    if [ ! -d "$HYPRLAND_DIR" ]; then
-        mkdir -p "$HYPRLAND_DIR"
-    else
-        rm -rf "$HYPRLAND_DIR"
-    fi
-
-    ln -s "$LINUX_CONFIG_DIR/hypr" "$HYPRLAND_DIR"
+    link_config_dir "hypr"
 }
 
-function setup_waybar() {
-    local WAYBAR_DIR="$HOME/.config/waybar"
+setup_waybar() {
+    log "Setting up Waybar"
 
-    if [ ! -d "$WAYBAR_DIR" ]; then
-        mkdir -p "$WAYBAR_DIR"
-    else
-        rm -rf "$WAYBAR_DIR"
-    fi
-
-    ln -s "$LINUX_CONFIG_DIR/waybar" "$WAYBAR_DIR"
+    link_config_dir "waybar"
 }
 
-function setup_wofi() {
-    local WOFI_DIR="$HOME/.config/wofi"
+setup_wofi() {
+    log "Setting up Wofi"
 
-    if [ ! -d "$WOFI_DIR" ]; then
-        mkdir -p "$WOFI_DIR"
-    else
-        rm -rf "$WOFI_DIR"
-    fi
-
-    ln -s "$LINUX_CONFIG_DIR/wofi" "$WOFI_DIR"
+    link_config_dir "wofi"
 }
 
-function setup_zsh() {
-    local ZSH_FILE="$HOME/.zshrc"
+setup_zsh() {
+    log "Setting up Zsh"
 
-    if [ -f "$ZSH_FILE" ] || [ -L "$ZSH_FILE" ]; then
-        rm -rf "$ZSH_FILE"
-    fi
-
-    ln -s "$LINUX_HOME_DIR/.zshrc" "$ZSH_FILE"
+    link_path "$LINUX_HOME_DIR/.zshrc" "$HOME/.zshrc"
 }
 
-function setup_wlogout() {
-    local WLOGOUT_DIR="$HOME/.config/wlogout"
+setup_wlogout() {
+    log "Setting up wlogout"
 
-    if [ ! -d "$WLOGOUT_DIR" ]; then
-        mkdir -p "$WLOGOUT_DIR"
-    else
-        rm -rf "$WLOGOUT_DIR"
-    fi
-
-    ln -s "$LINUX_CONFIG_DIR/wlogout" "$WLOGOUT_DIR"
+    link_config_dir "wlogout"
 }
 
-function setup_fontconfig() {
-    local FONTCONFIG_DIR="$HOME/.config/fontconfig"
+setup_fontconfig() {
+    log "Setting up fontconfig"
 
-    if [ ! -d "$FONTCONFIG_DIR" ]; then
-        mkdir -p "$FONTCONFIG_DIR"
-    else
-        rm -rf "$FONTCONFIG_DIR"
-    fi
-
-    ln -s "$LINUX_CONFIG_DIR/fontconfig" "$FONTCONFIG_DIR"
-
+    link_config_dir "fontconfig"
     fc-cache -f -v
     fc-cache --really-force
 }
 
-function set_wayland_overrides_application() {
-    sudo cp -v "$DOTFILES_DIR/linux/{discord.desktop,slack.desktop,1password.desktop}" /usr/share/applications/.
+set_wayland_overrides_application() {
+    log "Installing Wayland desktop overrides"
+
+    local desktop_file
+    for desktop_file in discord.desktop slack.desktop 1password.desktop; do
+        sudo cp -v "$LINUX_DIR/$desktop_file" /usr/share/applications/
+    done
 }
 
-
-function main() {
+main() {
     if [ "$(uname)" != "Linux" ]; then
-        echo "This script is intended for Linux systems only."
+        printf 'This script is intended for Linux systems only.\n' >&2
         exit 1
     fi
 
@@ -161,9 +137,10 @@ function main() {
     setup_wlogout
     setup_fontconfig
     set_wayland_overrides_application
-    echo "All configurations have been set up successfully."
-    echo "Please restart your terminal or source your shell configuration to apply changes."
-    echo "Please check out https://github.com/pyenv/pyenv and https://github.com/nvm-sh/nvm"
+
+    log "All configurations have been set up successfully"
+    printf 'Please restart your terminal or source your shell configuration to apply changes.\n'
+    printf 'Please check out https://github.com/pyenv/pyenv and https://github.com/nvm-sh/nvm\n'
 }
 
 main "$@"
