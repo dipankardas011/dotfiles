@@ -30,15 +30,14 @@ x = 0
 y = 0
 
 [font.normal]
-family = "terminal-font"
-
+family = "JetBrainsMono NF"
 
 [font.italic]
-family = "terminal-cursive"
+family = "Victor Mono"
 style = "Bold Italic"
 
 [font.bold_italic]
-family = "terminal-cursive"
+family = "Victor Mono"
 
 
 [font.offset]
@@ -349,7 +348,7 @@ program = "/bin/bash"
 [window]
 decorations = "none"
 dynamic_padding = true
-# opacity = 0.95
+opacity = 0.95
 startup_mode = "Windowed"
 
 [window.padding]
@@ -357,5 +356,6 @@ x = 2
 y = 2
 
 [env]
-TERM = "xterm-256color"
+# TERM = "xterm-256color"
+TERM = "alacritty"
 

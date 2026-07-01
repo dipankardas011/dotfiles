@@ -90,15 +90,25 @@ require('minuet').setup({
   request_timeout = 3,
   throttle = 300,
   debounce = 150,
-  context_window = 6000,
+  context_window = 8000,
   context_ratio = 0.75,
   provider_options = {
     openai_fim_compatible = {
       api_key = 'TERM',
-      name = 'Llama.cpp',
-      end_point = 'http://127.0.0.1:6969/v1/completions',
-      model = 'Qwen2.5-Coder-1.5B',
+      name = 'vLLM-Qwen',
+      end_point = 'http://127.0.0.1:8000/v1/completions',
+      model = 'qwen2.5-coder',
       stream = true,
+      template = {
+        prompt = function(context_before_cursor, context_after_cursor, _)
+          return '<|fim_prefix|>'
+            .. context_before_cursor
+            .. '<|fim_suffix|>'
+            .. context_after_cursor
+            .. '<|fim_middle|>'
+        end,
+        suffix = false, -- vLLM doesn't support the suffix param
+      },
       optional = {
         max_tokens = 64,
         top_p = 0.9,

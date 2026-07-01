@@ -127,6 +127,8 @@ alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=sta
 # Misc
 alias pynbtopdf='jupyter-nbconvert --to pdf'
 
+# Opencode
+alias opencode='OPENCODE_ENABLE_EXA=1 opencode'
 
 # =============================================================================
 # Functions
