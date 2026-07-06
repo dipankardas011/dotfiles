@@ -1,19 +1,62 @@
--- [[ LSP Configuration ]]
--- Uses native vim.lsp.config() + vim.lsp.enable() (Neovim 0.12+ API)
--- :help vim.lsp.config
-
--- ============================================================
--- fidget.nvim: LSP status updates
--- ============================================================
 require('fidget').setup({
   notification = {
     window = { relative = 'win', winblend = 0, zindex = nil, border = 'none' },
   },
 })
 
--- ============================================================
--- LspAttach: Keymaps and buffer-specific LSP settings
--- ============================================================
+require('luasnip').config.setup({})
+require('luasnip.loaders.from_vscode').lazy_load()
+
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  formatting = {
+    format = require('lspkind').cmp_format({
+      mode = 'symbol',
+      maxwidth = { menu = 50, abbr = 50 },
+      ellipsis_char = '...',
+      show_labelDetails = true,
+    }),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete({}),
+    ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  }),
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'lazydev', group_index = 0 },
+  },
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
   callback = function(event)
@@ -34,7 +77,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
     map('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-    -- Document highlight
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method('textDocument/documentHighlight', event.buf) then
       local group = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -46,7 +88,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
-    -- Inlay hints toggle
     if client and client:supports_method('textDocument/inlayHint', event.buf) then
       map('<leader>th', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
@@ -55,9 +96,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- ============================================================
--- Diagnostic Configuration
--- ============================================================
 vim.diagnostic.config({
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
@@ -76,15 +114,10 @@ vim.diagnostic.config({
   },
 })
 
--- ============================================================
--- Mason setup & LSP server configurations
--- ============================================================
 require('mason').setup({})
 
--- LSP capabilities from cmp-nvim-lsp
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
---- @type table<string, vim.lsp.Config>
 local servers = {
   clangd = {},
   gopls = {},
@@ -114,12 +147,18 @@ local servers = {
   },
 }
 
--- Ensure LSP servers and tools are installed
-local ensure_installed = vim.tbl_keys(servers)
-vim.list_extend(ensure_installed, { 'stylua' })
+local ensure_installed = {
+  'clangd',
+  'gopls',
+  'pyright',
+  'rust-analyzer',
+  'yaml-language-server',
+  'lua-language-server',
+  'helm-ls',
+  'stylua',
+}
 require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
--- Configure and enable all servers using native 0.12 API
 for name, config in pairs(servers) do
   config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
   vim.lsp.config(name, config)
