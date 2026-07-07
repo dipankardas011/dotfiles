@@ -42,6 +42,10 @@ fi
 
 export pager="delta"
 
+HISTSIZE=999999
+HISTFILESIZE=999999
+HISTCONTROL=ignoreboth:erasedups
+
 # LESS terminal colors
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
@@ -143,7 +147,7 @@ calculate_dockerimagesize() {
 # Completion + prompt
 # =============================================================================
 
-shopt -s checkwinsize autocd cdspell
+shopt -s histappend checkwinsize autocd cdspell
 
 # Bash completion
 for f in /usr/share/bash-completion/bash_completion /etc/bash_completion; do
@@ -221,9 +225,9 @@ __prompt_command() {
 
     git_part=''
     if declare -F __git_ps1 >/dev/null 2>&1; then
-        git_part="$(__git_ps1 ' \[\e[1;35m\] %s\[\e[0m\]')"
+        git_part="$(__git_ps1 ' \[\e[1;35m\]git:%s\[\e[0m\]')"
     fi
 
-    PS1="\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]${git_part} ${status}\n\[\e[1;36m\]\$ \[\e[0m\]"
+    PS1="\[\e[1;34m\]\u\[\e[1;33m\]@\[\e[1;36m\]\h \[\e[1;33m\]\w\[\e[0m\]${git_part} ${status}\n\[\e[1;35m\]\$ \[\e[0m\]"
 }
 PROMPT_COMMAND="history -a; history -n; __prompt_command"
