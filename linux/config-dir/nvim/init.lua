@@ -10,7 +10,7 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.termguicolors = true
 vim.opt.hlsearch = true
-vim.opt.winborder = 'single'
+vim.opt.winborder = 'bold'
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
