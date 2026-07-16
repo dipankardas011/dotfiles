@@ -124,6 +124,12 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   yamlls = {},
+  ts_ls = {},
+  html = {},
+  cssls = {},
+  jsonls = {},
+  tailwindcss = {},
+  marksman = {},
   lua_ls = {
     settings = {
       Lua = {
@@ -155,6 +161,12 @@ local ensure_installed = {
   'yaml-language-server',
   'lua-language-server',
   'helm-ls',
+  'typescript-language-server',
+  'html-lsp',
+  'css-lsp',
+  'json-lsp',
+  'tailwindcss-language-server',
+  'marksman',
   'stylua',
 }
 require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
