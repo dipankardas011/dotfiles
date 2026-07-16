@@ -105,3 +105,10 @@ map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+
+-- Snappy terminal mode mappings
+map('t', '<C-h>', '<C-\\><C-n><C-w><C-h>', { desc = 'Move focus to the left window' })
+map('t', '<C-j>', '<C-\\><C-n><C-w><C-j>', { desc = 'Move focus to the lower window' })
+map('t', '<C-k>', '<C-\\><C-n><C-w><C-k>', { desc = 'Move focus to the upper window' })
+map('t', '<C-l>', '<C-\\><C-n><C-w><C-l>', { desc = 'Move focus to the right window' })
+map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })

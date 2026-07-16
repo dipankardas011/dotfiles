@@ -76,6 +76,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>D', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
     map('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    map('<leader>f', function()
+      vim.lsp.buf.format({ async = true })
+    end, 'Format buffer')
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method('textDocument/documentHighlight', event.buf) then

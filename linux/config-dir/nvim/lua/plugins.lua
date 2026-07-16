@@ -144,7 +144,7 @@ require('oil').setup({
   view_options = { show_hidden = true },
 })
 require('mini.tabline').setup()
-require('mini.statusline').setup({ use_icons = vim.g.have_nerd_font })
+-- require('mini.statusline').setup({ use_icons = vim.g.have_nerd_font })
 require('treesitter-context').setup({
   enable = true,
   throttle = true,

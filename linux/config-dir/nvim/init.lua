@@ -34,6 +34,8 @@ vim.opt.tabstop = 4
 vim.opt.numberwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
@@ -69,5 +71,6 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 require('plugins')
 require('lsp')
 require('keymaps')
+require('statusline').setup()
 
 -- vim: ts=2 sts=2 sw=2 et
