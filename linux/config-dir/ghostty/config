@@ -8,7 +8,7 @@ font-family        = JetBrainsMono NF
 font-family-italic = Victor Mono
 font-style-italic  = Bold Italic
 font-family-bold-italic = Victor Mono
-font-size = 16
+font-size = 18
 
 # ── Cursor ────────────────────────────────────────────────────────────────────
 cursor-style               = block
