@@ -1,0 +1,142 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Rofi · Everforest Dark Hard · Sidebar Launcher
+   Image panel left (mist forest), app list right — adi1090x-style layout
+   Syntax per official rofi-theme(5): background-image on box widget,
+   explicit element {visible}.{state} overrides (rofi's default theme is
+   always loaded first, so states must be beaten at their own specificity)
+   Installed by
+   $ dnf install rofi-wayland
+───────────────────────────────────────────────────────────────────────────── */
+
+* {
+  bg0:   #272e33;
+  bg1:   #2e383c;
+  bg2:   #374145;
+  bg3:   #414b50;
+  fg:    #d3c6aa;
+  red:   #e67e80;
+  green: #a7c080;
+  grey0: #7a8478;
+  grey1: #859289;
+
+  background-color: transparent;
+  text-color: @fg;
+  font: "JetBrainsMono NF 13";
+}
+
+configuration {
+  modi: "drun";
+  show-icons: true;
+  display-drun: "󰍉 Search";
+  drun-display-format: "{name}";
+  matching: "fuzzy";
+  hover-select: true;
+  me-select-entry: "";
+  me-accept-entry: "MousePrimary";
+  terminal: "ghostty";
+}
+
+/* ── Window ──────────────────────────────────────────────────────────────── */
+window {
+  width: 980px;
+  height: 530px;
+  location: center;
+  anchor: center;
+  background-color: @bg0;
+  border: 1px;
+  border-color: @bg3;
+  border-radius: 14px;
+  padding: 0px;
+  children: [ mainbox ];
+}
+
+mainbox {
+  orientation: horizontal;
+  spacing: 0px;
+  children: [ sidebox, listbox ];
+}
+
+/* ── Image sidebar (left, flush — background-image per rofi-theme(5)) ────── */
+sidebox {
+  expand: false;
+  width: 400px;
+  background-color: @bg1;
+  background-image: url("/home/dipankardas/.config/rofi/rofi-side.webp", both);
+}
+
+/* ── App list panel (right) ──────────────────────────────────────────────── */
+listbox {
+  orientation: vertical;
+  expand: true;
+  padding: 22px;
+  spacing: 14px;
+  children: [ inputbar, listview ];
+}
+
+inputbar {
+  background-color: @bg1;
+  border-radius: 12px;
+  padding: 11px 16px;
+  spacing: 10px;
+  children: [ prompt, entry ];
+}
+
+prompt {
+  text-color: @green;
+  font: "JetBrainsMono NF Bold 14";
+}
+
+entry {
+  text-color: @fg;
+  cursor: text;
+  placeholder: "Type to search";
+  placeholder-color: @grey1;
+  cursor-color: @green;
+}
+
+listview {
+  columns: 1;
+  lines: 8;
+  fixed-height: true;
+  cycle: true;
+  scrollbar: false;
+  spacing: 4px;
+}
+
+/* ── Elements — explicit state overrides (beat rofi's embedded default) ──── */
+element {
+  orientation: horizontal;
+  padding: 10px 12px;
+  spacing: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+element normal.normal,
+element alternate.normal,
+element normal.active,
+element alternate.active,
+element normal.urgent,
+element alternate.urgent {
+  background-color: transparent;
+  text-color: @fg;
+}
+
+element selected.normal,
+element selected.active,
+element selected.urgent {
+  background-color: @green;   /* same green pill language as waybar */
+  text-color: @bg0;
+}
+
+element-icon {
+  size: 26px;
+  vertical-align: 0.5;
+  cursor: pointer;
+}
+
+element-text {
+  vertical-align: 0.5;
+  text-color: inherit;
+  cursor: pointer;
+}
