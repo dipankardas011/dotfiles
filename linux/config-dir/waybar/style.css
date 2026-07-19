@@ -1,193 +1,222 @@
-/* Compatible Waybar Style (GTK/CSS-safe) with Everforest dark-inspired buttons */
+/* ─────────────────────────────────────────────────────────────────────────────
+   Waybar · Everforest Dark Hard
+   Palette shared with ghostty (Everforest Dark) & neovim (sainnhe/everforest)
+   https://github.com/sainnhe/everforest
+───────────────────────────────────────────────────────────────────────────── */
+
+@define-color bg_dim  #1e2326;
+@define-color bg0     #272e33;
+@define-color bg1     #2e383c;
+@define-color bg2     #374145;
+@define-color bg3     #414b50;
+@define-color fg      #d3c6aa;
+@define-color red     #e67e80;
+@define-color orange  #e69875;
+@define-color yellow  #dbbc7f;
+@define-color green   #a7c080;
+@define-color aqua    #83c092;
+@define-color blue    #7fbbb3;
+@define-color purple  #d699b6;
+@define-color grey0   #7a8478;
+@define-color grey1   #859289;
+@define-color grey2   #9da9a0;
 
 * {
   font-family: "JetBrainsMono NF", "Font Awesome 6 Free", "Font Awesome 6 Free Solid";
-  font-size: 11px;
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: 600;
   min-height: 0;
   border: none;
   border-radius: 0;
 }
 
-#waybar {
-  background: transparent;
-  transition: background-color 0.5s;
-}
-
-#tray {
-  margin: 6px 3px;
-  background-color: #2f4037;
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
-#waybar.hidden {
-  opacity: 0.5;
-}
-
-#workspaces {
+/* ── Floating island ─────────────────────────────────────────────────────── */
+window#waybar {
+  background-color: @bg0;
   border: none;
-  box-shadow: none;
+  border-radius: 12px; /* echoes hyprland rounding = 10 */
 }
 
+/* flat modules living inside the island */
+#window,
+#mpris,
+#network,
+#bluetooth,
+#pulseaudio,
+#cpu,
+#memory,
+#custom-temperature,
+#battery,
+#custom-power {
+  padding: 0 10px;
+  margin: 5px 1px;
+  border-radius: 8px;
+  color: @fg;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* ── Workspaces · numbered pills ─────────────────────────────────────────── */
+#workspaces {
+  margin-left: 6px;
+}
 
 #workspaces button {
-  all: initial;
   min-width: 0;
-  padding: 6px 18px;
-  margin: 6px 3px;
-  border-radius: 9999px;
-  background-color: #2f3834;
-  color: #828070;
+  padding: 1px 9px;
+  margin: 5px 2px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  background-color: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  color: @grey0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+#workspaces button.occupied {
+  color: @fg;
 }
 
 #workspaces button.active {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 6px;
+  background-color: @green;  /* everforest statusline green */
+  color: @bg0;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+  color: @bg0;
 }
 
 #workspaces button:hover {
-  background-color: #d4f1b1;
-  color: #1e2326;
+  background-color: @bg2;
+  color: @fg;
 }
 
-/* Compatible and shaded section styles */
-#clock {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#custom-power {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#bluetooth {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#battery {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#battery.critical {
-  background-color: #3d2e2e;
-  color: #f38b8b;
-}
-
-#battery.warning {
-  background-color: #40352a;
-  color: #f3b88c;
-}
-
-#pulseaudio {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#backlight {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#custom-temperature {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#memory {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#memory.critical {
-  background-color: #3d2e2e;
-  color: #f38b8b;
-}
-
-#memory.warning {
-  background-color: #40352a;
-  color: #f3b88c;
-}
-
-#cpu {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#cpu.critical {
-  background-color: #3d2e2e;
-  color: #f38b8b;
-}
-
-#cpu.warning {
-  background-color: #40352a;
-  color: #f3b88c;
-}
-
-#network {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
-#custom-lock {
-  background-color: #2f4037;
-  color: #a6e3b8;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
-}
-
+/* ── Window title ────────────────────────────────────────────────────────── */
 #window {
-  background-color: #37403d;
-  color: #f0eac5;
-  border-radius: 9999px;
-  margin: 6px 3px;
-  padding: 6px 14px;
+  color: @blue;
+  padding: 0 8px;
 }
 
+window#waybar.empty #window {
+  padding: 0;
+}
+
+/* ── Clock · green centerpiece (matches active workspace pill) ───────────── */
+#clock {
+  background-color: @green;
+  color: @bg0;
+  border-radius: 9px;
+  padding: 0 14px;
+  margin: 5px 4px;
+}
+
+/* ── Semantic per-module accents ─────────────────────────────────────────── */
+#mpris        { color: @purple; }
+#mpris.paused { color: @grey1; }
+
+#network              { color: @blue; }
+#network.disconnected { color: @grey0; }
+
+#bluetooth              { color: @blue; }
+#bluetooth.disabled,
+#bluetooth.off          { color: @grey0; }
+
+#pulseaudio       { color: @purple; }
+#pulseaudio.muted { color: @grey0; }
+
+#cpu     { color: @green; }
+#memory  { color: @aqua; }
+#battery { color: @fg; }
+
+/* temperature — class comes from temperature.sh (cool→blue, normal→green, warm→orange, hot→red) */
+#custom-temperature        { color: @blue; }
+#custom-temperature.normal { color: @green; }
+#custom-temperature.warm   { color: @orange; }
+#custom-temperature.hot    { color: @red; }
+
+/* cpu / memory — healthy accent → yellow → orange → red */
+#cpu.elevated,
+#memory.elevated { color: @yellow; }
+
+#cpu.high,
+#memory.high     { color: @orange; }
+
+#cpu.critical,
+#memory.critical { color: @red; }
+
+/* battery — drains plain → yellow → orange → red; charging = green */
+#battery.half    { color: @yellow; }
+#battery.warning { color: @orange; }
+#battery.charging,
+#battery.plugged,
+#battery.full    { color: @green; }
+
+#battery.critical:not(.charging) {
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    background-color: #e67e80;
+    color: #272e33;
+  }
+}
+
+/* hover lift */
+#mpris:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#cpu:hover,
+#memory:hover,
+#custom-temperature:hover,
+#battery:hover {
+  background-color: @bg2;
+}
+
+/* ── Tray drawer (chip) ──────────────────────────────────────────────────── */
+#tray-expander {
+  background-color: @bg1;
+  border-radius: 9px;
+  margin: 5px 2px;
+}
+
+#custom-expand-icon {
+  color: @grey1;
+  padding: 0 4px 0 9px;
+}
+
+#tray {
+  padding: 0 9px 0 4px;
+}
+
+/* ── Power ───────────────────────────────────────────────────────────────── */
+#custom-power {
+  color: @red;
+  padding: 0 12px;
+  margin-right: 6px;
+}
+
+#custom-power:hover {
+  background-color: @red;
+  color: @bg0;
+}
+
+/* ── Tooltips ────────────────────────────────────────────────────────────── */
 tooltip {
-  border-radius: 8px;
-  padding: 16px;
-  background-color: #2b3339;
-  color: #f0eac5;
+  background-color: @bg1;
+  border: 1px solid @bg3;
+  border-radius: 10px;
 }
 
 tooltip label {
-  padding: 5px;
-  background-color: #2b3339;
-  color: #f0eac5;
+  color: @fg;
+  padding: 4px 8px;
 }

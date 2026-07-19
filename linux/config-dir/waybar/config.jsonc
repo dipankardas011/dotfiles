@@ -1,145 +1,196 @@
+// ── Waybar · Everforest Dark Hard ────────────────────────────────────────────
+// Palette aligned with ghostty (Everforest Dark) + neovim (sainnhe/everforest, 'hard')
 {
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  // "height": "2.5ex",
+  "height": 32,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
   "spacing": 0,
-  "modules-left": [
-    "hyprland/workspaces",
-    "custom/temperature"
-  ],
+
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
   "modules-right": [
+    "mpris",
     "group/tray-expander",
     "network",
+    "bluetooth",
+    "pulseaudio",
     "cpu",
     "memory",
+    "custom/temperature",
     "battery",
-    "bluetooth",
-    "pulseaudio"
+    "custom/power"
   ],
+
+  // ── Left ──────────────────────────────────────────────────────────────────
   "hyprland/workspaces": {
-    "disable-scroll": false,
-    "all-outputs": false,
-    "format": "{icon}",
+    "format": "{name}",
     "on-click": "activate",
-    "format": "{name}: {icon}",
-	"format-icons": {
-	  "active": "",
-	  "default": ""
-	}
+    "all-outputs": false,
+    "disable-scroll": false,
+    "sort-by-number": true
   },
-  "custom/lock": {
-  "format": "  ",
-  "on-click": "hyprlock",
-  "tooltip": true,
-  "tooltip-format": "Lock Screen"
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 60,
+    "separate-outputs": true
   },
-  "network": {
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "format": "{icon} {essid}",
-    "format-wifi": "{icon}  {essid}",
-    "format-ethernet": "󰀂",
-    "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": " Disconnected",
-    "interval": 3,
-    "spacing": 1
-  },
-  "battery": {
-    "format": "{capacity}% {icon}",
-    "format-discharging": "{icon} {capacity}%",
-    "format-charging": "{icon} {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-icons": {
-      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-    "format-full": "󰂅",
-    "tooltip-format-discharging": "{power:>1.0f}W↓",
-    "tooltip-format-charging": "{power:>1.0f}W↑",
-    "interval": 5,
-    "states": {
-      "warning": 30,
-      "critical": 20
-    }
-  },
-  "pulseaudio": {
-    "format": "{icon}{volume}%",
-    "format-muted": "󰖁 0%",
-    "format-icons": {
-      "headphone": "  ",
-      "hands-free": "  ",
-      "headset": "  ",
-      "phone": "  ",
-      "portable": "  ",
-      "car": "  ",
-      "default": [
-        " ",
-        "  ",
-        "  "
-      ]
-    },
-    "on-click-right": "pavucontrol -t 3",
-    "on-click": "pactl -- set-sink-mute 0 toggle",
-    "tooltip": true,
-    "tooltip-format": "Volume: {volume}%"
-  },
-  "custom/temperature": {
-    "exec": "sensors | awk '/^Tctl:/ {print $2}' | tr '+' ' '",
-    "format": "{}",
-    "interval": 5,
-    "tooltip": true,
-    "tooltip-format": "CPU Temp: {}"
-  },
-  "memory": {
-    "tooltip": true,
-	"interval": 30,
-	"format": "  {used:0.1f}G/{total:0.1f}G",
-    "states": {
-      "critical": 90,
-      "warning": 70
-    }
-  },
-  "cpu": {
-    "interval": 1,
-    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "states": {
-      "critical": 90,
-      "warning": 70
-    }
-  },
+
+  // ── Center ────────────────────────────────────────────────────────────────
   "clock": {
     "interval": 1,
     "timezone": "Asia/Kolkata",
-    "format": "{:L%A %H:%M %Z}",
-    "format-alt": "{:L%d %B %Y}",
-    "tooltip": false
+    "format": "󰃭  {:L%a %d %b · %H:%M}",
+    "format-alt": "󰃭  {:L%d %B %Y · %H:%M:%S}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#d3c6aa'><b>{}</b></span>",
+        "days": "<span color='#9da9a0'>{}</span>",
+        "weeks": "<span color='#83c092'><b>W{}</b></span>",
+        "weekdays": "<span color='#dbbc7f'><b>{}</b></span>",
+        "today": "<span color='#272e33' background='#a7c080'><b> {} </b></span>"
+      }
+    },
+    "actions": {
+      "on-scroll-up": "shift_down",
+      "on-scroll-down": "shift_up"
+    }
   },
+
+  // ── Right · media + tray ─────────────────────────────────────────────────
+  "mpris": {
+    "interval": 1,
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "max-length": 35,
+    "player-icons": {
+      "default": "󰎆",
+      "firefox": "󰈹",
+      "spotify": "󰓇",
+      "mpv": "󰐊"
+    },
+    "status-icons": {
+      "playing": "󰐊",
+      "paused": "󰏤",
+      "stopped": "󰓛"
+    },
+    "tooltip-format": "{player}: {artist} — {title}",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-scroll-up": "playerctl position 5+",
+    "on-scroll-down": "playerctl position 5-"
+  },
+
   "group/tray-expander": {
     "orientation": "inherit",
     "drawer": {
       "transition-duration": 600,
-      "children-class": "tray-group-item"
+      "children-class": "tray-group-item",
+      "click-to-reveal": true
     },
     "modules": ["custom/expand-icon", "tray"]
   },
   "custom/expand-icon": {
     "format": " ",
-    "tooltip": false
+    "tooltip-format": "Toggle tray"
   },
   "tray": {
-    "icon-size": 12,
-    "spacing": 17
+    "icon-size": 15,
+    "spacing": 10
   },
+
+  // ── Right · connectivity (blue) ──────────────────────────────────────────
+  "network": {
+    "interval": 3,
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "󰈀 Wired",
+    "format-linked": "󰈀 {ifname}",
+    "format-disconnected": "󰤮 Offline",
+    "tooltip-format-wifi": "{essid} ({signalStrength}% · {frequency} GHz)\n⇣ {bandwidthDownBytes}  ⇡ {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "{ifname} ({ipaddr})\n⇣ {bandwidthDownBytes}  ⇡ {bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "nm-connection-editor"
+  },
+
   "bluetooth": {
-    "format": "",
+    "format": "󰂯",
     "format-disabled": "󰂲",
-    "format-connected": " {device_alias}",
-    "tooltip-format": "Devices connected: {num_connections}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-    "on-click": "blueman-manager",
+    "format-off": "󰂲",
+    "format-connected": "󰂱 {device_alias}",
+    "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n{device_enumerate}",
+    "on-click": "blueman-manager"
+  },
+
+  // ── Right · volume (purple) ──────────────────────────────────────────────
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Muted",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "󰏲",
+      "portable": "󰏲",
+      "car": "󰄋",
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "scroll-step": 5,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol -t 3",
+    "tooltip-format": "Volume: {volume}%"
+  },
+
+  // ── Right · stats (green → aqua → orange) ────────────────────────────────
+  "cpu": {
+    "interval": 2,
+    "format": "󰍛 {usage}%",
+    "states": { "elevated": 50, "high": 75, "critical": 90 }
+  },
+
+  "memory": {
+    "interval": 10,
+    "format": "󰘚 {percentage}%",
+    "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
+    "states": { "elevated": 60, "high": 80, "critical": 90 }
+  },
+
+  "custom/temperature": {
+    "exec": "$HOME/.config/waybar/temperature.sh",
+    "return-type": "json",
+    "interval": 5
+  },
+
+  // ── Right · battery (yellow) + power (red) ───────────────────────────────
+  "battery": {
+    "interval": 5,
+    "states": { "half": 50, "warning": 30, "critical": 15 },
+    "format": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-full": "󰁹 Full",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "tooltip-format-discharging": "{power:>1.0f}W ↓ · {timeTo}",
+    "tooltip-format-charging": "{power:>1.0f}W ↑ · {timeTo}",
+    "tooltip-format-full": "Battery full"
+  },
+
+  "custom/power": {
+    "format": "",
+    "tooltip-format": "Power menu (wlogout)",
+    "on-click": "wlogout"
   }
 }
