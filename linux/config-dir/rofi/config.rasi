@@ -61,6 +61,7 @@ sidebox {
   expand: false;
   width: 400px;
   background-color: @bg1;
+  // magick <image> -resize x530 -gravity center -crop 400x530+0+0 +repage -quality 85 -define webp:method=6 ~/.config/rofi/rofi-side.webp
   background-image: url("/home/dipankardas/.config/rofi/rofi-side.webp", both);
 }
 
