@@ -14,19 +14,35 @@
 }
 
 window {
-  width: 760px;
-  height: 430px;
+  width: 980px;
+  height: 530px;
   location: center;
   anchor: center;
   background-color: @bg0;
   border: 1px;
   border-color: @bg3;
   border-radius: 14px;
-  padding: 18px;
+  padding: 0px;
 }
 
 mainbox {
-  spacing: 12px;
+  orientation: horizontal;
+  spacing: 0px;
+  children: [ sidebox, listbox ];
+}
+
+sidebox {
+  expand: false;
+  width: 400px;
+  background-color: @bg1;
+  background-image: url("/home/dipankardas/.config/rofi/rofi-side.webp", both);
+}
+
+listbox {
+  orientation: vertical;
+  expand: true;
+  padding: 22px;
+  spacing: 14px;
   children: [ inputbar, listview ];
 }
 
