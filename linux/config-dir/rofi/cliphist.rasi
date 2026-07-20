@@ -1,0 +1,87 @@
+/* Everforest clipboard picker: compact companion to the application launcher. */
+* {
+  bg0: #272e33;
+  bg1: #2e383c;
+  bg2: #374145;
+  bg3: #414b50;
+  fg: #d3c6aa;
+  muted: #9da9a0;
+  green: #a7c080;
+
+  background-color: transparent;
+  text-color: @fg;
+  font: "JetBrainsMono NF 12";
+}
+
+window {
+  width: 760px;
+  height: 430px;
+  location: center;
+  anchor: center;
+  background-color: @bg0;
+  border: 1px;
+  border-color: @bg3;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+mainbox {
+  spacing: 12px;
+  children: [ inputbar, listview ];
+}
+
+inputbar {
+  background-color: @bg1;
+  border-radius: 10px;
+  padding: 10px 14px;
+  spacing: 10px;
+  children: [ prompt, entry ];
+}
+
+prompt {
+  text-color: @green;
+  font: "JetBrainsMono NF Bold 13";
+}
+
+entry {
+  placeholder: "Search clipboard history";
+  placeholder-color: @muted;
+  cursor-color: @green;
+}
+
+listview {
+  columns: 1;
+  lines: 8;
+  fixed-height: false;
+  cycle: true;
+  scrollbar: false;
+  spacing: 4px;
+}
+
+element {
+  orientation: horizontal;
+  padding: 8px 12px;
+  spacing: 10px;
+  border-radius: 8px;
+}
+
+element normal.normal,
+element alternate.normal {
+  background-color: transparent;
+  text-color: @fg;
+}
+
+element selected.normal {
+  background-color: @green;
+  text-color: @bg0;
+}
+
+element-text {
+  vertical-align: 0.5;
+  text-color: inherit;
+}
+
+element-icon {
+  size: 48px;
+  vertical-align: 0.5;
+}

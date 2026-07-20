@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+tmp_dir="${XDG_RUNTIME_DIR:-/tmp}/cliphist-rofi-$UID"
+rm -rf "$tmp_dir"
+
+if [[ "${ROFI_RETV:-0}" == "1" && -n "${ROFI_INFO:-}" ]]; then
+    cliphist decode <<<"$ROFI_INFO" | wl-copy
+    exit
+fi
+
+mkdir -p "$tmp_dir"
+
+read -r -d '' prog <<EOF
+/^[0-9]+\s<meta http-equiv=/ { next }
+match(\$0, /^([0-9]+)\s(\[\[\s)?binary data ([0-9.]+ [A-Za-z]+) (jpg|jpeg|png|bmp) ([0-9]+x[0-9]+)/, grp) {
+    system("printf '" grp[1] "\\\\t' | cliphist decode >$tmp_dir/"grp[1]"."grp[4])
+    print \$0"\\0display\\x1fImage | " toupper(grp[4]) " | " grp[5] "\\x1ficon\\x1f$tmp_dir/"grp[1]"."grp[4]"\\x1finfo\\x1f"\$0
+    next
+}
+match(\$0, /^[0-9]+\s+(.*)$/, grp) {
+    print \$0"\\0display\\x1f"grp[1]"\\x1finfo\\x1f"\$0
+}
+EOF
+
+cliphist list | gawk "$prog"
