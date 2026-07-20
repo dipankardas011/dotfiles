@@ -70,8 +70,14 @@ listview {
   lines: 8;
   fixed-height: false;
   cycle: true;
-  scrollbar: false;
+  scrollbar: true;
   spacing: 4px;
+}
+
+scrollbar {
+  handle-color: @green;
+  handle-width: 5px;
+  padding: 4px 0px;
 }
 
 element {
