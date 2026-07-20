@@ -32,6 +32,10 @@
 
 /* ── Floating island ─────────────────────────────────────────────────────── */
 window#waybar {
+  background: transparent;
+}
+
+window#waybar > box {
   background-color: @bg0;
   border: none;
   border-radius: 12px; /* echoes hyprland rounding = 10 */
