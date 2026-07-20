@@ -1,11 +1,11 @@
 [global]
-    font = "FantasqueSansMono NF 12"
+    font = "JetBrainsMono NF 10"
     
     # Allow HTML markup in notifications
     markup = full
     
     # rounded corners
-    corner_radius = 12
+    corner_radius = 10
     
     # Format notifications
     format = "<b>%s</b>\n%b"
@@ -39,13 +39,13 @@
     
     # The geometry of the window
     # Format: [{width}]x{height}[+/-{x}+/-{y}]
-    geometry = "300x5-30+20"
+    geometry = "240x5-22+18"
     
     # Shrink window if it's smaller than the width
     shrink = no
     
     # The transparency of the window (0-100)
-    transparency = 15
+    transparency = 0
     
     # Don't remove messages if the user is idle
     idle_threshold = 120
@@ -60,46 +60,59 @@
     show_indicators = yes
     
     # Progress bar height
-    progress_bar_height = 10
+    progress_bar_height = 6
     progress_bar_frame_width = 1
-    progress_bar_min_width = 150
-    progress_bar_max_width = 300
+    progress_bar_min_width = 120
+    progress_bar_max_width = 220
+    progress_bar_corner_radius = 3
 
     # Set the frame width of the notification window
-    frame_width = 2
+    frame_width = 0
     
     # Set the frame color of the notification window
-    frame_color = "#88c0d0"
+    frame_color = "#7fbbb3"
+    separator_color = "#414b50"
+    padding = 10
+    horizontal_padding = 12
+    text_icon_padding = 8
+    icon_position = left
 
 [urgency_low]
-    background = "#2e3440"
-    foreground = "#88c0d0"
+    background = "#2e383c"
+    foreground = "#9da9a0"
+    highlight = "#83c092"
     timeout = 5
 
 [urgency_normal]
-    background = "#2e3440"
-    foreground = "#88c0d0"
+    background = "#272e33"
+    foreground = "#d3c6aa"
+    frame_color = "#7fbbb3"
+    highlight = "#a7c080"
     timeout = 10
 
 [urgency_critical]
-    background = "#2e3440"
-    foreground = "#bf616a"
-    frame_color = "#bf616a"
+    background = "#2e383c"
+    foreground = "#e67e80"
+    frame_color = "#e67e80"
+    highlight = "#e67e80"
     timeout = 0
 
 # Custom notification categories
 [battery]
     appname = "Battery Warning"
     urgency = critical
-    background = "#2e3440"
-    foreground = "#bf616a"
+    background = "#2e383c"
+    foreground = "#e67e80"
 
 [volume-notification]
     appname = "Volume"
     urgency = low
+    format = "<b>%s</b>"
     timeout = 1
 
 [brightness-notification]
     appname = "Brightness"
     urgency = low
+    format = "<b>%s</b>"
+    highlight = "#dbbc7f"
     timeout = 1

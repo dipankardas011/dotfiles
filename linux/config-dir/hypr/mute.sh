@@ -12,15 +12,14 @@ show_volume_notification() {
     local message
 
     if [ "$status" == "yes" ]; then
-        icon="🔇"
-        message="Muted"
+        icon="󰝟"
+        message="Volume muted"
     else
-        icon="🔊"
-        message="Unmuted"
+        icon="󰕾"
+        message="Volume unmuted"
     fi
 
-    notify-send "Volume ${icon}" \
-        "<b>Status: ${message}</b>" \
+    notify-send "${icon}  ${message}" \
         -h string:x-dunst-stack-tag:volume \
         -h string:status:"$message" \
         -t 1000
@@ -38,15 +37,14 @@ show_mic_notification() {
     local message
 
     if [ "$status" == "yes" ]; then
-        icon="🔇"
-        message="Muted"
+        icon="󰍭"
+        message="Microphone muted"
     else
-        icon="🎤"
-        message="Unmuted"
+        icon="󰍬"
+        message="Microphone unmuted"
     fi
 
-    notify-send "Microphone ${icon}" \
-        "<b>Status: ${message}</b>" \
+    notify-send "${icon}  ${message}" \
         -h string:x-dunst-stack-tag:microphone \
         -h string:status:"$message" \
         -t 1000

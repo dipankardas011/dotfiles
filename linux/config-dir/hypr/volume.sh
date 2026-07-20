@@ -19,18 +19,17 @@ show_volume_notification() {
     
     # Select icon based on volume level
     if [ "$volume" -eq 0 ]; then
-        icon="🔇"
+        icon="󰝟"
     elif [ "$volume" -lt 30 ]; then
-        icon="🔈"
+        icon="󰕿"
     elif [ "$volume" -lt 70 ]; then
-        icon="🔉"
+        icon="󰖀"
     else
-        icon="🔊"
+        icon="󰕾"
     fi
     
     # Send notification with dunst formatting
-    notify-send "Volume ${icon}" \
-        "<b>Level: ${volume}%</b>" \
+    notify-send "${icon}  Volume · ${volume}%" \
         -h string:x-dunst-stack-tag:volume \
         -h int:value:"$volume" \
         -t 1000

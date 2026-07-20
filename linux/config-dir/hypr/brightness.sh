@@ -11,17 +11,15 @@ get_brightness() {
 # Function to show brightness notification
 show_brightness_notification() {
     local brightness=$(get_brightness)
-    local icon="🌞"
-    local label="Brightness"
+    local icon="󰃠"
 
-    if [ "$brightness" -lt 40 ]; then
-        icon="🌤️"
-    elif [ "$brightness" -lt 20 ]; then
-        icon="🌑"
+    if [ "$brightness" -lt 20 ]; then
+        icon="󰃞"
+    elif [ "$brightness" -lt 40 ]; then
+        icon="󰃟"
     fi
 
-    notify-send "${label} ${icon}" \
-        "Current: ${brightness}%" \
+    notify-send "${icon}  Brightness · ${brightness}%" \
         -h string:x-dunst-stack-tag:brightness \
         -h int:value:"${brightness}" \
         -t 1000
