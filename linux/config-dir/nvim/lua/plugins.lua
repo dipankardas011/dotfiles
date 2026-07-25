@@ -218,13 +218,35 @@ require('codecompanion').setup({
       opts = { alias = 'commit', is_slash_cmd = true, auto_submit = false },
       prompts = {
         {
+          role = 'system',
+          content = table.concat({
+            'Write one high-quality Git commit message from the supplied diff.',
+            'Return only the commit message. Do not add Markdown, analysis,',
+            'explanations, alternatives, or quotation marks.',
+          }, '\n'),
+        },
+        {
           role = 'user',
           content = function()
             return table.concat({
-              'You are an expert at following the Conventional Commit specification.',
-              'Given the git diff listed below, generate a concise commit message.',
-              'Wrap each line at 70 characters.',
+              'Create a Conventional Commit message that describes this diff.',
               '',
+              'Required format:',
+              '<type>(<optional-scope>): <imperative summary>',
+              '',
+              'Rules:',
+              '- Choose one type: feat, fix, refactor, perf, test, docs, build, ci, chore, or revert.',
+              '- Infer a short scope only when the diff clearly identifies one; otherwise omit it.',
+              '- Use lowercase for type and scope.',
+              '- Write the summary in the imperative mood, with no period at the end.',
+              '- Keep the first line at 70 characters or fewer.',
+              '- Describe the purpose and user-visible effect, not a list of changed files.',
+              '- Add a body only when the reason or an important consequence is not clear from the summary.',
+              '- If adding a body, leave one blank line after the summary and wrap body lines at 70 characters.',
+              '- Do not invent behavior, issue numbers, breaking changes, or implementation details.',
+              '- Output only the final commit message.',
+              '',
+              'Git diff:',
               '```diff',
               git_diff_for_commit_prompt(),
               '```',
