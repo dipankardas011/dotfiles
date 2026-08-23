@@ -201,7 +201,7 @@ require('codecompanion').setup({
           opts = { stream = true, tools = false, vision = false },
           schema = {
             model = { default = local_chat_model, choices = { local_chat_model } },
-            max_tokens = { default = 32768 },
+            max_tokens = { default = 128000 },
           },
         })
       end,
@@ -215,7 +215,7 @@ require('codecompanion').setup({
     ['Commit message'] = {
       interaction = 'chat',
       description = 'Generate a commit message',
-      opts = { alias = 'commit', is_slash_cmd = true, auto_submit = false },
+      opts = { alias = 'commit', is_slash_cmd = true, auto_submit = true },
       prompts = {
         {
           role = 'system',
@@ -239,7 +239,7 @@ require('codecompanion').setup({
               '- Infer a short scope only when the diff clearly identifies one; otherwise omit it.',
               '- Use lowercase for type and scope.',
               '- Write the summary in the imperative mood, with no period at the end.',
-              '- Keep the first line at 70 characters or fewer.',
+              '- Keep the all line atmax 70 characters.',
               '- Describe the purpose and user-visible effect, not a list of changed files.',
               '- Add a body only when the reason or an important consequence is not clear from the summary.',
               '- If adding a body, leave one blank line after the summary and wrap body lines at 70 characters.',
