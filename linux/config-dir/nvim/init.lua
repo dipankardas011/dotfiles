@@ -36,6 +36,8 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevel = 99
 
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
