@@ -10,7 +10,7 @@
   "margin-right": 8,
   "spacing": 0,
 
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
     "mpris",
@@ -20,9 +20,8 @@
     "pulseaudio",
     "cpu",
     "memory",
-    "custom/temperature",
-    "battery",
-    "custom/power"
+    "battery"
+    // "custom/power"
   ],
 
   // ── Left ──────────────────────────────────────────────────────────────────
@@ -32,12 +31,6 @@
     "all-outputs": false,
     "disable-scroll": false,
     "sort-by-number": true
-  },
-
-  "hyprland/window": {
-    "format": "{title}",
-    "max-length": 60,
-    "separate-outputs": true
   },
 
   // ── Center ────────────────────────────────────────────────────────────────
@@ -163,12 +156,6 @@
     "format": "󰘚 {percentage}%",
     "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
     "states": { "elevated": 60, "high": 80, "critical": 90 }
-  },
-
-  "custom/temperature": {
-    "exec": "$HOME/.config/waybar/temperature.sh",
-    "return-type": "json",
-    "interval": 5
   },
 
   // ── Right · battery (yellow) + power (red) ───────────────────────────────
