@@ -43,10 +43,10 @@ hl.monitor({
     supports_hdr        = true,
     -- transform = 3
 
-    bitdepth = 10         -- 10-bit color signaling (Dell U2725QE 10-bit panel)
-    -- cm = hdredid          -- Uses Dell U2725QE EDID hardware HDR profile
-    -- sdr_max_luminance = 203 -- Standard BT.2408 reference white for SDR content
-    -- sdr_min_luminance = 0.005 -- IPS Black panel black level floor
+    bitdepth = 10,
+    cm = "hdredid",
+    sdr_max_luminance = 203,
+    sdr_min_luminance = 0.1
 })
 
 hl.monitor({
